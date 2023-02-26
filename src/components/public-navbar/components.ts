@@ -27,16 +27,41 @@ export const PublicNavbarContainer = styled.nav`
         cursor: pointer;
         text-decoration: wavy;
      }
+
+     & > .hambuger__nav {
+        font-size: 1.5em;
+        font-weight: 1000;
+        color: rgb(51,102,51);
+        cursor: pointer;
+        display: none;
+        padding: 10px 20px;
+        border-radius:10px;
+        transition: all .1s ease-in-out;
+
+        &:hover {
+            background: rgb(51,102,51);
+            color: white;
+        }
+
+        @media (max-width:768px) {
+            display: block;
+        }
+     }
 `
 
 export const DropdownContent = styled.div`
-    display: flex;
+    display: none;
     flex-direction:column;
     position: absolute;
      background: white;
      border-radius: 10px;
-     margin-left: -20px;
      padding: 10px 0px;
+     right: 30px;
+     top: 70px;
+     border: solid 1px gray;
+     @media (max-width:768px) {
+        display: flex;
+     }
     & > a {
         font-size: 0.8em;
         margin-inline: 10px;
@@ -68,5 +93,9 @@ export const Links = styled.div`
             background: rgb(51,102,51);
             color: white;
         }
+    }
+
+    @media (max-width:768px) {
+        display: none;
     }
 `

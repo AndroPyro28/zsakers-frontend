@@ -31,8 +31,6 @@ function FeaturedProducts() {
       <Products>
         <h1>Our Products</h1>
 
-        
-
       <ProductList>
         {
           products?.map((product) => <Product data={product} />)

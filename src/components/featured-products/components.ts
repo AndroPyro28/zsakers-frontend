@@ -27,6 +27,9 @@ export const Productsidebar = styled.div`
         padding: 15px 50px;
         cursor: pointer;
         transition: all .3s ease-in-out;
+        @media (max-width: 768px) {
+            font-size: 1em;
+        }
         &:hover {
             background: rgb(179,202,179);
         }
@@ -44,6 +47,10 @@ export const Products = styled.div`
         font-size: 2em;
         color: rgb(51,102,51);
         background: #EAEAEA;
+
+        @media (max-width: 768px) {
+            font-size: 1.5em;
+        }
     }
 `
 
@@ -57,6 +64,13 @@ export const ProductList = styled.div`
     gap: 20px;
     padding: 20px;
     min-height: 900px;
+
+    @media (max-width:768px) {
+    grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width:468px) {
+    grid-template-columns: repeat(1, 1fr);
+    }
 `
 
 export const ProductContainer = styled.div`
@@ -70,7 +84,7 @@ export const ProductContainer = styled.div`
         width: 90%;
         max-height: 200px;
         height: 200px;
-        object-fit: cover;
+        object-fit: contain;
         border-radius: 10px;
      }
 `

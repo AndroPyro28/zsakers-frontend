@@ -78,12 +78,15 @@ export const SideContent = styled.div`
         if(pathname.includes('signup')) return `url('/assets/undraw7.png')`
         else { return `url('/assets/undraw5.png')`}
     }}; 
-    /* background:url('/assets/screenshot1.png'); */
     background-repeat: no-repeat;
     background-size: contain;
     background-position: right;
     height: 100vh;
     width: 100%;
+
+    @media (max-width:800px) {
+        display: none;
+    }
 `
 
 export const ButtonContainer = styled.div`
