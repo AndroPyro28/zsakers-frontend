@@ -50,18 +50,17 @@ export const PublicNavbarContainer = styled.nav`
 `
 
 export const DropdownContent = styled.div`
-    display: none;
+    /* display: none; */
+    display: flex;
     flex-direction:column;
     position: absolute;
      background: white;
      border-radius: 10px;
      padding: 10px 0px;
-     right: 30px;
-     top: 70px;
+     right: -30px;
+     top: 60px;
      border: solid 1px gray;
-     @media (max-width:768px) {
-        display: flex;
-     }
+     
     & > a {
         font-size: 0.8em;
         margin-inline: 10px;

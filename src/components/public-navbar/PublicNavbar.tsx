@@ -5,10 +5,30 @@ import { faBars } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 import { useState } from "react";
+import SideNav from "../side-nav/SideNav";
 
 function PublicNavbar() {
   const { navLinkStylesFirst, navLinkStyles } = Logic();
   const [showDropDown, setShowDropDown] = useState(false);
+
+  const routes = [
+    {
+      url:`/`,
+      name:"Home",
+    //   icon:'fa-solid fa-chart-line'
+    },
+    {
+      url:`/about`,
+      name:"About",
+    //   icon:'fa-solid fa-calendar-days'
+    },
+    {
+      url:`/login`,
+      name:"Login",
+    //   icon:'fa-solid fa-chart-pie'
+    },
+    
+]
 
   return (
     <PublicNavbarContainer>
@@ -22,20 +42,15 @@ function PublicNavbar() {
           About
         </NavLink>
 
-        {/* <NavLink to={"/products"} style={navLinkStyles}>
-          Products
-        </NavLink> */}
       </Links>
       <Links>
         <NavLink to={"/login"}>login</NavLink>
       </Links>
 
       <FontAwesomeIcon icon={faBars} className="hambuger__nav" onClick={() => setShowDropDown(prev => !prev)}/>
-      <DropdownContent>
-        <NavLink to={'/'} >Home</NavLink>
-        <NavLink to={'/about'} >About</NavLink>
-        <NavLink to={'/login'} >Login</NavLink>
-      </DropdownContent>
+     
+     {showDropDown && <SideNav setShowDropDown={setShowDropDown} routes={routes}/>} 
+
     </PublicNavbarContainer>
   );
 }

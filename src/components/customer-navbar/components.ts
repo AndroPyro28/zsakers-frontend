@@ -15,6 +15,17 @@ export const CustomerNavbarContainer = styled.div`
     background: white;
     /* box-shadow: 1px 3px 5px #EAEAEA; */
     display: ${({url} : {url: string}) => excludeRoutes.includes(url) ? 'none' : 'flex'};
+
+    & > .hamburger__nav {
+        align-self: center;
+        flex: 1;
+        display: none;
+        font-size: 1.5em;
+        cursor: pointer;
+        @media (max-width: 968px) {
+            display: flex;
+        }
+    }
 `
 
 export const CustomerLinks = styled.div`
@@ -23,6 +34,9 @@ export const CustomerLinks = styled.div`
     display: flex;
     align-items: center;
     padding-inline:20px;
+    @media (max-width: 968px) {
+            display: none;
+        }
 
     & > a {
         padding: 10px ;
