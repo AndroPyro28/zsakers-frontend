@@ -60,10 +60,9 @@ function CustomerNavbar() {
                     {
                         openCart &&  <CartPopup  /> 
                     }
-
                 <User>
                 <PhotoBorder>
-                    <Photo src="/assets/arthur estrada profile.jpg" />
+                    <Photo src="/assets/defaultProfile.jpg" />
                 </PhotoBorder>
                 <DropDown>
                 <div onClick={() => setToggleDropdown(prev => !prev)}>

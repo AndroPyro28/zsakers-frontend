@@ -1,5 +1,5 @@
+import { bundleChildProduct, bundleParentProduct } from "./Bundle";
 import { Category } from "./Category";
-import { SetCategory } from "./SetCategory";
 import { Subcategory } from "./Subcategory";
 
 export interface CreateProduct {
@@ -11,7 +11,9 @@ export interface CreateProduct {
     details: string
     categoryId: string,
     subcategoryId: string;
-    setcategoryId:string;
+    productType: string
+    productIds: undefined | number[]
+    // setcategoryId:string;
     // productId: number | string | null
 }
 
@@ -28,14 +30,16 @@ export interface Product {
     stock: number;
     categoryId: number;
     subcategoryId: number;
-    setcategoryId:number;
-    // productId: number | string | null
+    // setcategoryId:number;
+    productId: number | string | null
     category: Category;
     sub_category: Subcategory;
-    set_category: SetCategory;
     products: Product[];
     archive: boolean;
-    cart_product: any[]
+    productType: "SINGLE" | "BUNDLE"
+    cart_product: any[],
+    bundleParentProduct: bundleParentProduct[]
+    bundleChildProduct: bundleChildProduct[]
 }
 
 export interface UpdateProduct {
@@ -43,13 +47,13 @@ export interface UpdateProduct {
     productName: string,
     price: number,
     details: string,
-    stock: number,
-    quantity: number | string;
+    stock: number ,
+    quantity: number | string | undefined;
     image_url: string,
     image_id:string,
     categoryId: number,
     subcategoryId: number,
-    setcategoryId:number;
+    // setcategoryId:number;
     // productId: number | string | null
 }
 

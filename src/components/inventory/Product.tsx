@@ -1,11 +1,12 @@
 import { ErrorMessage, Field, Formik } from 'formik'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import findCategory from '../../helpers/findCategory'
 import productPriceFormatter from '../../helpers/ProductPriceFormatter'
 import { Category, Product as ProductInterface } from '../../model'
 import { useGetAllProductQuery } from '../../services'
 import { TableRow } from '../table/components'
-import { ActionButtons, ItemRowInfo, ItemRowInfoContainer, LeftProductContent, ProductBottomSide, ProductContainer, RightProductContent } from './components'
+import BundledProduct from './BundledProduct'
+import { ActionButtons, BundleProducts, BundleProductsContainer, ItemRowInfo, ItemRowInfoContainer, LeftProductContent, ProductBottomSide, ProductContainer, ProductMenu, RightProductContent } from './components'
 import Logic from './Logic'
 interface Props {
   data: ProductInterface;
@@ -13,14 +14,15 @@ interface Props {
 }
 function Product({ data, categories }: Props) {
   const [toggle, setToggle] = useState(false)
-  const { productName, price, category, sub_category, stock, image_url, id, categoryId: category_id, subcategoryId: subcategory_id, quantity, setcategoryId: setcategory_id } = data;
+  const [bundleChildrenProductIds, setBundleChildrenProductIds] = useState<number[]>([]);
   const [imageFile, setImageFile] = useState<any>(null);
   const [imageUrl, setImageUrl] = useState<any>(null);
+
+  const { productName, price, category, sub_category, stock, image_url, id, categoryId: category_id, subcategoryId: subcategory_id, quantity } = data;
   const [disableUpdate, setDisableUpdate] = useState(true)
   const { handleDelete, onSubmit, validationSchema } = Logic({ imageUrl, setDisableUpdate, imageFile })
   const [categoryId, setterCategoryId] = useState(category_id)
   const [subcategoryId, setterSubcategoryId] = useState(subcategory_id)
-  const [setcategoryId, setterSetcategoryId] = useState(setcategory_id)
 
   const getBase64FromUrl = async (url: string) => {
     const data = await fetch(url);
@@ -48,8 +50,6 @@ function Product({ data, categories }: Props) {
     image_id: data.image_id || '',
     categoryId: data.categoryId,
     subcategoryId: data.subcategoryId,
-    setcategoryId: data.setcategoryId,
-    // productId: data.productId || 0,
   }
 
   const { data: products, refetch: refetechProduct } = useGetAllProductQuery({
@@ -62,9 +62,21 @@ function Product({ data, categories }: Props) {
     refetchOnReconnect: true
   });
 
-  const fetchSelectProductList = products?.map(product => (
-    <option value={product.id}>{product.productName}</option>
-  ))
+  const fetchBundleProductList = products
+    ?.filter(product => product.productType === 'SINGLE')
+    ?.map(product => (
+      <BundledProduct
+        data={product}
+        bundleChildrenProductIds={bundleChildrenProductIds}
+        setBundleChildrenProductIds={setBundleChildrenProductIds}
+      />
+    ))
+
+  useEffect(() => {
+    data?.bundleParentProduct.forEach((data, index) => {
+      setBundleChildrenProductIds(prev => [...prev, data?.bundleChildProduct.id])
+    })
+  }, [])
 
   return (
     <ProductContainer>
@@ -116,10 +128,6 @@ function Product({ data, categories }: Props) {
                 <option value={subcategory?.id} key={subcategory?.id}>{subcategory?.name}</option>
               ))
 
-              const fetchSetCategories = findSubcategory()?.set_category.map((setcategory) => (
-                <option value={setcategory?.id} key={setcategory?.id}>{setcategory?.name}</option>
-              ))
-
               if (!isNaN(Number(formik.values.categoryId))) {
                 setterCategoryId(Number(formik.values.categoryId))
               } else {
@@ -132,105 +140,100 @@ function Product({ data, categories }: Props) {
                 setterSubcategoryId(0)
               }
 
-              if (!isNaN(Number(formik.values.setcategoryId))) {
-                setterSetcategoryId(Number(formik.values.setcategoryId))
-              } else {
-                setterSetcategoryId(0)
-              }
               return <ProductBottomSide>
-                <LeftProductContent disableUpdate={disableUpdate}>
-                  <label htmlFor='image_url'>
-                    {
-                      imageUrl?.length > 0 ? <img src={imageUrl} /> : <>no photos</>
-                    }
-                  </label>
-                  <ErrorMessage name="image_url" component={'div'} className="error__message" />
-                  <input name="image_url" style={{ display: 'none' }} type="file" id="image_url" disabled={disableUpdate} onChange={onUploadChange} />
-                  <ActionButtons>
-                    {
-                      disableUpdate ? <input type="button" value={'Edit'} onClick={() => setDisableUpdate(false)} /> :
-                        <button type='submit' value={'Save'}>Save</button>
-                    }
-                    <input type="button" value={'Delete'} onClick={() => handleDelete(id)} />
-                  </ActionButtons>
-                </LeftProductContent>
+                <ProductMenu>
+                  <LeftProductContent disableUpdate={disableUpdate}>
+                    <label htmlFor='image_url'>
+                      {
+                        imageUrl?.length > 0 ? <img src={imageUrl} /> : <>no photos</>
+                      }
+                    </label>
+                    <ErrorMessage name="image_url" component={'div'} className="error__message" />
+                    <input name="image_url" style={{ display: 'none' }} type="file" id="image_url" disabled={disableUpdate} onChange={onUploadChange} />
+                    <ActionButtons>
+                      {
+                        disableUpdate ? <input type="button" value={'Edit'} onClick={() => setDisableUpdate(false)} /> :
+                          <button type='submit' value={'Save'}>Save</button>
+                      }
+                      <input type="button" value={'Delete'} onClick={() => handleDelete(id)} />
+                    </ActionButtons>
+                  </LeftProductContent>
 
-                <RightProductContent>
-                  <ItemRowInfoContainer>
-                    <ItemRowInfo>
-                      <label htmlFor="productName">Name</label>
-                      <Field name="productName" placeholder="Product name" id="productName" disabled={disableUpdate} />
-                      <ErrorMessage name="productName" component={'div'} className="error__message" />
-                    </ItemRowInfo>
-                    <ItemRowInfo>
-                      <label htmlFor="price">Price</label>
-                      <Field name="price" placeholder="Product price" id="price" type="number" disabled={disableUpdate} />
-                      <ErrorMessage name="price" component={'div'} className="error__message" />
-                    </ItemRowInfo>
-                    <ItemRowInfo>
-                      <label htmlFor="stock">Stock</label>
-                      <Field name="stock" id="stock" placeholder="Product stock" type="number" disabled={disableUpdate} />
-                      <ErrorMessage name="stock" component={'div'} className="error__message" />
-                    </ItemRowInfo>
-                    <ItemRowInfo>
-                      <label htmlFor="quantity">Quantity</label>
-                      <Field name="quantity" id="quantity" placeholder="Serving quantity" type="number" disabled={disableUpdate} />
-                      <ErrorMessage name="quantity" component={'div'} className="error__message" />
-                    </ItemRowInfo>
-                  </ItemRowInfoContainer>
-                  <ItemRowInfoContainer>
+                  <RightProductContent>
+                    <ItemRowInfoContainer>
+                      <ItemRowInfo>
+                        <label htmlFor="productName">Name</label>
+                        <Field name="productName" placeholder="Product name" id="productName" disabled={disableUpdate} />
+                        <ErrorMessage name="productName" component={'div'} className="error__message" />
+                      </ItemRowInfo>
+                      <ItemRowInfo>
+                        <label htmlFor="price">Price</label>
+                        <Field name="price" placeholder="Product price" id="price" type="number" disabled={disableUpdate} />
+                        <ErrorMessage name="price" component={'div'} className="error__message" />
+                      </ItemRowInfo>
 
-                    <ItemRowInfo>
-                      <label htmlFor="categoryId">Category</label>
-                      <Field as={'select'} name="categoryId" id="categoryId" disabled={disableUpdate} >
-                        <option value="">Select Category</option>
-                        {fetchCategories}
-                      </Field>
-                      <ErrorMessage name="categoryId" component={'div'} className="error__message" />
-                    </ItemRowInfo>
+                      {
+                        data?.productType === 'SINGLE' && <ItemRowInfo>
+                          <label htmlFor="stock">Stock</label>
+                          <Field name="stock" id="stock" placeholder="Product stock" type="number" disabled={disableUpdate} />
+                          <ErrorMessage name="stock" component={'div'} className="error__message" />
+                        </ItemRowInfo>
+                      }
 
-                    <ItemRowInfo>
-                      <label htmlFor="subcategoryId">Subcategory</label>
-                      <Field as={'select'} name="subcategoryId" id="subcategoryId" disabled={disableUpdate} >
-                        <option value="">Select Subcategory</option>
-                        {fetchSubCategories}
-                      </Field>
-                      <ErrorMessage name="subcategoryId" component={'div'} className="error__message" />
-                    </ItemRowInfo>
+                      {
+                        data?.productType === 'BUNDLE' && <ItemRowInfo>
+                          <label htmlFor="quantity">Serving Quantity</label>
+                          <Field name="quantity" id="quantity" placeholder="Serving quantity" type="number" disabled={disableUpdate} />
+                          <ErrorMessage name="quantity" component={'div'} className="error__message" />
+                        </ItemRowInfo>
+                      }
 
-                    <ItemRowInfo>
-                      <label htmlFor="setcategoryId">Setcategory</label>
-                      <Field as={'select'} name="setcategoryId" id="setcategoryId" disabled={disableUpdate} >
-                        <option value="">Select Setcategory</option>
-                        {fetchSetCategories}
-                      </Field>
-                      <ErrorMessage name="setcategoryId" component={'div'} className="error__message" />
-                    </ItemRowInfo>
+                    </ItemRowInfoContainer>
+
+                    <ItemRowInfoContainer>
+
+                      <ItemRowInfo>
+                        <label htmlFor="categoryId">Category</label>
+                        <Field as={'select'} name="categoryId" id="categoryId" disabled={disableUpdate} >
+                          <option value="">Select Category</option>
+                          {fetchCategories}
+                        </Field>
+                        <ErrorMessage name="categoryId" component={'div'} className="error__message" />
+                      </ItemRowInfo>
+
+                      <ItemRowInfo>
+                        <label htmlFor="subcategoryId">Subcategory</label>
+                        <Field as={'select'} name="subcategoryId" id="subcategoryId" disabled={disableUpdate} >
+                          <option value="">Select Subcategory</option>
+                          {fetchSubCategories}
+                        </Field>
+                        <ErrorMessage name="subcategoryId" component={'div'} className="error__message" />
+                      </ItemRowInfo>
+
+                    </ItemRowInfoContainer>
+
+                    <ItemRowInfoContainer>
+                      <ItemRowInfo>
+                        <label htmlFor="details">details</label>
+                        <Field as={'textarea'} placeholder="Product details" name={'details'} id="details" disabled={disableUpdate} >
+                        </Field>
+                        <ErrorMessage name="details" component={'div'} className="error__message" />
+                      </ItemRowInfo>
+                    </ItemRowInfoContainer>
+                  </RightProductContent>
+                </ProductMenu>
+
+                { data?.productType === 'BUNDLE' && <BundleProductsContainer>
+
+                  <h1 style={{
+                    color:'gray'
+                  }}>Variations</h1>
+                  
+                     <BundleProducts>{fetchBundleProductList}</BundleProducts>
+                  
+                </BundleProductsContainer> }
 
 
-                    {/* <ItemRowInfo>
-                      <label htmlFor="productId">Belongs to</label>
-                      <Field as={'select'} name={'productId'} id="productId" disabled={disableUpdate} >
-                        <option value="">Select Product</option>
-                        {fetchSelectProductList}
-                      </Field>
-                      <ErrorMessage name="productId" component={'div'} className="error__message" />
-                    </ItemRowInfo> */}
-
-                  </ItemRowInfoContainer>
-
-                  <ItemRowInfoContainer>
-
-
-
-                    <ItemRowInfo>
-                      <label htmlFor="details">details</label>
-                      <Field as={'textarea'} placeholder="Product details" name={'details'} id="details" disabled={disableUpdate} >
-                      </Field>
-                      <ErrorMessage name="details" component={'div'} className="error__message" />
-                    </ItemRowInfo>
-                  </ItemRowInfoContainer>
-                </RightProductContent>
               </ProductBottomSide>
             }
           }

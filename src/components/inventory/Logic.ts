@@ -46,16 +46,13 @@ function Logic({imageUrl, setDisableUpdate, imageFile}: Props) {
     stock: yup.number()
     .required('stock is required field')
     .min(0, 'stock must be minimum of 0'),
-    quantity: yup.number()
-    .required('Quantity is required field')
-    .min(1, 'Quantity must be minimum of 1'),
+    quantity: yup
+    .number()
+    .optional(),
     categoryId: yup.number().typeError('Category is required field')
     .required('Category is required field'),
     subcategoryId: yup.number().typeError('Subcategory is required field')
     .required('Subcategory is required field'),
-    setcategoryId:  yup.number().typeError('Subcategory is required field')
-    .required('Subcategory is required field'),
-    // productId: yup.number(),
     details: yup.string()
     .typeError('details is required field').
     // required('Product name is required field').
@@ -77,11 +74,11 @@ function Logic({imageUrl, setDisableUpdate, imageFile}: Props) {
         const res: any = await updateProduct({...values, 
             price: Number(values.price), 
             stock: Number(values.stock),
-            quantity: Number(values.quantity),
+            // quantity: Number(values.quantity),
             categoryId: Number(values.categoryId),
             // productId: Boolean(values.productId) ? Number(values.productId) : null,
             subcategoryId: Number(values.subcategoryId),
-            setcategoryId: Number(values.setcategoryId),
+            // setcategoryId: Number(values.setcategoryId),
             details: values.details,
             image_url: imageUrl!
         });

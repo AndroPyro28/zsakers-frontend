@@ -80,12 +80,19 @@ export const ProductContainer = styled.div`
     border-radius: 10px;
     gap: 10px;
     cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    transition: all .1s ease-in-out;
      & > img {
         width: 90%;
         max-height: 200px;
         height: 200px;
         object-fit: contain;
         border-radius: 10px;
+     }
+
+     &:active {
+        scale: 1.1;
      }
 `
 

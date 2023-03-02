@@ -2,7 +2,10 @@ import * as yup from "yup";
 import { CreateProduct } from "../../../../model";
 import { useCreateProductMutation } from "../../../../services";
 import {toast} from 'react-toastify'
-function Logic() {
+interface Props {
+  productIds: number[]
+}
+function BundleLogic({productIds}: Props) {
   const [createProduct] = useCreateProductMutation();
   const onSubmit = async (values: CreateProduct, { resetForm }: any) => {
     try {
@@ -12,8 +15,8 @@ function Logic() {
         fileReader.onloadend = async () => {
           const res: any = await createProduct({
             ...values,
-            // productId: Boolean(values.productId) ? values.productId : null,
             image: fileReader.result,
+            productIds: productIds
           });
 
           const { error, data } = res;
@@ -31,8 +34,8 @@ function Logic() {
       } else {
         const res: any = await createProduct({
           ...values,
-          // productId: Boolean(values.productId) ? values.productId : null,
           image: null,
+          productIds: productIds
         });
 
         const { error, data } = res;
@@ -56,13 +59,13 @@ function Logic() {
   const initialValues = {
     productName: "",
     productPrice: "",
-    productStock: "",
-    quantity: 0,
+    productStock: 0,
+    quantity: "",
     details: "",
     image: "",
     categoryId: "",
     subcategoryId: "",
-    productType: "SINGLE",
+    productType:"BUNDLE",
     productIds: []
     // setcategoryId: "",
   };
@@ -90,9 +93,8 @@ function Logic() {
       .min(0, "Stock must be minimum of 0"),
     quantity: yup
       .number()
-      // .required("Quantity is required field")
-      .optional(),
-      // .min(1, "Quantity must be minimum of 1"),
+      .required("Serving Quantity is required field")
+      .min(3, "Serving Quantity must be minimum of 3"),
     categoryId: yup.number().required("Category is required field"),
     subcategoryId: yup.number().required("Subcategory is required field"),
     // setcategoryId: yup.number().required("Setcategory is required field"),
@@ -115,4 +117,4 @@ function Logic() {
   };
 }
 
-export default Logic;
+export default BundleLogic;

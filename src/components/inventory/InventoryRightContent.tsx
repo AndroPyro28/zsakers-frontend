@@ -1,98 +1,41 @@
-import { useEffect, useState } from 'react'
-import { InventoryRightContentContainer, FilterItemsContainer, FilterContainer, ButtonContainer, TableRow, T_HEAD, ProductListContainer } from "../../pages/admin/inventory/components"
-import CategoryModal from '../modals/admin/category/CategoryModal'
-import ProductCreateModal from '../modals/admin/product/ProductCreateModal'
-import InventoryTableRow from '../table/InventoryTableRow'
-import Product from './Product'
-import FilterItems from './FilterItems'
-import { useGetAllCategoryQuery, useGetAllProductQuery } from '../../services'
+import { useState } from 'react'
+import { InventoryRightContentContainer, InventoryRightWrapper, Tab, Tabs } from "../../pages/admin/inventory/components"
+import BundleCreateModal from '../modals/admin/product/BundleCreateModal'
+import InventoryBundleContent from './InventoryBundleContent';
+import InventoryProductContent from './InventoryProductContent'
 
 function InventoryRightContent({ searchName, setSearchName }: { searchName: string, setSearchName: React.Dispatch<React.SetStateAction<string>> }) {
+  const [selectedTab, setSelectedTab] = useState<'products' | 'bundles' | 'addons' >('products');
 
-  const [openCreateProductModal, setOpenCreateProductModal] = useState<boolean>(false)
-  const [viewCategory, setViewCategory] = useState<boolean>(false)
-  const [categoryId, setterCategoryId] = useState<number>(0)
-  const [subcategoryId, setterSubCategoryId] = useState<number>(0)
-  const [setcategoryId, setterSetCategoryId] = useState<number>(0)
+  let content;
 
-  const { data: categories, refetch: refetchCategory } = useGetAllCategoryQuery('', {
-    refetchOnFocus: true,
-    refetchOnReconnect: true,
-    pollingInterval: 10
-  })
+  if(selectedTab === 'products') {
+    content = <InventoryProductContent searchName={searchName} setSearchName={setSearchName} />
+  }
 
-  const { data: products, isLoading, error, refetch: refetechProduct } = useGetAllProductQuery({
-    searchName,
-    categoryId,
-    subcategoryId,
-    setcategoryId
-  }, {
-    refetchOnFocus: true,
-    refetchOnReconnect: true
-  });
-
-  useEffect(() => {
-    // to reset all the filter
-    setterSubCategoryId(0)
-    setSearchName('')
-    setterSetCategoryId(0)
-  }, [categoryId])
-
-  useEffect(() => {
-    refetchCategory()
-    refetechProduct()
-  }, [])
-
-  if (isLoading) return <></>
-
-  const fetchProducts = products?.map((product) => (
-    <Product key={product.id} data={product} categories={categories!} />
-  ))
+  if(selectedTab === 'bundles') {
+    content = <InventoryBundleContent searchName={searchName} setSearchName={setSearchName} />
+  }
+  
+  if(selectedTab === 'addons') {
+    content = <InventoryRightContentContainer>
+    </InventoryRightContentContainer>
+  }
 
   return (
-    <InventoryRightContentContainer>
-      {
-        openCreateProductModal && <ProductCreateModal setOpenCreateProductModal={setOpenCreateProductModal} />
-      }
 
-      {
-        viewCategory && <CategoryModal setViewCategory={setViewCategory} />
-      }
+    <InventoryRightWrapper>
+      <Tabs>
+        <Tab onClick={() => setSelectedTab('products')} active={selectedTab === 'products'}>Products</Tab>
+        <Tab onClick={() => setSelectedTab('bundles')} active={selectedTab === 'bundles'}>Bundles</Tab>
+        <Tab onClick={() => setSelectedTab('addons')} active={selectedTab === 'addons'}>Add-ons</Tab>
+      </Tabs>
+      <InventoryRightContentContainer>
+        {content}
+      </InventoryRightContentContainer>
+    
+    </InventoryRightWrapper>
 
-      <ButtonContainer>
-        <button onClick={() => setViewCategory(true)}>
-          View category <i className="fa-solid fa-share-nodes"></i>
-        </button>
-        {/* <button onClick={() => setOpenCreateProductModal(true)}>
-          Bundles <i className="fa-solid fa-boxes-stacked"></i>
-        </button> */}
-        <button onClick={() => setOpenCreateProductModal(true)}>
-          Add products <i className="fa-solid fa-plus plus"></i>
-        </button>
-      </ButtonContainer>
-
-      {
-        categories && <FilterItems
-          setOpenCreateProductModal={setOpenCreateProductModal}
-          setViewCategory={setViewCategory}
-          categoryId={categoryId}
-          subcategoryId={subcategoryId}
-          setterCategoryId={setterCategoryId}
-          setterSubCategoryId={setterSubCategoryId}
-          categories={categories}
-          setcategoryId={setcategoryId}
-          setterSetCategoryId={setterSetCategoryId}
-        />
-      }
-
-
-      <InventoryTableRow />
-
-      <ProductListContainer>
-        {fetchProducts}
-      </ProductListContainer>
-
-    </InventoryRightContentContainer>
   )
 }
 

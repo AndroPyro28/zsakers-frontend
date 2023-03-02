@@ -66,7 +66,6 @@ export const DropdownContent = styled.div`
         margin-inline: 10px;
         color: rgb(51,102,51);
         font-weight: 1000;
-        /* text-transform: uppercase; */
         padding: 10px 20px;
         border-radius:10px;
         transition: all .1s ease-in-out;

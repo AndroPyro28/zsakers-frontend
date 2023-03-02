@@ -17,11 +17,11 @@ export const AdminGlobalStyles = createGlobalStyle`
   }
 
   &::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 2px green;
+    box-shadow: inset 0 0 2px rgb(1,59,77);
   }
 
   &::-webkit-scrollbar-thumb {
-    background: green;
+    background: rgb(1,59,77);
     border-radius: 10px;
   }
 `

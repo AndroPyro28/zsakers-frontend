@@ -7,6 +7,7 @@ export const ProductContainer = styled.div`
     padding-block: 10px;
     flex-direction: column;
     gap: 20px;
+    /* overflow: auto; */
 
     &:nth-child(even) {
         background: #EAEAEA;
@@ -16,7 +17,8 @@ export const ProductContainer = styled.div`
 export const ProductBottomSide = styled(Form)`
     display: flex;
     width: 100%;
-
+    overflow: auto;
+    flex-direction: column;
     & .error__message {
         color: maroon;
         font-size: 0.8em;
@@ -25,6 +27,13 @@ export const ProductBottomSide = styled(Form)`
         
     }
 `
+
+export const ProductMenu = styled.div`
+    display: flex;
+    width: 100%;
+    overflow: auto;
+`
+
 export const LeftProductContent = styled.div`
 flex: 1;
 display: flex;
@@ -61,7 +70,7 @@ export const ActionButtons = styled.div`
     margin: 5px;
     border-radius: 10px;
     border: none;
-    background: rgb(51,102,51);
+    background: rgb(1,59,77);
     color: white;
     cursor: pointer;
 }
@@ -106,5 +115,59 @@ export const ItemRowInfo = styled.div`
 
     & > select {
         border-radius: 0.1em;
+    }
+`
+
+export const BundleProducts = styled.div`
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: 130px;
+    gap: 50px;
+    padding: 20px 50px;
+`
+
+export const BundledProductContainer = styled.div`
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    padding: 10px;
+    border: solid 1px gray;;
+    position: relative;
+    cursor: pointer;
+    &:active {
+        scale: 1.1;
+    }
+    & > img {
+        width: 80%;
+        height: 80%;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    & > .check {
+        color: darkgreen;
+        position: absolute;
+        top: 3px;
+        right: 3px;
+        font-size: 1em;
+    }
+
+    & > span {
+        color: darkgreen;
+        font-size: 0.9em;
+    }
+
+`
+
+export const BundleProductsContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & >h1 {
+        margin: 20px;
     }
 `

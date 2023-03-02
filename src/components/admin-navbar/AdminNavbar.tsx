@@ -35,7 +35,7 @@ function AdminNavbar() {
         </AdminLinks>
         <UserProfile>
           <PhotoBorder>
-            <Photo src="/assets/arthur estrada profile.jpg" alt="" />
+            <Photo src="/assets/defaultProfile.jpg" alt="" />
           </PhotoBorder>
           <span className='user-firstname'>{user?.profile.firstname}</span>
           <DropDown>

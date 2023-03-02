@@ -31,13 +31,13 @@ function Filter({ setterCategoryId, categoryId, subcategoryId, setterSubcategory
     return category()?.sub_category?.find(value => value.id === subcategoryId)
   }
 
-  const fetchSubCategories = category()?.sub_category.map((subcategory) => (
+  const fetchSubCategories = category()?.sub_category?.map((subcategory) => (
     <option value={subcategory.id} key={subcategory.id}>{subcategory.name}</option>
   ))
 
-  const fetchSetCategories = subcategory()?.set_category.map((setcategory) => (
-    <option value={setcategory.id} key={setcategory.id}>{setcategory.name}</option>
-  ))
+  // const fetchSetCategories = subcategory()?.set_category?.map((setcategory) => (
+  //   <option value={setcategory.id} key={setcategory.id}>{setcategory.name}</option>
+  // ))
 
 
   return (
@@ -64,15 +64,7 @@ function Filter({ setterCategoryId, categoryId, subcategoryId, setterSubcategory
               </select>
             </div>
           }
-          {
-            Boolean(subcategoryId) && <div className='filter'>
-              <label htmlFor="">Select</label>
-              <select name="" id="" onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setterSetcategoryId(Number(e.target.value))}>
-                <option>Setcategory</option>
-                {fetchSetCategories}
-              </select>
-            </div>
-          }
+          
 
 
         </div>

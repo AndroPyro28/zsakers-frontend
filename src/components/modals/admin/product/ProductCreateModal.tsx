@@ -16,7 +16,6 @@ function ProductCreateModal({ setOpenCreateProductModal }: Props) {
     const { data: categories } = useGetAllCategoryQuery('');
     const [categoryId, setterCategoryId] = useState<number>(0)
     const [subcategoryId, setterSubcategoryId] = useState<number>(0)
-    const [setcategoryId, setterSetcategoryId] = useState<number>(0)
     const category = categories?.find(value => value.id == categoryId)
     const subcategory = category?.sub_category.find(value => value.id == subcategoryId);
     
@@ -50,13 +49,6 @@ function ProductCreateModal({ setOpenCreateProductModal }: Props) {
                             setterSubcategoryId(0)
                         }
 
-                        if (formik.values.setcategoryId.length > 0 && !isNaN(Number(formik.values.setcategoryId))) {
-                            setterSetcategoryId(Number(formik.values.setcategoryId))
-                        } else {
-                            setterSetcategoryId(0)
-                        }
-
-
                         return <FormFormik autoComplete='off'>
                             <h1>Add New Product</h1>
                             <IconContainer onClick={() => setOpenCreateProductModal(false)}>
@@ -86,15 +78,6 @@ function ProductCreateModal({ setOpenCreateProductModal }: Props) {
                                     <ErrorMessage name="productStock" component={'div'} className="error__message" />
                                 </FieldInputContainer>
                             </FormFieldContainer>
-
-                            <FormFieldContainer>
-                                <label htmlFor="quantity">Quantity </label>
-                                <FieldInputContainer>
-                                    <Field name="quantity" id="quantity" type="number" placeholder="Serving quantity" />
-                                    <ErrorMessage name="quantity" component={'div'} className="error__message" />
-                                </FieldInputContainer>
-                            </FormFieldContainer>
-
 
                             <FormFieldContainer>
                                 <label htmlFor="categoryId">Category</label>
@@ -127,21 +110,6 @@ function ProductCreateModal({ setOpenCreateProductModal }: Props) {
                             </FormFieldContainer>
 
                             <FormFieldContainer>
-                                <label htmlFor="setcategoryId">Setcategory</label>
-                                <FieldInputContainer>
-                                    <Field name="setcategoryId" id="setcategoryId" as="select" placeholder="Current Stock">
-                                        <option value="">Select Setcategory</option>
-                                        {
-                                            subcategory && subcategory?.set_category?.map(setcategory => (
-                                                <option value={setcategory.id}>{setcategory.name}</option>
-                                            ))
-                                        }
-                                    </Field>
-                                    <ErrorMessage name="setcategoryId" component={'div'} className="error__message" />
-                                </FieldInputContainer>
-                            </FormFieldContainer>
-                            
-                            <FormFieldContainer>
                                 <label htmlFor="details">Details <sup>(optional)</sup>  </label>
                                 <FieldInputContainer>
                                     <Field name="details" id="details" as="textarea" placeholder="Details..." />
@@ -157,7 +125,7 @@ function ProductCreateModal({ setOpenCreateProductModal }: Props) {
                                 </FieldInputContainer>
                             </FormFieldContainer>
                             
-                            <button>Create Product</button>
+                            <button type='submit'>Create Product</button>
                         </FormFormik>
                     }
                 }

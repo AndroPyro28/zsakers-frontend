@@ -9,7 +9,6 @@ function Product({data}: {data: ProductModel }) {
   return (
     <ProductContainer onClick={() => navigate('/customer/store')}>
         <img src={data.image_url} />
-
         <ProductName>{data.productName}</ProductName>
         <ProductPrice>Php {data.price}</ProductPrice>
     </ProductContainer>

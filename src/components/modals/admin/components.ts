@@ -48,10 +48,60 @@ export const FormFormik = styled(Form)`
         
     }
 `
+
+export const CreateBundleForm = styled(Form)`
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: auto;
+    & > button {
+        padding: 10px 20px;
+        align-self: flex-end;
+        margin: 20px 50px;
+        background: rgb(51,102,51);
+        border-radius: 10px;
+        border: solid 1px gray;
+        color: white;
+        cursor: pointer;
+    }
+
+    & > h1 {
+        text-align: center;
+        margin-block: 10px;
+        font-size: 1.8em;
+    }
+
+    & > .closeBtn {
+        position: absolute;
+        top:10px;
+        font-size: 1.5em;
+        color: maroon;
+        right:20px;
+    }
+`
+export const ProductBundlingList = styled.div`
+    flex: 2;
+    overflow: auto;
+    & > h2 {
+        text-align: center;
+    }
+`
 export const FormFieldContainer = styled.div`
     width: 85%;
     display: flex;
     margin: 8px;
+    & > label {
+        flex: 1;
+        font-size: 0.9em;
+        color: gray;
+    }
+`
+
+export const FormFieldBundleContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    padding: 0px 20px;
     & > label {
         flex: 1;
         font-size: 0.9em;
@@ -90,4 +140,20 @@ export const FieldInputContainer = styled.div`
         align-items: center;
         text-transform: capitalize;
     }
+`
+
+export const InventoryBundleCreate = styled.div`
+    display: flex;
+    justify-content: space-evenly;
+    background: white;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    margin: auto;
+    height: 100vh;
+    z-index: 5;
+    width: 100vw;
+    /* border-radius: 10px; */
 `

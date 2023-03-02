@@ -4,7 +4,6 @@ import {
   ProductStatisticContainer,
   ProductStatistic
 } from "../../pages/admin/inventory/components"
-// import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 import { Line } from "react-chartjs-2";
 import {
