@@ -42,6 +42,7 @@ function CustomerNavbar() {
     return (
         <CustomerNavbarContainer url={pathname}>
 
+            
         <FontAwesomeIcon icon={faBars} className="hamburger__nav" onClick={() => setShowDropDown(prev => !prev)}/>
             {
                 showDropDown && <SideNav setShowDropDown={setShowDropDown} routes={routes}/>

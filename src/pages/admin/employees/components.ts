@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const EmployeeContainer = styled.div`
     margin: 10px;
-
+    overflow-x: hidden;
     & > h3 {
         color: gray;
         text-align: center;
@@ -39,6 +39,12 @@ export const Filters = styled.div`
     justify-content: space-between;
     padding: 0px 20px;
     height: 40px;
+
+    @media (max-width: 450px) {
+            font-size: 0.8em;
+            padding: 0px 10px;
+    }
+
     & > button {
         padding: 0px 15px;
         color: white;
@@ -46,6 +52,10 @@ export const Filters = styled.div`
         border: none;
         cursor: pointer;
         border-radius: 10px;
+        @media (max-width: 450px) {
+            font-size: 0.8em;
+            padding: 0px 10px;
+        }
     }
 `
 
@@ -56,15 +66,21 @@ export const SearchBarContainer = styled.div`
     display: flex;
     margin: 0px 20px;
     align-items: center;
+
+    @media (max-width: 450px) {
+            font-size: 0.8em;
+            padding: 0px 10px;
+    }
+
     & > .i{
         color: gray;
     }
-& > input {
-    border: none;
-    background: transparent;
-    outline: none;
-    padding: 3px 5px;
-}
+    & > input {
+        border: none;
+        background: transparent;
+        outline: none;
+        padding: 3px 5px;
+    }
 
 `
 
@@ -78,8 +94,26 @@ export const EmployeeListHeaderContainer = styled.thead`
         color: gray;
         font-weight: 500;
         &.action {
-        flex:0.5;
-        color: gray;
-    }
+            flex:0.5;
+            color: gray;
+        }
+
+    @media (max-width:800px) {
+            &.created {
+                display: none;
+            }
+        }
+
+        @media (max-width:600px) {
+            &.contact {
+                display: none;
+            }
+        }
+
+        @media (max-width:450px) {
+            &.email {
+                display: none;
+            }
+        }
     }    
 `

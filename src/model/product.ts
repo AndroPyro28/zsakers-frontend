@@ -53,6 +53,9 @@ export interface UpdateProduct {
     image_id:string,
     categoryId: number,
     subcategoryId: number,
+    bundleChildrenProductIds?: number[];
+    productType: "BUNDLE" | "SINGLE"
+
     // setcategoryId:number;
     // productId: number | string | null
 }

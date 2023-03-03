@@ -20,7 +20,7 @@ function Product({ data, categories }: Props) {
 
   const { productName, price, category, sub_category, stock, image_url, id, categoryId: category_id, subcategoryId: subcategory_id, quantity } = data;
   const [disableUpdate, setDisableUpdate] = useState(true)
-  const { handleDelete, onSubmit, validationSchema } = Logic({ imageUrl, setDisableUpdate, imageFile })
+  const { handleDelete, onSubmit, validationSchema } = Logic({ imageUrl, setDisableUpdate, imageFile, bundleChildrenProductIds })
   const [categoryId, setterCategoryId] = useState(category_id)
   const [subcategoryId, setterSubcategoryId] = useState(subcategory_id)
 
@@ -50,6 +50,7 @@ function Product({ data, categories }: Props) {
     image_id: data.image_id || '',
     categoryId: data.categoryId,
     subcategoryId: data.subcategoryId,
+    productType: data?.productType,
   }
 
   const { data: products, refetch: refetechProduct } = useGetAllProductQuery({
@@ -223,13 +224,18 @@ function Product({ data, categories }: Props) {
                   </RightProductContent>
                 </ProductMenu>
 
-                { data?.productType === 'BUNDLE' && <BundleProductsContainer>
+                { data?.productType === 'BUNDLE' && <BundleProductsContainer 
+                  style={{
+                    pointerEvents: disableUpdate ? 'none' : 'all'
+                  }}
+                >
 
                   <h1 style={{
                     color:'gray'
                   }}>Variations</h1>
-                  
-                     <BundleProducts>{fetchBundleProductList}</BundleProducts>
+                     <BundleProducts>
+                      {fetchBundleProductList}
+                     </BundleProducts>
                   
                 </BundleProductsContainer> }
 

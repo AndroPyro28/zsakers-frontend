@@ -1,16 +1,18 @@
 import { useSelector } from "react-redux";
 import { privateApi } from "../app/baseApi";
+import { bundleVariants } from "../model";
 import { CartProduct, UpdateQuantity } from "../model/Cart-Product";
 import {} from "../model/product";
 
 const cartProductApi = privateApi.injectEndpoints({
   endpoints: (builder) => ({
-    addToCart: builder.mutation<void, number>({
-      query: (productId) => ({
+    addToCart: builder.mutation<void, {bundleVariants: bundleVariants, productId: number}>({
+      query: ({productId, bundleVariants}) => ({
         url: `cart-products`,
         method: "POST",
         body: {
           productId,
+          bundleVariants
         },
       }),
       invalidatesTags: (result, error, arg) => [{ type: "Cart-Product"}],

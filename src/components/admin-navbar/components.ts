@@ -7,6 +7,17 @@ export const AdminNavbarContainer = styled.nav`
     align-items: center;
     border-radius: 20px;
     box-shadow: 1px 3px 5px gray;
+
+    & > .hamburger__nav {
+        align-self: center;
+        flex: 1;
+        display: none;
+        font-size: 1.5em;
+        cursor: pointer;
+        @media (max-width: 968px) {
+            display: flex;
+        }
+    }
 `
 
 export const AdminLinks = styled.div`
@@ -17,6 +28,10 @@ padding-inline:20px;
     margin: 5px;
     font-size:0.8em;
 }
+
+@media (max-width: 968px) {
+            display: none;
+        }
 `
 
 export const UserProfile = styled.div`

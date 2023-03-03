@@ -48,7 +48,7 @@ const productApi = privateApi.injectEndpoints({
       query: ({ id, ...rest }) => ({
         url: `products/${id}`,
         method: "PATCH",
-        body: { ...rest },
+        body: { id, ...rest },
       }),
       invalidatesTags: (result, error, arg) => [{ type: "Product", id: arg.id }],
     }),

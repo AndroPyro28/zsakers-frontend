@@ -2,11 +2,11 @@ import { EmployeeListHeaderContainer } from '../../pages/admin/employees/compone
 function EmployeeListHeader() {
   return (
     <EmployeeListHeaderContainer>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Contact</th>
-        <th>Status</th>
-        <th>Created</th>
+        <th className='name'>Name</th>
+        <th className='email'>Email</th>
+        <th className='contact'>Contact</th>
+        <th className='status'>Status</th>
+        <th className='created'>Created</th>
         <th className='action'>
           {/* <i className="fa-solid fa-ellipsis"></i> */}
           Action

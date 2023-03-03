@@ -18,6 +18,7 @@ export const ProductBottomSide = styled(Form)`
     display: flex;
     width: 100%;
     overflow: auto;
+    overflow-x: hidden;
     flex-direction: column;
     & .error__message {
         color: maroon;
@@ -32,6 +33,8 @@ export const ProductMenu = styled.div`
     display: flex;
     width: 100%;
     overflow: auto;
+    overflow-x: hidden;
+
 `
 
 export const LeftProductContent = styled.div`
@@ -52,6 +55,7 @@ flex-direction: column;
     height: 110px;
     border-radius: 10px;
     object-fit: cover;
+
 }
 };
 
@@ -60,6 +64,7 @@ export const RightProductContent = styled.div`
 flex: 3;
 display: flex;
 flex-direction: column;
+
 `
 
 export const ActionButtons = styled.div`
@@ -80,6 +85,10 @@ export const ItemRowInfoContainer = styled.div`
     display: flex;
     padding: 10px;
     gap: 10px;
+
+    @media (max-width:500px) {
+        flex-direction: column;
+    }
 `
 
 export const ItemRowInfo = styled.div`
@@ -124,6 +133,19 @@ export const BundleProducts = styled.div`
     grid-auto-rows: 130px;
     gap: 50px;
     padding: 20px 50px;
+    overflow-x: hidden;
+    @media (max-width: 900px) {
+    grid-template-columns: repeat(4, 1fr);
+    }
+    @media (max-width: 750px) {
+    grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 550px) {
+    grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 400px) {
+    grid-template-columns: repeat(1, 1fr);
+    }
 `
 
 export const BundledProductContainer = styled.div`
@@ -137,6 +159,9 @@ export const BundledProductContainer = styled.div`
     border: solid 1px gray;;
     position: relative;
     cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     &:active {
         scale: 1.1;
     }
@@ -158,6 +183,7 @@ export const BundledProductContainer = styled.div`
     & > span {
         color: darkgreen;
         font-size: 0.9em;
+        width: 100%;
     }
 
 `

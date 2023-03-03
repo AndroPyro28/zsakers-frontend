@@ -14,6 +14,22 @@ export const CreateEmployeeForm = styled(Form)`
     margin: auto;
     border-radius: 10px;
 
+    @media (max-width: 900px) {
+        width: 40vw;
+    }
+    @media (max-width: 700px) {
+        width: 50vw;
+    }
+    @media (max-width: 500px) {
+        width: 60vw;
+    }
+    @media (max-width: 400px) {
+        width: 70vw;
+    }
+    @media (max-width: 350px) {
+        width: 90vw;
+    }
+
     & .exit {
         position: absolute;
         top:15px;

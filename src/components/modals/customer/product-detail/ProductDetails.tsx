@@ -1,7 +1,9 @@
+import { useState } from 'react'
 import productPriceFormatter from '../../../../helpers/ProductPriceFormatter'
 import { useGetProductByIdQuery } from '../../../../services'
 import Logic from '../../../store/Logic'
 import { ModalBackdrop } from '../../components'
+import {bundleVariants} from '../../../../model/Bundle'
 import {
     ProductDetailsContainer,
     ProductDetail,
@@ -21,15 +23,27 @@ import Product from './variant'
 import Variants from './Variants'
 
 function ProductDetails({ productId, setProductId }: { productId: number, setProductId:  React.Dispatch<React.SetStateAction<number>> }) {
-    const {addToCart} = Logic()
+    
+    const [bundleVariants, setBundleVariants] = useState<bundleVariants>([]);
+    const {addToCart} = Logic({bundleVariants})
 
     const { data: product, isLoading, isError } = useGetProductByIdQuery(productId);
     if(isLoading) return <></>
-
     if(isError)  return <></>
+
+    const hasVariants = product?.productType === 'BUNDLE'
+
+    const totalQuantityOfBundledProducts = bundleVariants
+    ?.reduce((total, bundle) => bundle.quantity + total , 0)
+
+    const isAvailable = hasVariants && totalQuantityOfBundledProducts == product.quantity || !hasVariants
+
+    const addToCartClick = () => {
+            addToCart(product!)
+    }
     return (
         <ModalBackdrop>
-            <ProductDetailsContainer>
+            <ProductDetailsContainer hasVariants={hasVariants}>
                 <button onClick={() => setProductId(0)}>X</button>
                 <ProductDetail>
                     <ImageContainer>
@@ -41,11 +55,13 @@ function ProductDetails({ productId, setProductId }: { productId: number, setPro
                         <Description>{product?.details}</Description>
                         <Others>
                             <Price> {productPriceFormatter(product?.price + '')}</Price>
-                            <AddToCartBtn onClick={() => addToCart(product!)}>Add to cart</AddToCartBtn>
+                            <AddToCartBtn onClick={addToCartClick} disabled={!isAvailable} >Add to cart</AddToCartBtn>
                         </Others>
                     </Details>
                 </ProductDetail>
-                {/* <Variants variants={product!.products}/> */}
+                {
+                    product?.productType === 'BUNDLE' && <Variants variants={product?.bundleParentProduct!} setBundleVariants={setBundleVariants} bundleVariants={bundleVariants}/>
+                }
             </ProductDetailsContainer>
         </ModalBackdrop>
     )

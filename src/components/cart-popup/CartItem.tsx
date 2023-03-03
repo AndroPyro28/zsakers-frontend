@@ -31,7 +31,7 @@ function CartItem({ data }: Props) {
                 <button
                     className="incremeant"
                     onClick={() => updateCartQuantity(id, 'increment')}
-                    disabled={quantity >= product.stock}
+                    disabled={quantity >= product.stock && product.productType === 'SINGLE'}
                 >
                     +
                 </button>

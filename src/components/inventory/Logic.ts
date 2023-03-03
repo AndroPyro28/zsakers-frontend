@@ -4,9 +4,10 @@ import { UpdateProduct } from "../../model";
 interface Props {
     imageUrl?: string;
     setDisableUpdate?:React.Dispatch<React.SetStateAction<boolean>>;
-    imageFile?: File
+    imageFile?: File;
+    bundleChildrenProductIds?: number[]
 }
-function Logic({imageUrl, setDisableUpdate, imageFile}: Props) {
+function Logic({imageUrl, setDisableUpdate, imageFile, bundleChildrenProductIds}: Props) {
 
     const handleChange = (setFunction: React.Dispatch<React.SetStateAction<number>>, value: any ) => {
         setFunction(Number(value))
@@ -74,13 +75,14 @@ function Logic({imageUrl, setDisableUpdate, imageFile}: Props) {
         const res: any = await updateProduct({...values, 
             price: Number(values.price), 
             stock: Number(values.stock),
-            // quantity: Number(values.quantity),
+            quantity: Number(values.quantity),
             categoryId: Number(values.categoryId),
             // productId: Boolean(values.productId) ? Number(values.productId) : null,
             subcategoryId: Number(values.subcategoryId),
             // setcategoryId: Number(values.setcategoryId),
             details: values.details,
-            image_url: imageUrl!
+            image_url: imageUrl!,
+            bundleChildrenProductIds
         });
         const {error, data} = res;
             if(error) {

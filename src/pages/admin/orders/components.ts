@@ -45,6 +45,9 @@ export const SearchBarWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 50px 20px 10px 20px;
+  @media (max-width:470px) {
+    flex-direction: column;
+  }
   & > .select {
     margin: 20px;
     border: none !important;
@@ -171,5 +174,10 @@ export const NavigationLinks = styled.div`
     color: gray;
     padding: 10px;
     transition: all .3s ease-in-out;
+  }
+
+  @media (max-width:500px) {
+    font-size: 0.8em;
+    margin: 10px;
   }
 `

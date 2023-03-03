@@ -3,6 +3,10 @@ import styled from "styled-components";
 export const TableRow = styled.div`
   display: flex;
   width: 100%;
+
+  @media (max-width:900px) {
+    font-size: 0.9em;
+  }
   & > th,
   td {
     flex: 1;
@@ -48,5 +52,11 @@ export const TableRow = styled.div`
     height: 80px;
     font-weight: 100;
     font-size: 0.9em;
+  }
+
+  & > .stock, .subcategory {
+    @media (max-width:580px) {
+      display: none;
+    }
   }
 `;

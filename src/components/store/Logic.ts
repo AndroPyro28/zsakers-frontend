@@ -1,9 +1,12 @@
 import React from 'react'
 import { toast } from 'react-toastify';
-import { Product } from '../../model';
+import { bundleVariants, Product } from '../../model';
 import { useAddToCartMutation, useGetCartProducts, useUpdateQuantityMutation } from '../../services/cart-products';
 
-function Logic() {
+interface Props {
+    bundleVariants?: bundleVariants
+}
+function Logic({ bundleVariants }: Props) {
     const [addToCartMutation] = useAddToCartMutation();
     const {data: cartProducts} = useGetCartProducts()
     const [updateQuantity] = useUpdateQuantityMutation()
@@ -11,11 +14,14 @@ function Logic() {
     const addToCart = async (product: Product) => {
         try {
            const cartProduct = cartProducts?.find((cartProduct) => cartProduct.product.id == product.id);
-        if(!cartProduct && product?.stock > 0) {
-            const result = await addToCartMutation(product.id);
+        if(!cartProduct && product?.stock > 0 || product.productType === 'BUNDLE') {
+            toast('Product added', {type: 'success'})
+            await addToCartMutation({productId: product.id, bundleVariants: bundleVariants!});
+
         }
-        else if (cartProduct && cartProduct.quantity < product?.stock ) {
-          const result = await updateQuantity({
+        else if (cartProduct && cartProduct.quantity < product?.stock && product.productType === 'SINGLE') {
+          toast('Product added', {type: 'success'})
+            await updateQuantity({
             id: cartProduct.id,
             action: 'increment'
           })

@@ -10,6 +10,10 @@ export const TD = styled.td`
     flex: 1;
     text-align: center;
     color: rgb(47,48,78);
+
+    @media (max-width:800px) {
+        font-size: 0.9em;
+    }
     &.fullname {
         color: rgb(47,48,78);
         font-weight: 1000;
@@ -23,8 +27,23 @@ export const TD = styled.td`
         white-space: nowrap;
     }
 
+    &.email {
+        @media (max-width:450px) {
+                display: none;
+        }
+    }
+
     &.created {
         color: gray !important;
+        @media (max-width:800px) {
+            display: none;
+        }
+    }
+
+    &.contact {
+        @media (max-width:600px) {
+                display: none;
+        }
     }
 
     &.status {

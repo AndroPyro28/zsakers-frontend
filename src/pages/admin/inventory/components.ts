@@ -66,7 +66,7 @@ export const ProductStatisticContainer = styled.div`
   padding: 10px;
   background: white;
   border-radius: 10px;
-  height: 80%;
+  height: 100%;
   & > .product__info {
     display: flex;
     justify-content: space-between;
@@ -92,6 +92,10 @@ export const InventoryRightWrapper = styled.div`
   margin-top: 40px;
   position: relative;
   height: auto;
+
+  @media (max-width:1200px) {
+    width: 100%;
+  }
 `
 
 export const Tabs = styled.div`
@@ -99,6 +103,11 @@ export const Tabs = styled.div`
   position: absolute;
   top: -40px;
   gap: 5px;
+
+  @media (max-width: 400px) {
+  top: -35px;
+
+  }
 `
 
 export const Tab = styled.div`
@@ -112,7 +121,10 @@ export const Tab = styled.div`
   font-weight: 1000;
   /* z-index: 1; */
   transition: all .2s ease-in-out;
-  
+  @media (max-width: 400px) {
+    padding: 8px 13px;
+    font-size: 0.9em;
+  }
 `
 
 export const InventoryRightContentContainer = styled.div`
@@ -136,7 +148,7 @@ export const InventoryRightContentContainer = styled.div`
 
 export const FilterItemsContainer = styled.div`
   display: flex;
-  margin: 10px;
+  /* margin: 10px; */
   align-items: center;
   justify-content: center;
   
@@ -363,7 +375,7 @@ export const ProductListContainer = styled.div`
   /* overflow: auto; */
   /* overflow-x: hidden; */
   overflow: auto;
-  height: 60vh;
+  height: 73vh;
   /* background: red; */
 `;
 

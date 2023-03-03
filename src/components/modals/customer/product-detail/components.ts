@@ -4,7 +4,8 @@ import {motion} from 'framer-motion'
 export const ProductDetailsContainer = styled(motion.div)`
     height: 95vh;
     max-width: 65vw;
-    width: 35vw; 
+    width: ${({hasVariants}: {hasVariants: boolean}) => hasVariants ? '100%' : '35vw'}; 
+    /* width: 100%; */
     background: white;
     position: absolute;
     top: 0;
@@ -89,12 +90,14 @@ export const Others = styled.div`
 export const AddToCartBtn = styled.button`
     padding: 8px 20px;
     background: rgb(56,77,38);
-    /* background: pink; */
     border: none;
     color: white;
-    /* width: 50%; */
     border-radius: 5px;
     cursor: pointer;
+    transition: all .2s ease-in-out;
+    &:disabled {
+        background: gray;
+    }
 `
 export const ProductDetail = styled.div`
     height: 100%;

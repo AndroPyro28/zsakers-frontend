@@ -4,11 +4,13 @@ import productPriceFormatter from '../../helpers/ProductPriceFormatter'
 import { Product as ProductInterface } from '../../model'
 import { useAddToCartMutation, useGetCartProducts, useUpdateQuantityMutation } from '../../services/cart-products';
 import { ProductContainer, Image, Name, Price } from './components'
+import {bundleVariants} from '../../model/Bundle'
 
 interface Props {
   data: ProductInterface
 }
 function Product({ data }: Props) {
+  const [bundleVariants, setBundleVariants] = useState<bundleVariants>([]);
 
   const [addToCartMutation] = useAddToCartMutation();
   const {data: cartProducts} = useGetCartProducts()
@@ -19,7 +21,7 @@ function Product({ data }: Props) {
     try {
 
         if(!cartProduct && data?.stock > 0) {
-            const result = await addToCartMutation(data.id);
+            const result = await addToCartMutation({productId: data?.id, bundleVariants: bundleVariants });
         }
         else if (cartProduct && cartProduct.quantity < data?.stock ) {
           const result = await updateQuantity({
