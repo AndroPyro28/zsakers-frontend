@@ -20,13 +20,12 @@ export const CheckoutContainer = styled.div`
     display:flex;
     position: relative;
     flex-direction: column;
-    width: 85vw;
+    width: 95vw;
     background: white;
     height: 85vh;
     align-items: center;
     border-radius: 20px;
     /* margin: auto; */
-
     
     & > .backBtn {
         position: absolute;
@@ -37,6 +36,7 @@ export const CheckoutContainer = styled.div`
         padding: 10px;
         color: rgb(92,92,92);
         border-radius: 50%;
+        cursor: pointer;
         background: #EAEAEA;
     }
 
@@ -53,5 +53,9 @@ export const ShoppingCart = styled.div`
     width:95%;
     height: 80%;
     gap: 20px;
+
+    @media (max-width:900px) {
+        flex-direction: column;
+    }
     /* margin-top: 50px; */
 `

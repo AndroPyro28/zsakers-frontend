@@ -60,7 +60,7 @@ function ProductDetails({ productId, setProductId }: { productId: number, setPro
                     </Details>
                 </ProductDetail>
                 {
-                    product?.productType === 'BUNDLE' && <Variants variants={product?.bundleParentProduct!} setBundleVariants={setBundleVariants} bundleVariants={bundleVariants}/>
+                    product?.productType === 'BUNDLE' && <Variants orderedProduct={product} variants={product?.bundleParentProduct!} setBundleVariants={setBundleVariants} bundleVariants={bundleVariants}/>
                 }
             </ProductDetailsContainer>
         </ModalBackdrop>

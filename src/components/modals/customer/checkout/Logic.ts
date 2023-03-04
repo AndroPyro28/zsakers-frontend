@@ -47,11 +47,12 @@ function Logic({ paymentType, totalAmount }: Props) {
         paymentType,
         totalAmount,
       });
-      const {error} = result;
-      if (error?.data.message) {
-        return toast(error?.data.message, {type: 'warning'});
+      const {data} = result;
+
+      if (data.error) {
+        return toast(data.message, {type: 'warning'});
       }
-      const { checkouturl, order_id, proceedPayment, totalAmount: total_amount} = result.data;
+      const { checkouturl, order_id, proceedPayment, totalAmount: total_amount, } = result.data;
 
       localStorage.setItem(
         "onCheckoutProducts",

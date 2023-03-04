@@ -10,7 +10,7 @@ import { Payment, Payments, PaymentSectionContainer, PaymentType, Title, Summary
 
 function PaymentSection() {
 
-  const [paymentType, setPaymentType] = useState<string>('gcash')
+  const [paymentType, setPaymentType] = useState<string>('cod')
   const [openCheckoutModal, setOpenCheckoutModal] = useState(false);
   const{data: cartProducts, isLoading} = useGetCartProducts();
 
@@ -30,7 +30,6 @@ function PaymentSection() {
     setOpenCheckoutModal(true)
   } 
 
-
   return (
     <PaymentSectionContainer>
       {
@@ -44,13 +43,15 @@ function PaymentSection() {
         <h3>Choose your prefered payment method</h3>
 
         <Payments>
+
+        <Payment onClick={() => selectPayment('cod')} isSelected={paymentType === 'cod'}>
+          <img src="/assets/cod.jpg" alt="" />
+          </Payment>
+
           <Payment onClick={() => selectPayment('gcash')} isSelected={paymentType === 'gcash'}>
               <img src="/assets/gcash.png" alt="" />
           </Payment>
-
-          <Payment onClick={() => selectPayment('cod')} isSelected={paymentType === 'cod'}>
-          <img src="/assets/cod.jpg" alt="" />
-          </Payment>
+          
         </Payments>
       </PaymentType>
 
@@ -62,17 +63,17 @@ function PaymentSection() {
 
         <Summary>
           <span>Shipping</span>
-          <span>{productPriceFormatter('' + 40)}</span>
+          <span>{productPriceFormatter('' + (total > 0 ? 40 : 0))}</span>
         </Summary>
 
         <Summary>
           <span>Total</span>
-          <span>{productPriceFormatter('' + (40 + total))}</span>
+          <span>{productPriceFormatter('' + (total > 0 ? 40 + total : 0))}</span>
         </Summary>
       </SummaryContainer>
 
       <ChekoutButton onClick={handleClick}>
-        <span className='total'> {productPriceFormatter('' + (40 + total))} </span>
+        <span className='total'> {productPriceFormatter('' + (total > 0 ? 40 + total : 0))} </span>
         <span className='title'>Checkout by {paymentType} <i className="fa-solid fa-arrow-right"></i></span>
       </ChekoutButton>
     </PaymentSectionContainer>

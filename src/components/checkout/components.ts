@@ -114,6 +114,7 @@ export const CartProducts = styled.div`
   box-shadow: 1px 3px 5px gray;
   overflow-x: hidden;
   overflow-y: auto;
+  min-height: 65vh;
 `;
 
 export const CartProductContainer = styled.div`
@@ -129,6 +130,10 @@ export const CartProductContainer = styled.div`
   /* border: solid 1px none; */
   border: ${({ isInCheckout }: { isInCheckout: boolean }) =>
     isInCheckout ? `solid 2px rgb(240,175,76)` : `solid 2px none`} !important;
+
+  @media (max-width: 720px) {
+    font-size: 0.9em;
+  }
   & > td {
     flex: 1;
     display: flex;
@@ -155,6 +160,10 @@ export const CartProductContainer = styled.div`
       flex: 2;
       height: 100%;
       padding: 10px;
+
+      @media (max-width: 400px) {
+        display: none;
+      }
       & > .name {
         font-weight: 1000;
       }
@@ -174,6 +183,10 @@ export const CartProductContainer = styled.div`
       height: 90px;
       border-radius: 10px;
       object-fit: cover;
+      @media (max-width: 800px) {
+        width: 60px;
+        height: 70px;
+      }
     }
     &.remove {
       align-self: flex-start;
@@ -187,6 +200,12 @@ export const CartProductContainer = styled.div`
     &.calculation,
     &.price {
       font-size: 0.9em;
+    }
+
+    &.calculation {
+      @media (max-width: 720px) {
+        display: none;
+      }
     }
 
     &.quantity {

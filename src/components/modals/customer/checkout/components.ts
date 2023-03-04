@@ -5,7 +5,7 @@ export const CheckOutModalContainer = styled(Form)`
     display: flex;
     flex-direction: column;
     /* height: 80vh; */
-    height: fit-content;
+    height: 90vh;
     padding: 20px;
     width: 50vw;
     position: absolute;
@@ -20,6 +20,20 @@ export const CheckOutModalContainer = styled(Form)`
     /* align-items: center; */
     align-items: center;
     border-radius: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    
+    @media (max-width:855px) {
+    width: 70vw;
+    }
+
+    @media (max-width:700px) {
+    width: 80vw;
+    }
+
+    @media (max-width:600px) {
+        width: 90vw;
+    }
 
     & > .closeBtn {
         position: absolute;
@@ -59,6 +73,11 @@ export const FieldRow = styled.div`
     width: 85%;
     gap: 10px;
     margin-top: 10px;
+    
+
+    @media (max-width:550px) {
+        flex-direction: column;
+    }
 
     & > .aggreement {
         color: maroon;

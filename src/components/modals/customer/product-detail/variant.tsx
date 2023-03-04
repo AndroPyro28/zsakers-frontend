@@ -3,14 +3,19 @@ import { bundleVariants, Product } from '../../../../model'
 import { VariantContainer } from './components'
 
 interface Props {
+    orderedProduct: Product
     data: Product
     bundleVariants: bundleVariants
     setBundleVariants: React.Dispatch<React.SetStateAction<bundleVariants>>
 }
 
-function Variant({data, setBundleVariants, bundleVariants}: Props) {
+function Variant({data, setBundleVariants, bundleVariants, orderedProduct}: Props) {
     const variant = bundleVariants.find((value) => value.productId == data?.id);
 
+    const totalQuantityOfBundledProducts = bundleVariants
+    ?.reduce((total, bundle) => bundle.quantity + total , 0)
+
+    const incrementAvailable = data?.stock <= variant?.quantity! || orderedProduct.quantity <= totalQuantityOfBundledProducts
     useEffect(() => {
         setBundleVariants(prev => [...prev, {quantity: 0, productId: data?.id}])
     }, [])
@@ -53,9 +58,9 @@ function Variant({data, setBundleVariants, bundleVariants}: Props) {
             <span className='product__name'>{data?.productName}</span>
             <span className='product__setcategory'>{data?.sub_category?.name}</span>
             <div className='buttons'> 
-            <button className='decrement' onClick={handleDecrement}>-</button> 
+            <button className='decrement'  onClick={handleDecrement}>-</button> 
             <span className='quantity'>{variant?.quantity} </span>
-            <button className='increment' onClick={handleIncrement}>+</button> </div>
+            <button className='increment' disabled={incrementAvailable} onClick={handleIncrement}>+</button> </div>
         </VariantContainer>
     )
 }

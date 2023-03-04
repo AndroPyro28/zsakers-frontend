@@ -182,6 +182,9 @@ export const VariantContainer = styled.div`
             &.increment {
                 background: rgb(198,240,198);
             }
+            &:disabled {
+                background: lightgray;
+            }
         }
     }
 `

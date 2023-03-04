@@ -111,7 +111,7 @@ function CashierContent() {
               <Contact> (+63 960 841 0594) </Contact>
               <DateContent> {new Date().toLocaleString()} </DateContent>
               <OrderId>OrderId: <span>{order_id}</span></OrderId>
-              <CashierInfo>Cashier Name: <span>{user?.profile.firstname} {user?.profile.lastname}</span></CashierInfo>
+              <CashierInfo>Cashier Name: <span> {user?.profile.firstname} {user?.profile.lastname} </span></CashierInfo>
             </ReceiptHeader>
 
             <ReceiptBody>
@@ -133,7 +133,7 @@ function CashierContent() {
               </SummaryContent>
               <SummaryContent><div className='sub-total'>Sub total:  </div> <span>{productPriceFormatter (subtotal + '' )}</span></SummaryContent>
               <SummaryContent><div className='sub-total'>Tax:  </div> <span>{productPriceFormatter (tax + '' )}</span></SummaryContent>
-              <SummaryContent> <div className='total-amount'>Total Amount: </div>  <span>{productPriceFormatter(totalAmount + '')}</span></SummaryContent>
+              <SummaryContent><div className='total-amount'>Total Amount: </div>  <span>{productPriceFormatter(totalAmount + '')}</span></SummaryContent>
               <SummaryContent><div className='sub-total'>Cash:  </div> <span>{inputMoney}</span></SummaryContent>
               <SummaryContent><div className='sub-total'>Change:  </div> <span>{productPriceFormatter((inputMoney - totalAmount).toFixed(2) + '')}</span></SummaryContent>
             </ReceiptFooter>

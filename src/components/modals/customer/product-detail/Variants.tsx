@@ -5,12 +5,13 @@ import { ProductFlavors, Title, Flavors } from './components'
 import Variant from './variant'
 
 interface Props {
+    orderedProduct: Product
     variants: bundleParentProduct[]
     bundleVariants: bundleVariants
     setBundleVariants: React.Dispatch<React.SetStateAction<bundleVariants>>
 }
 
-function Variants({ variants, setBundleVariants, bundleVariants }: Props) {
+function Variants({ variants, setBundleVariants, bundleVariants, orderedProduct }: Props) {
     let content;
     if (variants.length === 0) content = <h2>No other variants</h2>
     if (variants.length > 0) content = <Flavors>
@@ -20,6 +21,7 @@ function Variants({ variants, setBundleVariants, bundleVariants }: Props) {
                 data={product.bundleChildProduct} 
                 setBundleVariants={setBundleVariants} 
                 bundleVariants={bundleVariants} 
+                orderedProduct={orderedProduct}
                 />
             ))
         }
