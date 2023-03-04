@@ -50,6 +50,8 @@ function OrderDetails() {
               })
             }
           </OrderedProducts>
+
+          
           {/* summary component */}
           <Summary data={orderData!} />
 
@@ -59,7 +61,6 @@ function OrderDetails() {
           orderData?.transaction_type === 'ONLINE' ? <StatusOnlineOrder data={orderData!} /> : <StatusWalkinOrder data={orderData!} />
         }
        
-
       </OrderDetailsContainer>
 
       <CustomerDetailsContainer>

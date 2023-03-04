@@ -13,7 +13,7 @@ function Store() {
   const [setcategoryId, setterSetcategoryId] = useState(0);
   const [searchName, setSearchName] = useState('')
 
-  const { data: products, error, isLoading } = useGetAllProductQuery({
+  const { data: products, error, isLoading, refetch } = useGetAllProductQuery({
     categoryId,
     subcategoryId,
     searchName,
@@ -21,6 +21,10 @@ function Store() {
   })
 
   const [productId, setProductId] = useState<number>(0)
+
+  useEffect(() => {
+    refetch()
+  },[])
 
   useEffect(() => {
     setterSubcategoryId(0)

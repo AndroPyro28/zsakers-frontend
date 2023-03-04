@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const EmployeeContainer = styled.div`
     margin: 10px;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
     & > h3 {
         color: gray;
         text-align: center;

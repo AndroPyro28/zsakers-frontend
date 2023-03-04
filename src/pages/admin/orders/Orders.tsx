@@ -33,7 +33,7 @@ function Orders() {
   return (
     <OrderDetailsContainer>
       <GlobalStyles />
-      <h3>{pathname.includes('orders/online') ? 'Online' : 'Walkin'} Orders</h3>
+      <h3>Orders</h3>
 
       <p>
         Welcome! Tracking customer order allows you to manage
