@@ -14,7 +14,8 @@ export const GlobalStyles = createGlobalStyle`
     }
 `
 export const AppMain = styled.main`
-    
+    /* overflow-x: hidden; */
+    /* overflow-y: auto; */
 `
 
 export const IconContainer = styled.div`

@@ -21,12 +21,12 @@ import {
 } from './components'
 import Product from './variant'
 import Variants from './Variants'
-
+import {useLocation} from 'react-router-dom'
 function ProductDetails({ productId, setProductId }: { productId: number, setProductId:  React.Dispatch<React.SetStateAction<number>> }) {
     
     const [bundleVariants, setBundleVariants] = useState<bundleVariants>([]);
     const {addToCart} = Logic({bundleVariants})
-
+    const {pathname} = useLocation()
     const { data: product, isLoading, isError } = useGetProductByIdQuery(productId);
     if(isLoading) return <></>
     if(isError)  return <></>
@@ -55,7 +55,7 @@ function ProductDetails({ productId, setProductId }: { productId: number, setPro
                         <Description>{product?.details}</Description>
                         <Others>
                             <Price> {productPriceFormatter(product?.price + '')}</Price>
-                            <AddToCartBtn onClick={addToCartClick} disabled={!isAvailable} >Add to cart</AddToCartBtn>
+                            <AddToCartBtn onClick={addToCartClick} disabled={!isAvailable} >{pathname?.includes('/pos') ? 'Add' : 'Add to cart'}</AddToCartBtn>
                         </Others>
                     </Details>
                 </ProductDetail>

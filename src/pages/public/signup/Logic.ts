@@ -46,9 +46,13 @@ function Logic({setCurrentField}: any) {
         .required('Address is required'),
         contact: yup.string()
         .required('Contact is required').matches(/^[0-9]*$/, "Digits only"),
-        password: yup.string()
-        .required("Password is required")
-        .min(6),
+        password: yup
+        .string()
+        .required('Please Enter your password')
+        .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+        "Must contain 8 Characters, one uppercase, one lowercase, one number and one special case character"
+        ),
         confirmPassword: yup.string()
         .required('Password confirmation is required')
         .when("password", (password, field) =>  password ? 

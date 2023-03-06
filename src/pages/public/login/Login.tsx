@@ -48,7 +48,7 @@ function Login() {
                 />
               </FieldContainer>
 
-              <Link to="/recovery">
+              <Link to="/forgot-password">
                 Forgot your password? Recover here
               </Link>
 

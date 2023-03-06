@@ -18,14 +18,14 @@ function Order({ data }: Props) {
 
   const handleUpdate = async (action: "increment" | "decrement") => {
 
-    if(action === 'increment' && data?.quantity < data?.product?.stock || action === 'decrement') {
-      const res = await updateQuantity({
+    // if(action === 'increment' && data?.quantity < data?.product?.stock || action === 'decrement') {
+      const res: any = await updateQuantity({
         id: data.id,
         action
       })
-    } else {
-      toast('You reached the maximum stock for this product', {type: 'info'})
-    }
+      if(!res.data) {
+        return toast('You reached the maximum stock for this product', {type: 'info'})
+      }
   }
 
   const handleDelete = async () => {

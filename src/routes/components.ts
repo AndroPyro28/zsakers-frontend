@@ -36,3 +36,7 @@ export const CustomerRoutesContainer = styled.section`
 export const StaffRoutesContainer = styled.section`
 
 `
+
+export const UpdatePasswordRoutesContainer = styled.section`
+
+`

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useGetAllProductQuery } from '../../services';
+import ProductDetails from '../modals/customer/product-detail/ProductDetails';
 import { Products, ProductsContent as ProductsContentContainer } from './components'
 import FilterItems from './FilterItems'
 import Product from './Product'
@@ -9,7 +10,7 @@ function ProductsContent() {
   const [setcategoryId, setterSetCategoryId] = useState(0);
   const [subcategoryId, setterSubCategoryId] = useState(0);
   const [searchName, setSearchName] = useState('');
-
+  const [ productId, setProductId] = useState(0);
   const { data: products } = useGetAllProductQuery({
     categoryId,
     setcategoryId,
@@ -34,6 +35,7 @@ function ProductsContent() {
         setterSubCategoryId={setterSubCategoryId}
         setSearchName={setSearchName}
       />
+      
 
       <Products>
         {

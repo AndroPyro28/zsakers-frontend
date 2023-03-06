@@ -74,7 +74,7 @@ function CustomerNavbar() {
                     toggleDropDown && <DropdownContent style={{
                         marginLeft: '-50px'
                     }}>
-                   
+                   <NavLink  to="profile">Profile</NavLink>
                     <a href="#" onClick={handleLogout}>
                         Logout
                     </a>

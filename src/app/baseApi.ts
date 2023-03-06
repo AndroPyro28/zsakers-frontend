@@ -7,7 +7,7 @@ export const publicApi = createApi({
       baseUrl:process.env.REACT_APP_DEV_URL,
     }),
     endpoints: () => ({}),
-    tagTypes: ["Signup", "Signin"],
+    tagTypes: ["Signup", "Signin", "ForgotPassword"],
   });
 
   export const privateApi = createApi({
@@ -22,3 +22,16 @@ export const publicApi = createApi({
     endpoints: () => ({}),
     tagTypes: ['Category', 'Subcategory', 'Product', 'SetCategory', 'User', 'Cart-Product', 'Staff', 'Order'],
   });
+
+  export const passwordResetApi = createApi({
+    reducerPath: `passwordResetApi`,
+      baseQuery: fetchBaseQuery({
+        baseUrl: process.env.REACT_APP_DEV_URL,
+        prepareHeaders: (headers) => {
+          headers.set("Authorization", `Bearer ${Cookies.get("password_reset_token")!}`);
+          return headers;
+        },
+      }),
+      endpoints: () => ({}),
+      tagTypes: ["User",],
+    });

@@ -36,3 +36,15 @@ export interface User {
     status: STATUSES
     profile: profile
 }
+
+export interface UpdateUser {
+    id: number,
+    firstname: string,
+    lastname: string,
+    address: string,
+    contact: string,
+  };
+
+  export interface ForgotPassword {
+    email: string
+}

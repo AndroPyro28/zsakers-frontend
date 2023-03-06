@@ -92,6 +92,13 @@ const orderApi = privateApi.injectEndpoints({
       providesTags: (result, error, arg) => [{ type: "Order"}],
     }),
 
+    getOrderByUserId: builder.query<OrderDetails[], void>({
+      query: () => ({
+        url: `order/customer`,
+        method: "GET",
+      })
+    })
+
   }),
   overrideExisting: false,
 });

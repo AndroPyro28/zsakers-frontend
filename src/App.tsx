@@ -27,6 +27,12 @@ import "react-toastify/dist/ReactToastify.css";
 import Online from './pages/admin/orders/Online';
 import Walkin from './pages/admin/orders/Walkin';
 import Sales from './pages/admin/sales/Sales';
+import Profile from './pages/customer/profile/Profile';
+import History from './pages/customer/profile/History';
+import Personal from './pages/customer/profile/Personal';
+import ForgotPassword from './pages/public/forgot-password/ForgotPassword';
+import UpdatePasswordRoutes from './routes/UpdatePasswordRoutes';
+import ResetPassword from './pages/public/reset-password/ResetPassword';
 
 function App() {
 
@@ -50,7 +56,12 @@ function App() {
         {
           element: <Signup />,
           path:'signup'
-        }
+        },
+        {
+          element: <ForgotPassword />,
+          path:'forgot-password'
+        },
+        
       ]
     },
     { // admin 
@@ -132,6 +143,25 @@ function App() {
               element: <Store />,
               index: true,
             }, 
+          ]
+        },
+
+        {
+          path: 'profile',
+          element: <Profile />,
+          children: [
+            {
+              element: <Personal />,
+              index: true
+            },
+            {
+              path: 'personal',
+              element: <Personal />,
+            },
+            {
+              path: 'history',
+              element: <History />,
+            }
           ]
         },
         {
@@ -222,6 +252,16 @@ function App() {
         },
       ]
     },
+    {
+      element: <UpdatePasswordRoutes />,
+      path:'/reset-password',
+      children: [
+        {
+          index: true,
+          element: <ResetPassword />
+        }
+      ]
+    }
   ])
   
   return (

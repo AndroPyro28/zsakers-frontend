@@ -19,9 +19,25 @@ const authApi = publicApi.injectEndpoints({
             }),
             invalidatesTags: ['Signin']
         }),
+        forgotPassword: builder.mutation<void, string>({
+            query: email => ({
+                url: `auth/forgot-password`,
+                method:"POST",
+                body: {email}
+            }),
+            invalidatesTags: ['ForgotPassword']
+        }),
+        codeConfirmation: builder.mutation<void, {email: string, code: string}>({
+            query: body => ({
+                url: `auth/confirm-reset-code`,
+                method:"POST",
+                body
+            }),
+            invalidatesTags: ['ForgotPassword']
+        }),
     }),
     overrideExisting: false
 })
 export default authApi;
 
-export const { useSigninMutation, useSignupMutation } = authApi
+export const { useSigninMutation, useSignupMutation, useForgotPasswordMutation, useCodeConfirmationMutation } = authApi

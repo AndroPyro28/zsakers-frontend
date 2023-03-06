@@ -1,1 +1,1 @@
-export const excluded = ['login','signup']
+export const excluded = ['login','signup', 'forgot-password']
