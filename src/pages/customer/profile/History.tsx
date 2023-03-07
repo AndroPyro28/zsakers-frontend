@@ -1,6 +1,7 @@
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react'
+import Order from '../../../components/modals/customer/order-history/Order';
 import { useGetOrdersByCustomerQuery } from '../../../services'
 import { Pagination, UserActivities } from './components'
 import HistoryData from './HistoryData';
@@ -10,6 +11,8 @@ function History() {
     const { data, isLoading } = useGetOrdersByCustomerQuery('')
     const [maxPage, setMaxPage] = useState(0);
     const [currentPage, setCurrentPage] = useState(0);
+    const [orderId, setOrderId] = useState<number>(0);
+
     let content;
 
     useEffect(() => {
@@ -31,6 +34,7 @@ function History() {
     return (
         <UserActivities>
             <h2>Order History</h2>
+
             {content}
             { maxPage > 0 && fetchPagination}
         </UserActivities>

@@ -109,6 +109,13 @@ export const ActivitiesContainer = styled.div`
   flex-direction: column;
   width: 100%;
   overflow-x: hidden;
+  cursor: pointer;
+  margin: 5px;
+  transition: all .2s ease-in-out;
+  border-radius: 10px;
+  &:hover {
+    background: #EAEAEA;
+  }
 `;
 
 export const UserInfo = styled(Form)`

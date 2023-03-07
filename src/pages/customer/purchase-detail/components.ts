@@ -25,7 +25,7 @@ export const DeliveryInfoContainer = styled.div`
 export const Header = styled.header`
   display: flex;
   flex-direction: column;
-  color: LIGHTBLUE;
+  color: gray;
   width: 90%;
   margin: 0px 20px;
   font-style: italic;
@@ -85,7 +85,7 @@ export const ItemListContainer = styled.div`
   background: #EAEAEA;
   height: 88vh;
   & > h1 {
-    color: LIGHTBLUE;
+    color: gray;
     margin: 20px;
     font-size: 1.5em;
     font-style: italic;
