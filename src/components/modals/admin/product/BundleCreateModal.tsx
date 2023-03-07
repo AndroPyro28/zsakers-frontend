@@ -21,7 +21,7 @@ function BundleCreateModal({setOpenCreateProductModal}: Props) {
     const { data: categories } = useGetAllCategoryQuery('');
     const { data: products} = useGetAllProductQuery({
         categoryId: categoryId,
-        subcategoryId: subcategoryId,
+        subcategoryId: 0,
         setcategoryId: 0,
         searchName: ''
     })

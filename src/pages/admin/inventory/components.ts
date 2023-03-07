@@ -73,7 +73,7 @@ export const ProductStatisticContainer = styled.div`
     margin-bottom: 20px;
     & > .product__label {
       font-size: 0.7em;
-
+      text-align: center;
       & > .center {
         margin: 0px auto;
       }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   InventoryLeftContentContainer, SearchItemContainer,
   ProductStatisticContainer,
@@ -23,6 +23,7 @@ import {
     DatasetController,
     ChartData
 } from "chart.js";
+import { useGetSummaryQuery } from '../../services';
 
 function InventoryLeftContent({ setSearchName }: { setSearchName: React.Dispatch<React.SetStateAction<string>> }) {
 
@@ -83,6 +84,22 @@ const labels = [
   "November",
   "December",
 ];
+const [summaryYear, setSummaryYear] = useState(new Date().getFullYear());
+const [summaryMonth, setSummaryMonth] = useState(new Date().getMonth());
+const { data: summary, isLoading } = useGetSummaryQuery(summaryYear)
+
+if(isLoading) return <></>
+const { monthlySales, monthlyTotalTransactions} = summary!
+
+const monthlyTotalTransactionStats = new Array(12);
+    monthlyTotalTransactions?.forEach((total) => {
+        monthlyTotalTransactionStats[total.month] = total.total
+    })
+
+const monthlyTotalSalesStats = new Array(12);
+monthlySales?.forEach((totalSales) => {
+    monthlyTotalSalesStats[totalSales?.month] = totalSales?.total
+})
 
 const sampleData: ChartData<"line", number[], string> = {
   labels,
@@ -92,7 +109,7 @@ const sampleData: ChartData<"line", number[], string> = {
           borderColor: "black",
           backgroundColor: "white",
           fill: false,
-          data: [2123,131,3231,2332,1123,1131,1123,1244,1231,2322,1233,1232],
+          data: monthlyTotalSalesStats,
       },
   ],
 };
@@ -117,14 +134,14 @@ const sampleData: ChartData<"line", number[], string> = {
           <div className="product__label">
             <div className='center'>
               <label htmlFor=""> {`Total sales for ${new Date().getFullYear()}`} </label>
-              <h3>{5}</h3>
+              <h3>{monthlySales?.reduce((total, sale) => total + sale.total, 0)}</h3>
             </div>
           </div>
 
           <div className="product__label">
             <div className='center'>
               <label htmlFor=""> Total transactions </label>
-              <h3>{5}</h3>
+              <h3>{monthlyTotalTransactions?.reduce((total, sale) => total + sale.total, 0)}</h3>
             </div>
           </div>
         </div>

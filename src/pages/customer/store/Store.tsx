@@ -59,7 +59,7 @@ function Store() {
       />
 
       <ProductList>
-        {products!.length > 0 ? fetchProducts : 'No products yet'}
+        { products && products.length > 0 ? fetchProducts : 'No products yet'}
       </ProductList>
 
     </StoreContainer>

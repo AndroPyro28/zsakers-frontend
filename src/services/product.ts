@@ -16,7 +16,8 @@ const productApi = privateApi.injectEndpoints({
       }),
       providesTags: (result: any, error, arg) => [
         { type: "Product",},
-        ...result?.map(({id}: any) => ({id, type: 'Product' })),
+        // ...result?.map(({id}: any) => ({id, type: 'Product' })),
+        
       ],
     }),
     getProductsBySubcategory: builder.query<Product[], getBySubcategory>({

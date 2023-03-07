@@ -39,6 +39,8 @@ function InventoryProductContent({searchName, setSearchName}: Props) {
         // to reset all the filter
         setterSubCategoryId(0)
         setSearchName('')
+        console.log(products)
+
       }, [categoryId])
     
       useEffect(() => {
