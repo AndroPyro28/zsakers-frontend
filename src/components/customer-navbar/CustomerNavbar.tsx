@@ -75,6 +75,9 @@ function CustomerNavbar() {
                         marginLeft: '-50px'
                     }}>
                    <NavLink  to="profile">Profile</NavLink>
+                   <NavLink to={'password'}>
+                        Password
+                    </NavLink>
                     <a href="#" onClick={handleLogout}>
                         Logout
                     </a>

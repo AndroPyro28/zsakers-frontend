@@ -1,4 +1,4 @@
-import { Navigate, Outlet } from 'react-router-dom'
+import { Navigate, Outlet, useLocation } from 'react-router-dom'
 import store from '../app/store'
 import CustomerNavbar from '../components/customer-navbar/CustomerNavbar'
 import Loader from '../components/loader/Loader'
@@ -8,6 +8,8 @@ import { CustomerRoutesContainer } from './components'
 
 function CustomerRoutes() {
     const {data:user, isLoading, isError} = useGetCurrentUser()
+    const excluded = ['/customer/password']
+    const {pathname} = useLocation()
 
     store.dispatch(cartProduct.endpoints.getCartProducts.initiate());
 
@@ -21,7 +23,10 @@ function CustomerRoutes() {
     
   return (
     <CustomerRoutesContainer>
-        <CustomerNavbar />
+      {/* {
+        !excluded.some(path => pathname.includes(path)) && 
+      } */}
+      <CustomerNavbar />
         <Outlet />
     </CustomerRoutesContainer>
   )

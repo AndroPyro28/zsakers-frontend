@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navigate, Outlet } from 'react-router-dom'
+import { Navigate, Outlet, useLocation } from 'react-router-dom'
 import Loader from '../components/loader/Loader'
 import StaffNavbar from '../components/staff-navbar/StaffNavbar'
 import { useGetCurrentUser } from '../services'
@@ -8,6 +8,8 @@ import {StaffRoutesContainer} from './components'
 function StaffRoutes() {
 
     const {data:user, isLoading, isError} = useGetCurrentUser()
+    const excluded = ['/staff/password']
+    const {pathname} = useLocation()
 
     if(isLoading) return <Loader></Loader>
 
@@ -19,7 +21,11 @@ function StaffRoutes() {
     
     return(
         <StaffRoutesContainer>
-          <StaffNavbar />
+
+      {
+        !excluded.some(path => pathname.includes(path)) && <StaffNavbar />
+      }
+          
           <Outlet />
         </StaffRoutesContainer>
     )

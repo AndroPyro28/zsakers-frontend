@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { OrderDetails } from '../../model';
-import { OrderStatus, OrderStatusContainer, OrderStatusInfo } from '../../pages/admin/order_details/components'
+import { ButtonStatusContainer, OrderStatus, OrderStatusContainer, OrderStatusInfo } from '../../pages/admin/order_details/components'
 import Logic from './Logic';
 
 function StatusOnlineOrder({data}: {data: OrderDetails} ) {
@@ -68,18 +68,25 @@ function StatusOnlineOrder({data}: {data: OrderDetails} ) {
       </OrderStatusInfo>
     </OrderStatus>
       
-      {data?.id ? (
+    {data?.id ? (
         <>
           {data?.order_status !== "cancelled" && deliveryStatus !== -1 ? (
-            <button
+            <ButtonStatusContainer>
+            <button 
+            
              onClick={() => orderNextStage(data?.id)} disabled={deliveryStatus >= 4}
              >
               {deliveryStatus >= 4 ? "Order completed" : "Next Stage"}
             </button>
+            
+            </ButtonStatusContainer>
           ) : (
+            <ButtonStatusContainer>
             <button disabled={deliveryStatus === -1}>
               {"Order cancelled"}
             </button>
+            </ButtonStatusContainer>
+            
           )}
         </>
       ) : (

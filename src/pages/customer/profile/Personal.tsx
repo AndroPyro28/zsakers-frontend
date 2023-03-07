@@ -6,11 +6,14 @@ import { useGetCurrentUser } from '../../../services';
 import { RowInfo, UserInfo } from './components'
 import Logic from './Logic'
 function Personal() {
-  const { data: user } = useGetCurrentUser();
+  const { data: user, isLoading } = useGetCurrentUser();
+  const {email} = user!;
   const { firstname, lastname, address, contact } = user?.profile!;
   const [allowChanges, setAllowChanges] = useState<boolean>(false)
   const { initialValues, validationSchema, onSubmit } = Logic({setAllowChanges})
 
+
+  if(isLoading) return <></>
   return (
     <Formik
       initialValues={initialValues}
@@ -82,7 +85,7 @@ function Personal() {
 
               <div className="info">
                 <h3>Email</h3>
-                <span>Menandroeugenio1028@gmail.com</span>
+                <span>{email}</span>
               </div>
             </RowInfo>
           </UserInfo>

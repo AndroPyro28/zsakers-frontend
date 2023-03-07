@@ -198,13 +198,18 @@ export const OrderStatusContainer = styled.section`
     text-align: center;
     border-bottom: solid 1px lightgray;
   }
-  & > button {
-    width: fit-content;
-    position: absolute;
+  
+`;
+
+export const ButtonStatusContainer = styled.div`
+  position: absolute;
     bottom: 20px;
+    gap: 10px;
     left: 0;
     right: 0;
     margin: auto;
+    width: fit-content;
+    & > button {
     box-shadow: inset 0px 1px 0px 0px #ffffff;
     background:  rgb(68,215,123);
     background-color:  rgb(68,215,123);
@@ -219,6 +224,11 @@ export const OrderStatusContainer = styled.section`
     text-shadow: 0px 1px 0px #ffffff;
     transition: all 0.3s ease;
     color: white;
+    margin-inline: 5px;
+
+    &.cancel__order__btn {
+      background: gray;
+    }
     &:active {
       background: rgb(135,153,255);
     }
@@ -231,7 +241,7 @@ export const OrderStatusContainer = styled.section`
       margin: 50px 20px 20px 20px;
     }
   }
-`;
+`
 
 export const OrderStatus = styled.div`
   @keyframes animateStatus {

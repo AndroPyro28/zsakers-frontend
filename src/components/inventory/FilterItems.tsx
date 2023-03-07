@@ -63,19 +63,19 @@ function FilterItems({
   return (
     <FilterItemsContainer>
       <FilterContainer>
-        <span>Select</span>
+        <span>Select Category</span>
         <select onChange={(e: React.ChangeEvent<HTMLSelectElement>) => 
           handleChange(setterCategoryId, e.target.value)}>
-          <option value={0}>Category</option>
+          <option value={0}>All</option>
           {fetchCategories}
         </select>
       </FilterContainer>
 
       <FilterContainer>
-        <span>Select</span>
+        <span>Select Subcategory</span>
         <select onChange={(e: React.ChangeEvent<HTMLSelectElement>) => 
           handleChange(setterSubCategoryId, e.target.value)}>
-          <option value={0}>Sub-Category</option>
+          <option value={0}>All</option>
           {fetchSubCategories}
         </select>
       </FilterContainer>

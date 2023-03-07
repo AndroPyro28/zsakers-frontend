@@ -1,4 +1,4 @@
-import { Navigate, Outlet } from 'react-router-dom'
+import { Navigate, Outlet, useLocation } from 'react-router-dom'
 import AdminNavbar from '../components/admin-navbar/AdminNavbar'
 import Loader from '../components/loader/Loader'
 import { useGetCurrentUser } from '../services'
@@ -8,6 +8,8 @@ import { AdminGlobalStyles, AdminRoutesContainer } from './components'
 function AdminRoutes() {
   const {data:user, isLoading, isError} = useGetCurrentUser()
 
+    const {pathname} = useLocation()
+    const excluded = ['/admin/password']
 
   if(isLoading) {
     return <Loader />
@@ -21,7 +23,11 @@ function AdminRoutes() {
 
   return (
     <AdminRoutesContainer>
-        <AdminNavbar />
+      {
+        !excluded.some(path => pathname.includes(path)) && <AdminNavbar />
+      }
+
+        
         <AdminGlobalStyles />
         <Outlet />
     </AdminRoutesContainer>

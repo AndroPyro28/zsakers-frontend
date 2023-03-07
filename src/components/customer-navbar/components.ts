@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 const excludeRoutes = [
-    '/customer/payment'
+    '/customer/payment',
+    '/customer/password'
 ]
 
 export const CustomerNavbarContainer = styled.div`

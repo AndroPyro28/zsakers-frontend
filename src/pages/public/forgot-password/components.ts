@@ -57,6 +57,12 @@ export const ForgotPasswordContainer = styled.div`
         height: 100%;
         display: flex;
         flex-direction: column;
+        justify-content: space-evenly;
+
+        & > .passwordFieldContainer {
+            display: flex;
+            flex-direction: column;
+        }
 
         & > button {
             width: 90%;
@@ -70,20 +76,20 @@ export const ForgotPasswordContainer = styled.div`
     }
 
     & .back-a {
-        margin: 20px;
+        margin: 15px 20px;
         font-size: 1.5em;
         width: fit-content;
     }
     
     & h1 {
-        margin: 15px;
+        /* margin: 5px 15px; */
         text-align: center;
         font-weight: 500;
         font-size: 2.0em;
     }
 
     & p {
-        margin: 15px;
+        /* margin: 5px 15px; */
         text-align: center;
     }
 

@@ -92,6 +92,9 @@ const [showDropDown, setShowDropDown] = useState(false);
           {/* <NavLink to={'profile'}>
             Profile
           </NavLink> */}
+          <NavLink to={'password'}>
+            Password
+          </NavLink>
           <a href="#" onClick={handleLogout}>
             Logout
           </a>

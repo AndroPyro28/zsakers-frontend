@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { privateApi } from "../app/baseApi";
 import { UpdateUser, User } from "../model";
+import { ChangePasswordModel } from "../model/Update-Password";
 
 const userApi = privateApi.injectEndpoints({
     endpoints: builder => ({
@@ -20,6 +21,15 @@ const userApi = privateApi.injectEndpoints({
             invalidatesTags: (result, error, arg) => [{ type: "User" }],
           }),
 
+          changePassword: builder.mutation<void, ChangePasswordModel>({
+            query: body => ({
+                url:'/auth/change-password',
+                method:'POST',
+                body,
+            }),
+            invalidatesTags: ['User']
+        }),
+
     }),
     overrideExisting: false
 })
@@ -27,4 +37,4 @@ export default userApi;
 
 export const useGetCurrentUser = () => useSelector(userApi.endpoints.getMe.select())
 
-export const { useGetMeQuery, useUpdateUserMutation } = userApi
+export const { useGetMeQuery, useUpdateUserMutation, useChangePasswordMutation } = userApi

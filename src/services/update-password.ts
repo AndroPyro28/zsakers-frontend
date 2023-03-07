@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import Cookies from "js-cookie";
-import {UpdatePassword} from "../model/Update-Password"
+import {ChangePasswordModel, UpdatePassword} from "../model/Update-Password"
 import { User } from "../model/User";
 import {passwordResetApi} from "../app/baseApi";
 
@@ -21,6 +21,7 @@ const UpdatePasswordApis = passwordResetApi.injectEndpoints({
             }),
             invalidatesTags: ['User']
         }),
+       
     }),
     overrideExisting: false
 })

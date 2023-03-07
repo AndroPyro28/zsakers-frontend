@@ -57,16 +57,14 @@ function Filter({ setterCategoryId, categoryId, subcategoryId, setterSubcategory
         <div className='filter__container'>
           {
             Boolean(categoryId) && <div className='filter'>
-              <label htmlFor="">Select</label>
+              <label htmlFor="">Select Category</label>
               <select name="" id="" onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setterSubcategoryId(Number(e.target.value))}>
-                <option>Subcategory</option>
+                <option value="0">All</option>
                 {fetchSubCategories}
               </select>
             </div>
           }
           
-
-
         </div>
         <div className='filter__container'>
           <div className='filter'>

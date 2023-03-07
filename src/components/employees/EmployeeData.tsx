@@ -52,7 +52,7 @@ function EmployeeData({data}: Props) {
           <span onClick={() => handleUpdate('INACTIVE')}>Inactive</span> :
           <span onClick={() => handleUpdate('ACTIVE')}>Active</span>
         }
-        <span onClick={() => handleDelete(data.id)}>Delete</span>
+        {/* <span onClick={() => handleDelete(data.id)}>Delete</span> */}
       </ActionContent>
       }
         

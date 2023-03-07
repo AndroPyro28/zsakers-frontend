@@ -30,7 +30,12 @@ export const AdminRoutesContainer = styled.section`
 `
 
 export const CustomerRoutesContainer = styled.section`
-  padding-top: 90px;
+  /* padding-top: 90px; */
+  padding-top: ${() => {
+        const {pathname} = useLocation()
+        const givePadding = !excluded.some(path => pathname.includes(path));
+        return givePadding ? "90px" : "0px"
+    }};
 `
 
 export const StaffRoutesContainer = styled.section`

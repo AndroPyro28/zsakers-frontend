@@ -42,9 +42,9 @@ function StaffNavbar() {
 
         {
           toggleDropDown && <DropdownContent>
-          {/* <NavLink to={'profile'}>
-            Profile
-          </NavLink> */}
+          <NavLink to={'password'}>
+            Password
+          </NavLink>
           <a href="#" onClick={handleLogout}>
             Logout
           </a>

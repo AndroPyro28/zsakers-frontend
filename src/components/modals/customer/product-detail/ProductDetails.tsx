@@ -28,7 +28,7 @@ function ProductDetails({ productId, setProductId }: { productId: number, setPro
     const {addToCart} = Logic({bundleVariants})
     const {pathname} = useLocation()
     const { data: product, isLoading, isError } = useGetProductByIdQuery(productId);
-    if(isLoading) return <></>
+    // if(isLoading) return <></>
     if(isError)  return <></>
 
     const hasVariants = product?.productType === 'BUNDLE'
@@ -43,7 +43,8 @@ function ProductDetails({ productId, setProductId }: { productId: number, setPro
     }
     return (
         <ModalBackdrop>
-            <ProductDetailsContainer hasVariants={hasVariants}>
+            {
+                !isLoading && product && <ProductDetailsContainer hasVariants={hasVariants}>
                 <button onClick={() => setProductId(0)}>X</button>
                 <ProductDetail>
                     <ImageContainer>
@@ -63,6 +64,8 @@ function ProductDetails({ productId, setProductId }: { productId: number, setPro
                     product?.productType === 'BUNDLE' && <Variants orderedProduct={product} variants={product?.bundleParentProduct!} setBundleVariants={setBundleVariants} bundleVariants={bundleVariants}/>
                 }
             </ProductDetailsContainer>
+            }
+            
         </ModalBackdrop>
     )
 }

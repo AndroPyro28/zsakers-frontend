@@ -33,6 +33,7 @@ import Personal from './pages/customer/profile/Personal';
 import ForgotPassword from './pages/public/forgot-password/ForgotPassword';
 import UpdatePasswordRoutes from './routes/UpdatePasswordRoutes';
 import ResetPassword from './pages/public/reset-password/ResetPassword';
+import ChangePassword from './pages/shared/password/ChangePassword';
 
 function App() {
 
@@ -80,6 +81,15 @@ function App() {
         {
           path:'pos',
           element: <Pos />
+        },
+        {
+          path: 'password',
+          children: [
+            {
+              element: <ChangePassword />,
+              index: true,
+            }, 
+          ]
         },
         {
           path: 'sales',
@@ -134,6 +144,15 @@ function App() {
         {
           path: '',
           element: <Index />
+        },
+        {
+          path: 'password',
+          children: [
+            {
+              element: <ChangePassword />,
+              index: true,
+            }, 
+          ]
         },
        
         {
@@ -220,6 +239,15 @@ function App() {
           children: [
             {
               element: <Sales />,
+              index: true,
+            }, 
+          ]
+        },
+        {
+          path: 'password',
+          children: [
+            {
+              element: <ChangePassword />,
               index: true,
             }, 
           ]

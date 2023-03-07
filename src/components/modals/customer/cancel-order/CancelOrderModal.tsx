@@ -20,7 +20,6 @@ function CancelOrderModal({setToggleCancel,
       const res = await cancelOrderMutation({id,
         reason: `${reason} ${otherReason ? `, ` + otherReason : ''}`
     })
-    console.log(res)
 
       setToggleCancel(false)
       } catch (error) {
