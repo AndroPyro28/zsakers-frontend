@@ -38,14 +38,16 @@ function ChangePassword() {
     const [changePasswordMutation] = useChangePasswordMutation();
     const navigate = useNavigate();
     const onSubmit = async (values: ChangePasswordModel) => {
-        const {data, error}:any = await changePasswordMutation(values)
+        const res :any = await changePasswordMutation(values)
+        const { error, data } = res;
+        console.log(res)
         if(error) {
-            toast(typeof data?.error.message === 'object' ? typeof data?.error.message[0] : data?.error.message, {type: 'warning'})
+            toast(typeof error?.data.message === 'object' ? typeof error?.data.message[0] : error?.data.message, {type: 'warning'})
         }
         else {
             toast('Password update success', {type: 'success'});
             setTimeout(() => {
-                navigate('/staff')
+                navigate('/')
             }, 2500)
         }
     }

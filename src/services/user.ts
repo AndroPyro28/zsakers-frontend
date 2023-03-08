@@ -27,7 +27,6 @@ const userApi = privateApi.injectEndpoints({
                 method:'POST',
                 body,
             }),
-            invalidatesTags: ['User']
         }),
 
     }),
