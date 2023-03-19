@@ -23,21 +23,21 @@ function Product({ data }: Props) {
     const cartProduct = cartProducts?.find((cartProduct) => cartProduct.product.id == data.id);
     try {
 
-      if (data?.productType === 'BUNDLE') {
+      // if (data?.productType === 'BUNDLE') {
         return setProductId(data?.id)
-      }
-      if (!cartProduct && data?.stock > 0) {
-        const result = await addToCartMutation({ productId: data?.id, bundleVariants: bundleVariants });
-      }
-      else if (cartProduct && cartProduct.quantity < data?.stock) {
-        const result = await updateQuantity({
-          id: cartProduct.id,
-          action: 'increment'
-        })
-      }
-      else {
-        toast('You reached the maximum stock of this product', { type: 'info' })
-      }
+      // }
+      // if (!cartProduct && data?.stock > 0) {
+      //   const result = await addToCartMutation({ productId: data?.id, bundleVariants: bundleVariants });
+      // }
+      // else if (cartProduct && cartProduct.quantity < data?.stock) {
+      //   const result = await updateQuantity({
+      //     id: cartProduct.id,
+      //     action: 'increment'
+      //   })
+      // }
+      // else {
+      //   toast('You reached the maximum stock of this product', { type: 'info' })
+      // }
     } catch (error) {
       console.error(error)
     }

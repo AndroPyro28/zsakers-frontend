@@ -33,11 +33,10 @@ function Store() {
 
   if (isLoading) return <></>
 
-  const fetchProducts = products?.map(product => (
+  const fetchProducts = products?.filter(product => product.productType !== 'ADDONS')?.map(product => (
     <Product data={product} key={product.id} setProductId={setProductId} />
   ))
 
-  
 
   return (
     <StoreContainer>
@@ -59,7 +58,7 @@ function Store() {
       />
 
       <ProductList>
-        { products && products.length > 0 ? fetchProducts : 'No products yet'}
+        { products!.length > 0 ? fetchProducts : 'No products yet'}
       </ProductList>
 
     </StoreContainer>

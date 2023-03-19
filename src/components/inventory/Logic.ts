@@ -52,8 +52,10 @@ function Logic({imageUrl, setDisableUpdate, imageFile, bundleChildrenProductIds}
     .optional(),
     categoryId: yup.number().typeError('Category is required field')
     .required('Category is required field'),
-    subcategoryId: yup.number().typeError('Subcategory is required field')
-    .required('Subcategory is required field'),
+    subcategoryId: yup.number()
+    .typeError('Subcategory is required field')
+    .nullable()
+    .optional(),
     details: yup.string()
     .typeError('details is required field').
     // required('Product name is required field').

@@ -2,6 +2,8 @@ import { bundleChildProduct, bundleParentProduct } from "./Bundle";
 import { Category } from "./Category";
 import { Subcategory } from "./Subcategory";
 
+type productType = "SINGLE" | "BUNDLE" | "ADDONS"
+
 export interface CreateProduct {
     productName: string,
     productPrice: string,
@@ -10,7 +12,7 @@ export interface CreateProduct {
     quantity: number | string;
     details: string
     categoryId: string,
-    subcategoryId: string;
+    subcategoryId?: string;
     productType: string
     productIds: undefined | number[]
     // setcategoryId:string;
@@ -36,7 +38,7 @@ export interface Product {
     sub_category: Subcategory;
     products: Product[];
     archive: boolean;
-    productType: "SINGLE" | "BUNDLE"
+    productType: productType
     cart_product: any[],
     bundleParentProduct: bundleParentProduct[]
     bundleChildProduct: bundleChildProduct[]
@@ -54,7 +56,7 @@ export interface UpdateProduct {
     categoryId: number,
     subcategoryId: number,
     bundleChildrenProductIds?: number[];
-    productType: "BUNDLE" | "SINGLE"
+    productType: productType
 
     // setcategoryId:number;
     // productId: number | string | null

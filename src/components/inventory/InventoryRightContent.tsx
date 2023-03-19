@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { InventoryRightContentContainer, InventoryRightWrapper, Tab, Tabs } from "../../pages/admin/inventory/components"
 import BundleCreateModal from '../modals/admin/product/BundleCreateModal'
+import InventoryAddonsContent from './InventoryAddonsContent';
 import InventoryBundleContent from './InventoryBundleContent';
 import InventoryProductContent from './InventoryProductContent'
 
@@ -18,8 +19,7 @@ function InventoryRightContent({ searchName, setSearchName }: { searchName: stri
   }
   
   if(selectedTab === 'addons') {
-    content = <InventoryRightContentContainer>
-    </InventoryRightContentContainer>
+    content = <InventoryAddonsContent searchName={searchName} setSearchName={setSearchName} />
   }
 
   return (

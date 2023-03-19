@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import productPriceFormatter from '../../helpers/ProductPriceFormatter'
 import { CartProduct } from '../../model'
 import { ProductContainer, ProductName, ProductPrice, ProductQuantity } from './components'
@@ -9,8 +9,21 @@ interface Props {
 }
 
 function CartItem({ data }: Props) {
-    const { product, quantity, id } = data;
+    const { product, quantity, id, Cart_Product_Variant} = data;
     const { updateCartQuantity } = Logic()
+  const [price, setPrice] = useState(0)
+    
+    useEffect(() => {
+        setPrice(quantity * product.price)
+      if (Cart_Product_Variant && Cart_Product_Variant?.length > 0) {
+        const addonPrice = Cart_Product_Variant.reduce((total, cartVariant) => {
+          const addonPrice = cartVariant.product.productType === 'ADDONS' ?
+            total + cartVariant.product.price : 0;
+          return (addonPrice)
+        }, 0)
+        setPrice(quantity * (product.price + addonPrice));
+      }
+    }, [data])
 
     return (
         <ProductContainer>
@@ -37,8 +50,7 @@ function CartItem({ data }: Props) {
                 </button>
             </ProductQuantity>
             <ProductPrice>
-
-                {productPriceFormatter((quantity * product.price) + '')}
+                {productPriceFormatter((price) + '')}
             </ProductPrice>
         </ProductContainer>
     )

@@ -11,4 +11,8 @@ export interface bundleChildProduct {
 }
 
 
-export type bundleVariants = {quantity: number, productId: number}[];
+export type bundleVariants = {
+    quantity: number,
+    productId: number
+    exclude: boolean
+}[];

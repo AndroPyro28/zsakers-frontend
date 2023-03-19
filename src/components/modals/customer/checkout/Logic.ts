@@ -47,9 +47,12 @@ function Logic({ paymentType, totalAmount }: Props) {
         paymentType,
         totalAmount,
       });
-      const {data} = result;
+      const {data, error} = result;
 
-      if (data.error) {
+      if(error) {
+        return toast(error.data.message, {type: 'warning'})
+      }
+      if (data?.error ) {
         return toast(data.message, {type: 'warning'});
       }
       const { checkouturl, order_id, proceedPayment, totalAmount: total_amount, } = result.data;

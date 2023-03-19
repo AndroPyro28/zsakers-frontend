@@ -1,5 +1,5 @@
 import { prepareDataForValidation } from 'formik'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import productPriceFormatter from '../../helpers/ProductPriceFormatter'
 import { CartProduct } from '../../model'
@@ -11,6 +11,21 @@ interface Props {
   // setTotalAmount: React.Dispatch<React.SetStateAction<number>>
 }
 function Order({ data }: Props) {
+  const { product, quantity, id, Cart_Product_Variant} = data;
+
+  const [price, setPrice] = useState(0)
+    
+    useEffect(() => {
+        setPrice(quantity * product.price)
+      if (Cart_Product_Variant && Cart_Product_Variant?.length > 0) {
+        const addonPrice = Cart_Product_Variant.reduce((total, cartVariant) => {
+          const addonPrice = cartVariant.product.productType === 'ADDONS' ?
+            total + cartVariant.product.price : 0;
+          return (addonPrice)
+        }, 0)
+        setPrice(quantity * (product.price + addonPrice));
+      }
+    }, [data])
 
   const [updateQuantity] = useUpdateQuantityMutation()
         
@@ -44,7 +59,7 @@ function Order({ data }: Props) {
         onClick={() => handleUpdate('increment')}
         >+</button>
         </td>
-      <td><span className='price'>{productPriceFormatter((data.quantity * data?.product.price ?? 0) + '')}</span></td>
+      <td><span className='price'>{productPriceFormatter((price ?? 0) + '')}</span></td>
       <td className='remove'><span onClick={handleDelete}> Remove </span></td>
     </OrderContainer>
   )

@@ -40,7 +40,7 @@ const cartProductApi = privateApi.injectEndpoints({
           action,
         },
       }),
-      invalidatesTags: (result, error, arg) => [{ type: "Cart-Product", id: arg.id }],
+      invalidatesTags: (result, error, arg) => [{ type: "Cart-Product", id: arg.id },],
     }),
     deleteOneCartProduct: builder.mutation<void, number>({
       query: (id) => ({

@@ -1,5 +1,5 @@
 import productPriceFormatter from '../../helpers/ProductPriceFormatter'
-import { useGetCartProductsQuery } from '../../services/cart-products'
+import { useGetCartProducts, useGetCartProductsQuery } from '../../services/cart-products'
 import { Address, BranchName, ReceiptProduct, CashierContent as CashierContentContainer, Contact, Discount, DiscountAmount, Date as DateContent, OrderId, Orders, OrderSummary, PrintReceiptButton, ReceiptBody, ReceiptContainer, ReceiptContent, ReceiptFooter, ReceiptHeader, Subtotal, SubtotalAmount, Summary, Tax, TaxAmount, Total, TotalAmount, SummaryContent, CashierInfo, } from './components'
 import Order from './Order'
 import { useRef, useState } from 'react'
@@ -8,9 +8,12 @@ import { v4 as uuid } from 'uuid'
 import ReactToPrint from 'react-to-print'
 import PopupCashier from '../modals/staff/PopupCashier'
 import { useCreateOrderWalkinMutation, useGetCurrentUser } from '../../services'
+import { CartProduct } from '../../model'
 function CashierContent() {
 
   const { data: cartProducts, isLoading, isError } = useGetCartProductsQuery()
+  // const { data: cartProducts, isLoading, isError} = useGetCartProducts();
+
   let content;
   const {data: user} = useGetCurrentUser()
   if (isLoading) content = <h3>Loading...</h3>
@@ -31,7 +34,24 @@ function CashierContent() {
     }
   }
 
-  const totalAmount = cartProducts?.reduce((total, cartProduct) => total + (cartProduct.product.price * cartProduct.quantity), 0) ?? 0
+  const calculateAmount = (totalValue: any, cartProduct: CartProduct) => {
+    // calculate add ons
+    if (cartProduct.Cart_Product_Variant && cartProduct.Cart_Product_Variant?.length > 0) {
+      const addonPrice = cartProduct.Cart_Product_Variant.reduce((total, cartVariant) => {
+        const addonPrice = cartVariant.product.productType === 'ADDONS' ?
+          total + cartVariant.product.price : total;
+        return (addonPrice)
+      }, 0)
+
+      return (addonPrice + totalValue + cartProduct.product.price) * cartProduct.quantity;
+    }
+
+    return (totalValue + cartProduct.product.price) * cartProduct.quantity
+  }
+
+  const totalAmount = cartProducts?.reduce(calculateAmount, 0)!;
+
+  // const totalAmount = cartProducts?.reduce((total, cartProduct) => total + (cartProduct.product.price * cartProduct.quantity), 0) ?? 0
   const tax = (totalAmount! / 1.12) * .12;
   const subtotal = totalAmount! - tax;
   const hashId = `${uuid()}`.replace(/\-/g,"").replace(/\D+/g, '');

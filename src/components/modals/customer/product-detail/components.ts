@@ -4,7 +4,7 @@ import {motion} from 'framer-motion'
 export const ProductDetailsContainer = styled(motion.div)`
     height: 95vh;
     max-width: 65vw;
-    width: ${({hasVariants}: {hasVariants: boolean}) => hasVariants ? '100%' : '35vw'}; 
+    width: 100% ; 
     /* width: 100%; */
     background: white;
     position: absolute;
@@ -56,7 +56,7 @@ gap: 20px;
 `
 
 export const Title = styled.h1`
-    font-weight: 100;
+    font-weight: 1000;
     margin: 20px;
     font-size: 1.3em;
 `
@@ -141,7 +141,8 @@ export const VariantContainer = styled.div`
     justify-content: center;
     min-width: 180px;
     gap: 5px;
-    
+
+    background: ${({active}: {active?: boolean}) => active ? 'rgb(198,240,198)' : 'white'};
     & > .product__name {
         font-size: 0.9em;
         color: rgb(51,102,51);

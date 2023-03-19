@@ -8,34 +8,45 @@ import { BundledOrderProducts, OrderedProduct, OrderProductContainer, ProductCal
 function Product({ data }: { data: CartProduct }) {
 
   const [openBundleInfo, setOpenBundleInfo] = useState(false);
+
+  const addonsPrice = data?.Cart_Product_Variant?.reduce((total, cartVariant) => {
+    const addonPrice = cartVariant.product.productType === 'ADDONS' ? cartVariant.product.price : 0;
+    return addonPrice + total;
+  }, 0) 
+  const totalPrice = data?.product.price + addonsPrice! ?? 0 * data?.quantity
   return (
     <OrderProductContainer onClick={() => setOpenBundleInfo(prev => !prev)}>
       <OrderedProduct>
         {
-          data?.product.productType === 'BUNDLE' && <FontAwesomeIcon icon={faChevronDown} className="dropDownIcon" />
+          data?.Cart_Product_Variant!.length > 0 && <FontAwesomeIcon icon={faChevronDown} className="dropDownIcon" />
         }
         <img src={data.product.image_url} alt="" className="product__image" />
         <ProductName>
-          <span className="detail1">{data.product.productName}</span>
-          <small className="detail2"> {data.product.details}</small>
+          <span className="detail1">{data.product.productName} </span>
+          <small className="detail2"> {data.product.quantity} pc(s) - {data.product.details}</small>
         </ProductName>
-        <ProductCalculation>{data?.product.productType === 'BUNDLE' ? `${data.product.quantity} pcs` : ''} </ProductCalculation>
+        
+        <ProductCalculation>{data?.product.productType === 'BUNDLE' ? `(Bundle)` : `(Single)`} </ProductCalculation>
 
         <ProductCalculation>Qty: {data.quantity} </ProductCalculation>
-        <ProductPrice>{productPriceFormatter(data.product.price * data.quantity + '')}</ProductPrice>
+        <ProductPrice>{productPriceFormatter(totalPrice + '')}</ProductPrice>
       </OrderedProduct>
       {
-        data?.product.productType === 'BUNDLE' && openBundleInfo && <BundledOrderProducts>
+         openBundleInfo && <BundledOrderProducts>
           {
             data?.Cart_Product_Variant!.map((cart_product_variant) => (
               <OrderedProduct>
-                {/* <FontAwesomeIcon icon={faChevronRight} className="dropDownIcon" /> */}
                 <img src={cart_product_variant.product.image_url} alt="" className="product__image" />
                 <ProductName>
                   <span className="detail1">{cart_product_variant.product.productName}</span>
                   <small className="detail2"> {cart_product_variant.product.details}</small>
                 </ProductName>
+                <ProductName>
+                  <small className="detail2"> {cart_product_variant.product.productType === 'ADDONS' ? `Addons` : `Variations`}</small>
+                </ProductName>
                 <ProductCalculation>Qty: {cart_product_variant.quantity} </ProductCalculation>
+                <ProductPrice> { cart_product_variant.product.productType === 'ADDONS'  ? `${productPriceFormatter( Number(data.product.quantity) * Number(cart_product_variant.product.price) + '') }` : ``}</ProductPrice>
+                
               </OrderedProduct>
             ))
           }

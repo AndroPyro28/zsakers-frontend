@@ -24,9 +24,9 @@ function FilterItems({ setterCategoryId, setterSetCategoryId, setterSubCategoryI
         <option value={subcategory.id} key={subcategory.id}>{subcategory.name}</option>
       ))
     
-      const fetchSetCategories = subcategory?.set_category.map((setcategory) => (
-        <option value={setcategory.id} key={setcategory.id}>{setcategory.name}</option>
-      ))
+    //   const fetchSetCategories = subcategory?.set_category.map((setcategory) => (
+    //     <option value={setcategory.id} key={setcategory.id}>{setcategory.name}</option>
+    //   ))
       
 
     return (
@@ -48,22 +48,25 @@ function FilterItems({ setterCategoryId, setterSetCategoryId, setterSubCategoryI
                 }
             </CategoryList>
 
-            <SubSetCategory>
-                <Filter>
-                    <label htmlFor="subcategory">Subcategory:</label>
-                    <select name="" id="subcategory" onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setterSubCategoryId(Number(e.target.value))}>
-                        <option value={0}>Select</option>
-                        { fetchSubCategories }
-                    </select>
-                </Filter>
-                <Filter>
-                    <label htmlFor="setcategory">Setcategory:</label>
-                    <select name="" id="setcategory" onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setterSetCategoryId(Number(e.target.value))}>
-                        <option value="">Select</option>
-                        { fetchSetCategories }
-                    </select>
-                </Filter>
-            </SubSetCategory>
+                {
+                    categoryId > 0 && <SubSetCategory>
+                    <Filter>
+                        <label htmlFor="subcategory">Subcategory:</label>
+                        <select name="" id="subcategory" onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setterSubCategoryId(Number(e.target.value))}>
+                            <option value={0}>Select</option>
+                            { fetchSubCategories }
+                        </select>
+                    </Filter>
+                    {/* <Filter>
+                        <label htmlFor="setcategory">Setcategory:</label>
+                        <select name="" id="setcategory" onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setterSetCategoryId(Number(e.target.value))}>
+                            <option value="">Select</option>
+                            { fetchSetCategories }
+                        </select>
+                    </Filter> */}
+                </SubSetCategory>
+                }
+            
         </FilterItemsContainer>
     )
 }

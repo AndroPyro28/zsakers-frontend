@@ -39,7 +39,7 @@ function ProductsContent() {
 
       <Products>
         {
-          products?.map((product) => <Product data={product} /> )
+          products?.filter(product => product.productType !== 'ADDONS')?.map((product) => <Product data={product} /> )
         }
       </Products>
 
