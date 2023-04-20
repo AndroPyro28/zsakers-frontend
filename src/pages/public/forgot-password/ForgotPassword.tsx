@@ -4,7 +4,7 @@ import { FieldContainer } from '../login/components'
 import * as yup from 'yup'
 import { ForgotPasswordContainer, ForgotPasswordWrapper, BackgroundBlur, ForgotPasswordFieldContainer, ForgotPasswordFieldWrapper } from './components'
 import { useEffect, useState } from 'react'
-import { useCodeConfirmationMutation, useForgotPasswordMutation } from '../../../services'
+import { useCodeConfirmationMutation, useForgotPasswordMutation } from '../../../app/services'
 import { toast } from 'react-toastify';
 import Cookies from 'js-cookie'
 

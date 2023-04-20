@@ -1,7 +1,7 @@
 import { FieldInputContainer, FormFieldContainer, FormFormik, InventoryCreateModalBackdrop } from '../components'
 import { Formik, Field, ErrorMessage } from 'formik';
 import Logic from './Logic';
-import { useGetAllCategoryQuery, useGetAllProductQuery } from '../../../../services';
+import { useGetAllCategoryQuery, useGetAllProductQuery } from '../../../../app/services';
 import { useEffect, useState } from 'react';
 import { IconContainer } from '../../../../appComponents';
 import findCategory from '../../../../helpers/findCategory';

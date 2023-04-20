@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { ButtonContainer, ProductListContainer} from "../../pages/admin/inventory/components"
-import { useGetAllCategoryQuery, useGetAllProductQuery } from '../../services'
+import { useGetAllCategoryQuery, useGetAllProductQuery } from '../../app/services'
 import CategoryModal from '../modals/admin/category/CategoryModal'
 import ProductCreateModal from '../modals/admin/product/ProductCreateModal'
 import InventoryTableRow from '../table/InventoryTableRow'

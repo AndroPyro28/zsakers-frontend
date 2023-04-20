@@ -2,7 +2,7 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react'
 import Order from '../../../components/modals/customer/order-history/Order';
-import { useGetOrdersByCustomerQuery } from '../../../services'
+import { useGetOrdersByCustomerQuery } from '../../../app/services'
 import { Pagination, UserActivities } from './components'
 import HistoryData from './HistoryData';
 

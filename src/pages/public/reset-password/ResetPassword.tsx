@@ -4,7 +4,7 @@ import * as yup from 'yup'
 import { ForgotPasswordWrapper, BackgroundBlur, ForgotPasswordContainer, ResetPasswordFieldWrapper, } from '../forgot-password/components'
 import { toast } from 'react-toastify';
 import { UpdatePassword } from '../../../model/Update-Password';
-import { useUpdatePasswordMutation } from '../../../services/update-password';
+import { useUpdatePasswordMutation } from '../../../app/services/update-password';
 import Cookies from 'js-cookie';
 
 function ResetPassword() {

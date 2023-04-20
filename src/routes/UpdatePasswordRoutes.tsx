@@ -2,8 +2,8 @@ import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
 import Loader from '../components/loader/Loader'
 import StaffNavbar from '../components/staff-navbar/StaffNavbar'
-import { useGetCurrentUser } from '../services'
-import { useAuthUpdatePasswordPageQuery } from '../services/update-password'
+import { useGetCurrentUser } from '../app/services'
+import { useAuthUpdatePasswordPageQuery } from '../app/services/update-password'
 import {StaffRoutesContainer, UpdatePasswordRoutesContainer} from './components'
 
 function UpdatePasswordRoutes() {

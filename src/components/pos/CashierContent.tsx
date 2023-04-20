@@ -1,5 +1,5 @@
 import productPriceFormatter from '../../helpers/ProductPriceFormatter'
-import { useGetCartProducts, useGetCartProductsQuery } from '../../services/cart-products'
+import { useGetCartProducts, useGetCartProductsQuery } from '../../app/services/cart-products'
 import { Address, BranchName, ReceiptProduct, CashierContent as CashierContentContainer, Contact, Discount, DiscountAmount, Date as DateContent, OrderId, Orders, OrderSummary, PrintReceiptButton, ReceiptBody, ReceiptContainer, ReceiptContent, ReceiptFooter, ReceiptHeader, Subtotal, SubtotalAmount, Summary, Tax, TaxAmount, Total, TotalAmount, SummaryContent, CashierInfo, } from './components'
 import Order from './Order'
 import { useRef, useState } from 'react'
@@ -7,7 +7,7 @@ import { v4 as uuid } from 'uuid'
 
 import ReactToPrint from 'react-to-print'
 import PopupCashier from '../modals/staff/PopupCashier'
-import { useCreateOrderWalkinMutation, useGetCurrentUser } from '../../services'
+import { useCreateOrderWalkinMutation, useGetCurrentUser } from '../../app/services'
 import { CartProduct } from '../../model'
 function CashierContent() {
 

@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
-import { privateApi } from "../app/baseApi";
-import { bundleVariants } from "../model";
-import { CartProduct, UpdateQuantity } from "../model/Cart-Product";
-import {} from "../model/product";
+import { privateApi } from "../baseApi";
+import { bundleVariants } from "../../model";
+import { CartProduct, UpdateQuantity } from "../../model/Cart-Product";
+import {} from "../../model/product";
 
 const cartProductApi = privateApi.injectEndpoints({
   endpoints: (builder) => ({

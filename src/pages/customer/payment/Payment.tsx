@@ -3,7 +3,7 @@ import Cookies from 'js-cookie'
 import { useEffect, useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
 import productPriceFormatter from '../../../helpers/ProductPriceFormatter'
-import { useCreateOrderOnlineMutation } from '../../../services'
+import { useCreateOrderOnlineMutation } from '../../../app/services'
 import { Line, PaymentData, PaymentSuccessContainer, ProceedButton, Title, TransactionNumber } from './components'
 
 function Payment() {

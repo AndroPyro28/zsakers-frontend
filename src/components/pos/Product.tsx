@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import productPriceFormatter from '../../helpers/ProductPriceFormatter'
 import { Product as ProductInterface } from '../../model'
-import { useAddToCartMutation, useGetCartProducts, useUpdateQuantityMutation } from '../../services/cart-products';
+import { useAddToCartMutation, useGetCartProducts, useUpdateQuantityMutation } from '../../app/services/cart-products';
 import { ProductContainer, Image, Name, Price } from './components'
 import { bundleVariants } from '../../model/Bundle'
 import ProductDetails from '../modals/customer/product-detail/ProductDetails';

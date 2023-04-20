@@ -1,6 +1,6 @@
 import productPriceFormatter from '../../helpers/ProductPriceFormatter'
 import { Product as ProductInterface } from '../../model'
-import { useGetCartProducts } from '../../services/cart-products'
+import { useGetCartProducts } from '../../app/services/cart-products'
 import {ProductContainer, Price, Image, Name, Details, Buttons} from './components'
 import Logic from './Logic'
 

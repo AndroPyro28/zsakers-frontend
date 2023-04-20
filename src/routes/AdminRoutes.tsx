@@ -1,7 +1,7 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
 import AdminNavbar from '../components/admin-navbar/AdminNavbar'
 import Loader from '../components/loader/Loader'
-import { useGetCurrentUser } from '../services'
+import { useGetCurrentUser } from '../app/services'
 
 import { AdminGlobalStyles, AdminRoutesContainer } from './components'
 

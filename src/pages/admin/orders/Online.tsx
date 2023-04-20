@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useOutletContext } from 'react-router-dom';
 import Order from '../../../components/orders/Order';
 import { orderStatus } from '../../../model';
-import { useGetOrdersByAdminQuery } from '../../../services';
+import { useGetOrdersByAdminQuery } from '../../../app/services';
 import {
     TableContainer, TableRowHeader,
     T_Head as Thead,

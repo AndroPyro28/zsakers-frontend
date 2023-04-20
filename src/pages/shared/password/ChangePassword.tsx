@@ -5,7 +5,7 @@ import * as yup from 'yup'
 import { ChangePasswordModel } from '../../../model/Update-Password';
 import { BackgroundBlur, ForgotPasswordContainer, ForgotPasswordWrapper, ResetPasswordFieldWrapper } from '../../public/forgot-password/components';
 import { Link, useNavigate } from 'react-router-dom';
-import { useChangePasswordMutation } from '../../../services/user';
+import { useChangePasswordMutation } from '../../../app/services/user';
 import { toast } from 'react-toastify';
 function ChangePassword() {
 

@@ -1,4 +1,4 @@
-import { useGetAllCategoryQuery } from '../../services'
+import { useGetAllCategoryQuery } from '../../app/services'
 import { FilterItemsContainer, Search, CategoryList, Category, SubSetCategory, Filter } from './components'
 
 interface Props {

@@ -2,7 +2,7 @@ import productPriceFormatter from '../../helpers/ProductPriceFormatter'
 import { OrderDetails } from '../../model'
 import { Info, Order, ReceivedButton, Row, ViewButton } from './components'
 import { useNavigate } from 'react-router-dom'
-import { useOrderDetailsNextStageMutation } from '../../services'
+import { useOrderDetailsNextStageMutation } from '../../app/services'
 import DateTimeFormatter from '../../helpers/DateTimeFormatter'
 interface Props {
     data: OrderDetails

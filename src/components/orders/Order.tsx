@@ -4,7 +4,7 @@ import productPriceFormatter from '../../helpers/ProductPriceFormatter'
 import { useNavigate } from 'react-router-dom';
 import DateTimeFormatter from "../../helpers/DateTimeFormatter"
 import { OrderDetails } from "../../model";
-import { useGetCurrentUser } from "../../services";
+import { useGetCurrentUser } from "../../app/services";
 
 interface Props {
   data: OrderDetails

@@ -6,7 +6,7 @@ import StatusOnlineOrder from "../../../components/order_details/StatusOnlineOrd
 import StatusWalkinOrder from "../../../components/order_details/StatusWalkinOrder";
 import Summary from "../../../components/order_details/Summary";
 import { transactionType } from '../../../model';
-import { useGetOrderByOrderIdQuery } from '../../../services';
+import { useGetOrderByOrderIdQuery } from '../../../app/services';
 import {
   OrderNumber,
   OrderDetailsContainer,

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useUpdateQuantityMutation } from '../../services/cart-products'
+import { useUpdateQuantityMutation } from '../../app/services/cart-products'
 
 function Logic() {
 

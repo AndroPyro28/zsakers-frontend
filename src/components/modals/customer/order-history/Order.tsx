@@ -1,5 +1,5 @@
 import React from 'react'
-import { useGetOrderByOrderIdQuery } from '../../../../services';
+import { useGetOrderByOrderIdQuery } from '../../../../app/services';
 import { HistoryOrderContainer, HistoryOrderBackdrop } from './components'
 
 interface Props {

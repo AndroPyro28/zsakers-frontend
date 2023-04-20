@@ -1,13 +1,13 @@
 import * as yup from 'yup'
 import { Signin } from '../../../model'
-import { useSigninMutation } from '../../../services'
+import { useSigninMutation } from '../../../app/services'
 import Cookies from 'js-cookie'
 import { useNavigate } from 'react-router-dom'
 import {toast} from 'react-toastify'
 
 function Logic() {
   const [signinMutation] = useSigninMutation()
-    const navigate = useNavigate()
+  const navigate = useNavigate()
   const onSubmit = async (values: Signin) => {
       try {
         const res:any = await signinMutation(values);

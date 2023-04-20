@@ -1,5 +1,5 @@
-import { privateApi } from "../app/baseApi";
-import { CreateOrder, CreateOrderWalkin, GetOrdersByAdmin, OrderDetails, Summary } from "../model";
+import { privateApi } from "../baseApi";
+import { CreateOrder, CreateOrderWalkin, GetOrdersByAdmin, OrderDetails, Summary } from "../../model";
 
 const orderApi = privateApi.injectEndpoints({
   endpoints: (builder) => ({

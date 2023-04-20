@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Banner from '../../../components/store/Banner';
 import Filter from '../../../components/store/Filter'
-import { useGetAllProductQuery } from '../../../services';
+import { useGetAllProductQuery } from '../../../app/services';
 import { StoreContainer, StoreGlobalStyles, ProductList } from './components'
 import Product from '../../../components/store/Product';
 import ProductDetails from '../../../components/modals/customer/product-detail/ProductDetails';

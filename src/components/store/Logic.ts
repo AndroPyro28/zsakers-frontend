@@ -1,7 +1,7 @@
 import React from 'react'
 import { toast } from 'react-toastify';
 import { bundleVariants, Product } from '../../model';
-import { useAddToCartMutation, useGetCartProducts, useUpdateQuantityMutation } from '../../services/cart-products';
+import { useAddToCartMutation, useGetCartProducts, useUpdateQuantityMutation } from '../../app/services/cart-products';
 
 interface Props {
     bundleVariants?: bundleVariants

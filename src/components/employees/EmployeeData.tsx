@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import DateTimeFormatter from '../../helpers/DateTimeFormatter';
 import { User } from '../../model';
-import { useDeleteStaffMutation, useUpdateStaffMutation } from '../../services';
+import { useDeleteStaffMutation, useUpdateStaffMutation } from '../../app/services';
 import { ActionContent, EmployeeDataContainer, TD } from './components';
 interface Props {
   data: User

@@ -1,11 +1,11 @@
 import { useDispatch } from 'react-redux';
-import { checkout, getCartProductId } from '../../features';
+import { checkout, getCartProductId } from '../../app/features';
 import productPriceFormatter from '../../helpers/ProductPriceFormatter'
 import { CartProduct as CartProdutModel } from '../../model'
 import Logic from '../cart-popup/Logic';
 import { CartProductContainer } from './components'
 import { useSelector } from 'react-redux';
-import { useDeleteOneCartProductMutation } from '../../services/cart-products';
+import { useDeleteOneCartProductMutation } from '../../app/services/cart-products';
 import { useEffect, useState } from 'react';
 interface Props {
   data: CartProdutModel

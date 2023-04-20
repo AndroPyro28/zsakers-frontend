@@ -1,9 +1,9 @@
 import { NavLink } from 'react-router-dom'
-import { useGetCurrentUser } from '../../services'
+import { useGetCurrentUser } from '../../app/services'
 import { Photo, PhotoBorder } from '../customer-navbar/components'
 import {AdminNavbarContainer, AdminLinks, UserProfile, DropDown, DropdownContent} from "../admin-navbar/components"
 import { useDispatch } from 'react-redux'
-import { logout } from '../../features'
+import { logout } from '../../app/features'
 import { useState } from 'react'
 function StaffNavbar() {
 

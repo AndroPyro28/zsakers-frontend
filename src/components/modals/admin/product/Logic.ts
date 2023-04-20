@@ -1,6 +1,6 @@
 import * as yup from "yup";
 import { CreateProduct } from "../../../../model";
-import { useCreateProductMutation } from "../../../../services";
+import { useCreateProductMutation } from "../../../../app/services";
 import {toast} from 'react-toastify'
 function Logic() {
   const [createProduct] = useCreateProductMutation();

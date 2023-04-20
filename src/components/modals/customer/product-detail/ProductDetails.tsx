@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import productPriceFormatter from '../../../../helpers/ProductPriceFormatter'
-import { useGetProductByIdQuery } from '../../../../services'
+import { useGetProductByIdQuery } from '../../../../app/services'
 import Logic from '../../../store/Logic'
 import { ModalBackdrop } from '../../components'
 import { bundleVariants } from '../../../../model/Bundle'

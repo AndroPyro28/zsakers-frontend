@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useGetAllCategoryQuery } from '../../../../services'
+import { useGetAllCategoryQuery } from '../../../../app/services'
 import Category from './Category'
 import { CategoryListBody, CategoryListContainer, CategoryListFooter, CategoryListHeader, LeftCategoryContentContainer, SearchBar, SearchBarContainer } from './components'
 

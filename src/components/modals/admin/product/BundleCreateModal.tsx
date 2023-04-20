@@ -1,6 +1,6 @@
 import { ErrorMessage, Field, Formik } from 'formik'
 import React, { useState } from 'react'
-import { useGetAllCategoryQuery, useGetAllProductQuery } from '../../../../services';
+import { useGetAllCategoryQuery, useGetAllProductQuery } from '../../../../app/services';
 import { ProductList } from '../../../featured-products/components';
 import { InventoryCreateModalBackdrop, InventoryBundleCreate, CreateBundleForm, FormFieldContainer, FieldInputContainer, ProductBundlingList, FormFieldBundleContainer } from '../components'
 import BundleLogic from './BundleLogic';

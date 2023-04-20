@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import productPriceFormatter from '../../helpers/ProductPriceFormatter';
 import { CartProduct } from '../../model';
-import { useGetCartProducts } from '../../services/cart-products';
+import { useGetCartProducts } from '../../app/services/cart-products';
 import CartItem from './CartItem';
 import { CartPopupBox, CartPopupBoxContainer, CartSummary, ProductListContainer, SummaryRow } from './components'
 import Logic from './Logic';

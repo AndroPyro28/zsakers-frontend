@@ -1,4 +1,4 @@
-import { useGetWeeklyReportQuery } from '../../../services/report'
+import { useGetWeeklyReportQuery } from '../../../app/services/report'
 import { Address, BusinessName, SummaryTableContent, SummaryTitle, SummaryValue, Table, WeeklyContainer, WeeklyWrapper } from './styles'
 import { Summary, MonthSummary as SummaryContent } from '../sales/components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

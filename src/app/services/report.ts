@@ -1,6 +1,6 @@
 
-import {privateApi} from "../app/baseApi"
-import { OrderDetails } from "../model";
+import {privateApi} from "../baseApi"
+import { OrderDetails } from "../../model";
 const reportApi = privateApi.injectEndpoints({
     endpoints: builder => ({
         getWeeklyReport: builder.query<any, void >({

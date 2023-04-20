@@ -1,5 +1,5 @@
 import React from 'react';
-import { useGetAllCategoryQuery } from '../../services'
+import { useGetAllCategoryQuery } from '../../app/services'
 import { Category, CategoryList, FilterContainer, Filters } from './components'
 
 interface Props {

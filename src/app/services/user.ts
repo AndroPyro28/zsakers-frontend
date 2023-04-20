@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import { privateApi } from "../app/baseApi";
-import { UpdateUser, User } from "../model";
-import { ChangePasswordModel } from "../model/Update-Password";
+import { privateApi } from "../baseApi";
+import { UpdateUser, User } from "../../model";
+import { ChangePasswordModel } from "../../model/Update-Password";
 
 const userApi = privateApi.injectEndpoints({
     endpoints: builder => ({

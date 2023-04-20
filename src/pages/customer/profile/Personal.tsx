@@ -2,7 +2,7 @@ import { faEdit, faFloppyDisk, faUserEdit } from '@fortawesome/free-solid-svg-ic
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Formik, Field, ErrorMessage } from 'formik'
 import { useState } from 'react';
-import { useGetCurrentUser } from '../../../services';
+import { useGetCurrentUser } from '../../../app/services';
 import { RowInfo, UserInfo } from './components'
 import Logic from './Logic'
 function Personal() {

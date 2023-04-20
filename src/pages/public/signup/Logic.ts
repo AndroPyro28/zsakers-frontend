@@ -1,6 +1,6 @@
 import * as yup from 'yup'
 import { Signup } from '../../../model'
-import { useSignupMutation } from '../../../services'
+import { useSignupMutation } from '../../../app/services'
 import {useNavigate} from "react-router-dom"
 function Logic({setCurrentField}: any) {
 

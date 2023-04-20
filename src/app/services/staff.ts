@@ -1,6 +1,6 @@
-import { privateApi } from "../app/baseApi";
-import { User } from "../model";
-import { createStaff, updateStaff } from "../model/Staff";
+import { privateApi } from "../baseApi";
+import { User } from "../../model";
+import { createStaff, updateStaff } from "../../model/Staff";
 
 const staffApi = privateApi.injectEndpoints({
     endpoints: builder => ({

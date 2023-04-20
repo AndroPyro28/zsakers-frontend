@@ -4,7 +4,7 @@ import ProductPriceFormmater from "../../helpers/ProductPriceFormatter";
 import { useNavigate } from "react-router-dom";
 import { OrderDetails } from "../../model";
 import DateTimeFormmater from '../../helpers/DateTimeFormatter'
-import { useGetCurrentUser } from "../../services";
+import { useGetCurrentUser } from "../../app/services";
 function Data({ order }: { order: OrderDetails }) {
   const { dateAndTimeParser } = DateTimeFormmater()
   const navigate = useNavigate();

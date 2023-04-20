@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { OrderDetails } from '../../model';
 import { ButtonStatusContainer, OrderStatus, OrderStatusContainer, OrderStatusInfo } from '../../pages/admin/order_details/components'
-import { useCancelOrderMutation } from '../../services';
+import { useCancelOrderMutation } from '../../app/services';
 import Logic from './Logic';
 
 function Status({ data }: { data: OrderDetails }) {

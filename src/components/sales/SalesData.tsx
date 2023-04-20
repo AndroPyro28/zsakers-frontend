@@ -21,7 +21,7 @@ import {
     LineController,
     BarController,
 } from "chart.js";
-import { useGetCompletedCancelledOrdersQuery, useGetSummaryQuery } from "../../services";
+import { useGetCompletedCancelledOrdersQuery, useGetSummaryQuery } from "../../app/services";
 import { Summary } from "../../model";
 ChartJS.register(
     CategoryScale,

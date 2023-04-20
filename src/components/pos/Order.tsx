@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import productPriceFormatter from '../../helpers/ProductPriceFormatter'
 import { CartProduct } from '../../model'
-import { useGetProductByIdQuery } from '../../services'
-import { useDeleteOneCartProductMutation, useUpdateQuantityMutation } from '../../services/cart-products'
+import { useGetProductByIdQuery } from '../../app/services'
+import { useDeleteOneCartProductMutation, useUpdateQuantityMutation } from '../../app/services/cart-products'
 import { OrderContainer } from './components'
 interface Props {
   data: CartProduct,

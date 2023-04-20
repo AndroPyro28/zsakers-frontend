@@ -1,6 +1,6 @@
 import Cookies from "js-cookie";
 import { OrderDetails } from "../../model";
-import { useOrderDetailsNextStageMutation } from "../../services";
+import { useOrderDetailsNextStageMutation } from "../../app/services";
 interface Props {
     deliveryStatus: number
     setDeliveryStatus: React.Dispatch<React.SetStateAction<number>>

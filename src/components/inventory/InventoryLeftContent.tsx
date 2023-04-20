@@ -23,7 +23,7 @@ import {
     DatasetController,
     ChartData
 } from "chart.js";
-import { useGetSummaryQuery } from '../../services';
+import { useGetSummaryQuery } from '../../app/services';
 
 function InventoryLeftContent({ setSearchName }: { setSearchName: React.Dispatch<React.SetStateAction<string>> }) {
 

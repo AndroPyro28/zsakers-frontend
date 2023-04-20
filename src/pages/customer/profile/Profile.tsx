@@ -1,5 +1,5 @@
 import { NavLink, Outlet} from "react-router-dom";
-import { useGetCurrentUser } from "../../../services";
+import { useGetCurrentUser } from "../../../app/services";
 import { ListNavigationButton, ProfileAvatar, ProfilePageContainer } from "./components";
 
 function Profile() {

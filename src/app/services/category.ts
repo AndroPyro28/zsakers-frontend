@@ -1,5 +1,5 @@
-import { privateApi } from "../app/baseApi";
-import { Category, CreateCategory, UpdateCategory } from "../model";
+import { privateApi } from "../baseApi";
+import { Category, CreateCategory, UpdateCategory } from "../../model";
 
 const categoryApi = privateApi.injectEndpoints({
   endpoints: (builder) => ({

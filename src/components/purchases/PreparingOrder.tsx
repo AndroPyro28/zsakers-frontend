@@ -2,7 +2,7 @@ import productPriceFormatter from '../../helpers/ProductPriceFormatter'
 import { CancelButton, Info, Order, Row, ViewButton } from './components'
 import { useNavigate } from 'react-router-dom';
 import { OrderDetails } from '../../model';
-import { useCancelOrderMutation } from '../../services';
+import { useCancelOrderMutation } from '../../app/services';
 import { useState } from 'react';
 import CancelOrderModal from '../modals/customer/cancel-order/CancelOrderModal';
 import DateTimeFormatter from '../../helpers/DateTimeFormatter';

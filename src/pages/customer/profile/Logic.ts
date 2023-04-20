@@ -1,7 +1,7 @@
 import React from "react";
 import * as yup from "yup";
 import { UpdateUser } from "../../../model";
-import { useGetCurrentUser, useUpdateUserMutation } from "../../../services";
+import { useGetCurrentUser, useUpdateUserMutation } from "../../../app/services";
 
 interface Props {
   setAllowChanges: React.Dispatch<React.SetStateAction<boolean>>

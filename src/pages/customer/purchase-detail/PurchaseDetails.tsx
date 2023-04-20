@@ -2,7 +2,7 @@ import React from 'react'
 import OrderDetails from '../../../components/purchase-details/OrderDetails'
 import { ItemListContainer, PurchasedItemContainer } from './components'
 import { useParams } from 'react-router-dom'
-import { useGetOrderByOrderIdQuery } from '../../../services';
+import { useGetOrderByOrderIdQuery } from '../../../app/services';
 import Item from '../../../components/purchase-details/Item';
 function PurchaseDetails() {
 

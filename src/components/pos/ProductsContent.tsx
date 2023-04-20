@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useGetAllProductQuery } from '../../services';
+import { useGetAllProductQuery } from '../../app/services';
 import ProductDetails from '../modals/customer/product-detail/ProductDetails';
 import { Products, ProductsContent as ProductsContentContainer } from './components'
 import FilterItems from './FilterItems'

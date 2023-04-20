@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import * as yup from "yup";
-import { getCartProducts } from "../../../../features";
-import { useCheckoutOrderMutation } from "../../../../services/order";
+import { getCartProducts } from "../../../../app/features";
+import { useCheckoutOrderMutation } from "../../../../app/services/order";
 import {toast} from 'react-toastify'
 interface Props {
   paymentType: string;

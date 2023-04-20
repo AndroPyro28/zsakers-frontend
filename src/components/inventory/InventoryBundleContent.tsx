@@ -3,7 +3,7 @@ import BundleCreateModal from '../modals/admin/product/BundleCreateModal'
 import {  ButtonContainer, ProductListContainer } from "../../pages/admin/inventory/components"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
-import { useGetAllCategoryQuery, useGetAllProductQuery } from '../../services'
+import { useGetAllCategoryQuery, useGetAllProductQuery } from '../../app/services'
 import FilterItems from './FilterItems'
 import InventoryTableRow from '../table/InventoryTableRow'
 import Product from './Product'

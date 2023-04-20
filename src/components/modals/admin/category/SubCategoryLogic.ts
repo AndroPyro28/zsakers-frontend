@@ -2,7 +2,7 @@ import { ClientRequest } from 'http'
 import { toast } from 'react-toastify';
 import * as yup from 'yup'
 import { CreateSubcategory, UpdateSubcategory } from '../../../../model'
-import { useCreateSubcategoryMutation, useDeleteSubcategoryMutation, useUpdateSubcategoryMutation } from '../../../../services/subcategory'
+import { useCreateSubcategoryMutation, useDeleteSubcategoryMutation, useUpdateSubcategoryMutation } from '../../../../app/services/subcategory'
 
 interface Props {
     categoryId?: number;

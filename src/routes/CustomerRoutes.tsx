@@ -2,8 +2,8 @@ import { Navigate, Outlet, useLocation } from 'react-router-dom'
 import store from '../app/store'
 import CustomerNavbar from '../components/customer-navbar/CustomerNavbar'
 import Loader from '../components/loader/Loader'
-import { useGetCurrentUser } from '../services'
-import cartProduct from '../services/cart-products'
+import { useGetCurrentUser } from '../app/services'
+import cartProduct from '../app/services/cart-products'
 import { CustomerRoutesContainer } from './components'
 
 function CustomerRoutes() {

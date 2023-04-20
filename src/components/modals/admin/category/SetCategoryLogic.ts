@@ -6,7 +6,7 @@ import {
   useCreateSetCategoryMutation,
   useDeleteSetCategoryMutation,
   useUpdateSetCategoryMutation,
-} from "../../../../services/set-category";
+} from "../../../../app/services/set-category";
 
 interface Props {
   subcategoryId?: number;

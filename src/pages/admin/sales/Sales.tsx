@@ -18,7 +18,7 @@ import SaleOrders from "../../../components/sales/SalesOrders";
 import productPriceFormatter from "../../../helpers/ProductPriceFormatter";
 import { useState } from "react";
 import { useEffect } from "react";
-import { useGetCompletedCancelledOrdersQuery, useGetSummaryQuery } from "../../../services";
+import { useGetCompletedCancelledOrdersQuery, useGetSummaryQuery } from "../../../app/services";
 import { Button } from "@progress/kendo-react-buttons";
 import { PDFExport, savePDF } from '@progress/kendo-react-pdf'
 import { Link } from "react-router-dom";

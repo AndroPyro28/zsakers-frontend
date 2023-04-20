@@ -7,7 +7,6 @@ const userSlice = createSlice({
 
     reducers: {
         authenticationSuccess: (state, action) => {
-            console.log(action.payload)
              return action.payload
         },
         authenticationFailed: (state, action) => {
@@ -15,7 +14,6 @@ const userSlice = createSlice({
         },
         logout: () => {
              Cookies.remove('access_token')
-             console.log('hello')
              window.location.reload()
         }
     },

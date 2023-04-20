@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { EmployeeContainer, Header, EmployeeList, SearchBarContainer, Filters } from './components'
 import EmployeeListHeader from '../../../components/employees/EmployeeListHeader'
 import EmployeeData from '../../../components/employees/EmployeeData'
-import { useGetStaffsQuery } from '../../../services'
+import { useGetStaffsQuery } from '../../../app/services'
 import CreateEmployee from '../../../components/modals/admin/employee/CreateEmployee'
 function Employees() {
 

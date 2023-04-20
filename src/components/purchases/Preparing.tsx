@@ -1,5 +1,5 @@
 import React from 'react'
-import { useGetOrdersByCustomerQuery } from '../../services';
+import { useGetOrdersByCustomerQuery } from '../../app/services';
 import { GlobalStyles, OrderContainer } from './components';
 import PreparingOrder from './PreparingOrder';
 

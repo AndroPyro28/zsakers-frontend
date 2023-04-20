@@ -1,4 +1,4 @@
-import { useArchiveProductMutation, useUpdateProductMutation } from "../../services";
+import { useArchiveProductMutation, useUpdateProductMutation } from "../../app/services";
 import * as yup from 'yup';
 import { UpdateProduct } from "../../model";
 interface Props {

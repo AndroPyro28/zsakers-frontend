@@ -1,7 +1,7 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
 import Loader from '../components/loader/Loader'
 import PublicNavbar from '../components/public-navbar/PublicNavbar'
-import { useGetCurrentUser } from '../services'
+import { useGetCurrentUser } from '../app/services'
 import { PublicRoutesContainer } from './components'
 import {excluded} from "./excluded"
 function PublicRoutes() {

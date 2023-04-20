@@ -1,6 +1,6 @@
 import * as yup from 'yup'
 import { createStaff } from '../../../../model/Staff';
-import { useCreateStaffMutation } from '../../../../services';
+import { useCreateStaffMutation } from '../../../../app/services';
 import {toast} from 'react-toastify'
 function Logic() {
 

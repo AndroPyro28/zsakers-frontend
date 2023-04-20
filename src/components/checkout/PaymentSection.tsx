@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { getAddedProductToCheckout, getCartProducts } from '../../features';
+import { getAddedProductToCheckout, getCartProducts } from '../../app/features';
 import productPriceFormatter from '../../helpers/ProductPriceFormatter'
 import { CartProduct } from '../../model';
-import { useGetCartProducts } from '../../services/cart-products';
+import { useGetCartProducts } from '../../app/services/cart-products';
 import CheckoutModal from '../modals/customer/checkout/CheckoutModal';
 import { Payment, Payments, PaymentSectionContainer, PaymentType, Title, SummaryContainer, Summary, ChekoutButton } from './components'
 

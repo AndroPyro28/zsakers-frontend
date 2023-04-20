@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import Order from "../../../components/orders/Order";
-import { useGetOrdersByAdminQuery } from "../../../services";
+import { useGetOrdersByAdminQuery } from "../../../app/services";
 import { LinksContainer } from "../../customer/purchases/components";
 import {
   OrderDetailsContainer,

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useGetAllCategoryQuery, useGetAllProductQuery } from '../../services'
+import { useGetAllCategoryQuery, useGetAllProductQuery } from '../../app/services'
 import { FeaturedProductsContainer, Products, Productsidebar, ProductList} from "./components"
 import Product from './Product'
 function FeaturedProducts() {

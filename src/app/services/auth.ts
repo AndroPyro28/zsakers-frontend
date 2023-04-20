@@ -1,5 +1,5 @@
-import { Signin, Signup } from "../model";
-import {publicApi} from "../app/baseApi"
+import { Signin, Signup } from "../../model";
+import {publicApi} from "../baseApi"
 
 const authApi = publicApi.injectEndpoints({
     endpoints: builder => ({

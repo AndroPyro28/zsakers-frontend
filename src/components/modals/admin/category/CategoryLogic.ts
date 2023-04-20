@@ -5,7 +5,7 @@ import {
   useCreateCategoryMutation,
   useDeleteCategoryMutation,
   useUpdateCategoryMutation,
-} from "../../../../services";
+} from "../../../../app/services";
 
 interface Props {
   setAllowUpdate?: React.Dispatch<React.SetStateAction<boolean>>;
