@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {motion} from 'framer-motion'
 
 export const ProductDetailsContainer = styled(motion.div)`
-    height: 95vh;
+    height: 98vh;
     max-width: 65vw;
     width: 100% ; 
     /* width: 100%; */
@@ -117,20 +117,22 @@ export const ProductFlavors = styled.div`
     width: 100%;
     flex-direction: column;
     align-items: center;
-
+    overflow: auto;
+    overflow-x: hidden;
     & > h2 {
-        margin: 30px;
+        margin: 15px;
         color: gray;
     }
 `
 export const Flavors = styled.div`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 220px;
-    gap: 20px;
-    overflow-y: auto;
+    grid-auto-rows: 180px;
+    gap: 10px;
+    padding: 20px ;
     overflow-x: hidden;
-    padding: 20px;
+    max-height: 300px;
+    min-height: 300px;
 `
 export const VariantContainer = styled.div`
     display: flex;

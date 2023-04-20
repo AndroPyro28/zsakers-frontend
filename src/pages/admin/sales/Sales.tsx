@@ -21,6 +21,7 @@ import { useEffect } from "react";
 import { useGetCompletedCancelledOrdersQuery, useGetSummaryQuery } from "../../../services";
 import { Button } from "@progress/kendo-react-buttons";
 import { PDFExport, savePDF } from '@progress/kendo-react-pdf'
+import { Link } from "react-router-dom";
 
 function Sales() {
   const [filterDateFrom, setFilterDateFrom] = useState("");
@@ -45,7 +46,7 @@ function Sales() {
     "October",
     "November",
     "December",
-];
+  ];
 
 
   const [summaryYear, setSummaryYear] = useState(new Date().getFullYear());
@@ -53,7 +54,7 @@ function Sales() {
   const { data: summary, isLoading } = useGetSummaryQuery(summaryYear)
   const pdfExportYearComponent = useRef<any>(null);
   const pdfExportMonthComponent = useRef<any>(null);
-  
+
   if (isLoading) return <></>
 
   const { monthlyCancelledTransactions, monthlySales, monthlySuccessTransactions, monthlyTotalTransactions, totalSalesToday } = summary!
@@ -107,46 +108,46 @@ function Sales() {
   return (
     <SaleContainerPage>
 
-    <div style={{position: 'fixed', top: -10000}}>
-      <PDFExport ref={pdfExportYearComponent} paperSize="A4">
-        <PdfContent>
-          <h1>Report for {summaryYear} </h1>
+      <div style={{ position: 'fixed', top: -10000 }}>
+        <PDFExport ref={pdfExportYearComponent} paperSize="A4">
+          <PdfContent>
+            <h1>Report for {summaryYear} </h1>
 
-          <Summary>
-            {
-              monthlySales?.map((value, index) => {
-                return <MonthSummary key={index}>
-                <h4>{labels[value.month]}</h4>
-                <div className="content" style={{color: 'rgb(166,183,241)'}} ><strong >Total Success Transaction</strong>: <label>{monthlySuccessTransactions[value.month].total}</label></div>
-                <div className="content" style={{color: 'rgb(229,111,139)'}} ><strong >Total Cancelled Transaction</strong>: <label>{monthlyCancelledTransactions[value.month].total}</label></div>
-                <div className="content" style={{color: 'rgb(136,246,156)'}} ><strong >Total Transaction</strong>: <label>{monthlyTotalTransactions[value.month].total}</label></div>
-                <div className="content" style={{color: 'rgb(6,224,46)'}} ><strong >Total Sales</strong>: <label>{value.total}</label></div>
-              </MonthSummary>
-              })
-            }
-            
-          </Summary>
-        </PdfContent>
-      </PDFExport>
-    </div>
+            <Summary>
+              {
+                monthlySales?.map((value, index) => {
+                  return <MonthSummary key={index}>
+                    <h4>{labels[value.month]}</h4>
+                    <div className="content" style={{ color: 'rgb(166,183,241)' }} ><strong >Total Success Transaction</strong>: <label>{monthlySuccessTransactions[value.month].total}</label></div>
+                    <div className="content" style={{ color: 'rgb(229,111,139)' }} ><strong >Total Cancelled Transaction</strong>: <label>{monthlyCancelledTransactions[value.month].total}</label></div>
+                    <div className="content" style={{ color: 'rgb(136,246,156)' }} ><strong >Total Transaction</strong>: <label>{monthlyTotalTransactions[value.month].total}</label></div>
+                    <div className="content" style={{ color: 'rgb(6,224,46)' }} ><strong >Total Sales</strong>: <label>{value.total}</label></div>
+                  </MonthSummary>
+                })
+              }
 
-    <div style={{position: 'fixed', top: -10000}}>
-      <PDFExport ref={pdfExportMonthComponent} paperSize="A4">
-        <PdfContent>
-          <h1>Report for month of {labels[summaryMonth]} {summaryYear} </h1>
+            </Summary>
+          </PdfContent>
+        </PDFExport>
+      </div>
 
-          <Summary>
-            <MonthSummary >
+      <div style={{ position: 'fixed', top: -10000 }}>
+        <PDFExport ref={pdfExportMonthComponent} paperSize="A4">
+          <PdfContent>
+            <h1>Report for month of {labels[summaryMonth]} {summaryYear} </h1>
+
+            <Summary>
+              <MonthSummary >
                 <h4>{labels[summaryMonth]}</h4>
-                <div className="content" style={{color: 'rgb(166,183,241)'}} ><strong >Total Success Transaction</strong>: <label>{monthlySuccessTransactions[summaryMonth]?.total}</label></div>
-                <div className="content" style={{color: 'rgb(229,111,139)'}} ><strong >Total Cancelled Transaction</strong>: <label>{monthlyCancelledTransactions[summaryMonth]?.total}</label></div>
-                <div className="content" style={{color: 'rgb(136,246,156)'}} ><strong >Total Transaction</strong>: <label>{monthlyTotalTransactions[summaryMonth]?.total}</label></div>
-                <div className="content" style={{color: 'rgb(6,224,46)'}} ><strong >Total Sales</strong>: <label>{ monthlySales[summaryMonth]?.total}</label></div>
+                <div className="content" style={{ color: 'rgb(166,183,241)' }} ><strong >Total Success Transaction</strong>: <label>{monthlySuccessTransactions[summaryMonth]?.total}</label></div>
+                <div className="content" style={{ color: 'rgb(229,111,139)' }} ><strong >Total Cancelled Transaction</strong>: <label>{monthlyCancelledTransactions[summaryMonth]?.total}</label></div>
+                <div className="content" style={{ color: 'rgb(136,246,156)' }} ><strong >Total Transaction</strong>: <label>{monthlyTotalTransactions[summaryMonth]?.total}</label></div>
+                <div className="content" style={{ color: 'rgb(6,224,46)' }} ><strong >Total Sales</strong>: <label>{monthlySales[summaryMonth]?.total}</label></div>
               </MonthSummary>
-          </Summary>
-        </PdfContent>
-      </PDFExport>
-    </div>
+            </Summary>
+          </PdfContent>
+        </PDFExport>
+      </div>
 
 
       <GlobalStyles />
@@ -164,8 +165,12 @@ function Sales() {
           <select name="" id="" onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSummaryYear(Number(e.target.value))}>
             {arrYear?.slice(0)?.reverse()?.map((value) => <option value={value} key={value} >{value}</option>)}
           </select>
-          <Button onClick={handleExportYearPdf}>Print by year</Button>
-          <Button onClick={handleExportMonthPdf}>Print by month and year</Button>
+          <Button onClick={handleExportYearPdf}>generate report by year</Button>
+          <Button onClick={handleExportMonthPdf}>generate report by month and year</Button>
+          <Link
+            to="/admin/sales/report/weekly"
+            // state={{ some: "value" }}
+            >Generate report by week</Link>
         </PrintExport>
 
       </FilterDataContainer2>

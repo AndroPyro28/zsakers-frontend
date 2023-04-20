@@ -96,7 +96,9 @@ function Payment() {
 
       <Line />
 
-      <ProceedButton onClick={() => window.location.assign('/customer/purchases')}>
+      <ProceedButton onClick={() => setTimeout(() => {
+        window.location.assign('/customer/purchases')
+      }, 1500)}>
         Proceed
       </ProceedButton>
     </PaymentSuccessContainer>

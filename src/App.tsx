@@ -34,6 +34,8 @@ import ForgotPassword from './pages/public/forgot-password/ForgotPassword';
 import UpdatePasswordRoutes from './routes/UpdatePasswordRoutes';
 import ResetPassword from './pages/public/reset-password/ResetPassword';
 import ChangePassword from './pages/shared/password/ChangePassword';
+import Weekly from './pages/admin/report/Weekly';
+import path from 'path';
 
 function App() {
 
@@ -98,6 +100,10 @@ function App() {
               element: <Sales />,
               index: true,
             }, 
+            {
+              element: <Weekly />,
+              path: 'report/weekly'
+            }
           ]
         },
         {

@@ -76,9 +76,13 @@ export const PrintExport = styled.div`
         outline: none;
     }
 
-    &>button {
+    &> button, a {
         padding: 4px 20px;
+        background: #EAEAEA;
+        font-size: 0.9em;
+        color: gray;
     }
+    
 `
 
 export const PdfContent = styled.div`
@@ -98,22 +102,25 @@ export const PdfContent = styled.div`
 
 export const Summary = styled.div`
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 100px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 200px;
+    place-items:center; 
 `
 
 export const MonthSummary = styled.div`
     display: flex;
     flex-direction: column;
-    margin: 5px;
+    margin: 10px;
 
     & > .content {
-        font-size: 0.5em;
+        font-size:1em;
+        color: gray;
     }
 
     & > h4 {
         margin: 5px 0px;
-        color: gray;
+        color: black;
+        font-size: 1.5em;
         /* color: lightgreen; */
     }
 `

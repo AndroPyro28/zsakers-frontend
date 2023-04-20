@@ -9,7 +9,7 @@ function AdminRoutes() {
   const {data:user, isLoading, isError} = useGetCurrentUser()
 
     const {pathname} = useLocation()
-    const excluded = ['/admin/password']
+    const excluded = ['/admin/password', '/admin/sales/report/']
 
   if(isLoading) {
     return <Loader />

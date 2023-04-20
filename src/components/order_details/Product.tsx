@@ -26,7 +26,7 @@ function Product({ data }: { data: CartProduct }) {
           <small className="detail2"> {data.product.quantity} pc(s) - {data.product.details}</small>
         </ProductName>
         
-        <ProductCalculation>{data?.product.productType === 'BUNDLE' ? `(Bundle)` : `(Single)`} </ProductCalculation>
+        <ProductCalculation>{data?.product.productType} </ProductCalculation>
 
         <ProductCalculation>Qty: {data.quantity} </ProductCalculation>
         <ProductPrice>{productPriceFormatter(totalPrice + '')}</ProductPrice>

@@ -20,7 +20,7 @@ export const publicApi = createApi({
       },
     }),
     endpoints: () => ({}),
-    tagTypes: ['Category', 'Subcategory', 'Product', 'SetCategory', 'User', 'Cart-Product', 'Staff', 'Order'],
+    tagTypes: ['Category', 'Subcategory', 'Product', 'SetCategory', 'User', 'Cart-Product', 'Staff', 'Order', 'REPORT'],
   });
 
   export const passwordResetApi = createApi({

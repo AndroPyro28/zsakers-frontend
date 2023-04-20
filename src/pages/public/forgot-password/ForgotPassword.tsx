@@ -133,7 +133,7 @@ function ForgotPassword() {
                             <input
                                 type="text"
                                 onChange={handleChangeCode}
-                                placeholder="Enter your your code"
+                                placeholder="Enter your code"
                             />
                             <button onClick={confirmCode}>Confirm</button>
                         </ForgotPasswordFieldContainer>
