@@ -4,13 +4,13 @@ import { Address, BranchName, ReceiptProduct, CashierContent as CashierContentCo
 import Order from './Order'
 import { useEffect, useRef, useState } from 'react'
 import { v4 as uuid } from 'uuid'
-import Printer from 'node-thermal-printer'
-import nodeHtmlToImage  from 'node-html-to-image'
+import {ThermalPrinter, PrinterTypes, CharacterSet, BreakLine} from 'node-thermal-printer'
 import ReactToPrint from 'react-to-print'
 import PopupCashier from '../modals/staff/PopupCashier'
 import { useCreateOrderWalkinMutation, useGetCurrentUser } from '../../app/services'
 import { CartProduct } from '../../model'
-
+import html2canvas from 'html2canvas';
+import {JSDOM} from 'jsdom'
 function CashierContent() {
 
   const { data: cartProducts, isLoading, isError } = useGetCartProductsQuery()
@@ -30,9 +30,14 @@ function CashierContent() {
   const [inputMoney, setInputMoney] = useState(0)
   const [toggleCashier, setToggleCashier] = useState(false);
 
-  const handlePrint = () => {
+  const handlePrint = async () => {
     if (printBtnRef.current) {
       printBtnRef.current.handlePrint()
+      // const virtualDom = new JSDOM('<!DOCTYPE html>');
+
+      // thermal printer to be continue here
+      
+     
     }
   }
 
