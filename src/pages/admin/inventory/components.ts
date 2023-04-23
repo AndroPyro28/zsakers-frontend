@@ -377,6 +377,11 @@ export const ProductListContainer = styled.div`
   overflow: auto;
   height: 73vh;
   /* background: red; */
+
+  & > h3 {
+    margin: auto;
+    color: gray;
+  }
 `;
 
 export const ProductItem = styled.div`

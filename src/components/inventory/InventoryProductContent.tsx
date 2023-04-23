@@ -6,6 +6,8 @@ import ProductCreateModal from '../modals/admin/product/ProductCreateModal'
 import InventoryTableRow from '../table/InventoryTableRow'
 import FilterItems from './FilterItems'
 import Product from './Product'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronLeft, faChevronRight, faHourglass3 } from '@fortawesome/free-solid-svg-icons'
 
 interface Props {
     searchName: string,
@@ -18,12 +20,15 @@ function InventoryProductContent({searchName, setSearchName}: Props) {
     
     const [openCreateProductModal, setOpenCreateProductModal] = useState<boolean>(false)
     const [viewCategory, setViewCategory] = useState<boolean>(false)
+    const [currentPage, setCurrentPage] = useState(0);
+    const [maxPage, setMaxPage] = useState(0)
 
     const { data: categories, refetch: refetchCategory } = useGetAllCategoryQuery('', {
         refetchOnFocus: true,
         refetchOnReconnect: true,
         pollingInterval: 10
       })
+
 
       const { data: products, isLoading, error, refetch: refetechProduct } = useGetAllProductQuery({
         searchName,
@@ -34,12 +39,11 @@ function InventoryProductContent({searchName, setSearchName}: Props) {
         refetchOnFocus: true,
         refetchOnReconnect: true
       });
-
+      
       useEffect(() => {
         // to reset all the filter
         setterSubCategoryId(0)
         setSearchName('')
-        console.log(products)
 
       }, [categoryId])
     
@@ -48,12 +52,14 @@ function InventoryProductContent({searchName, setSearchName}: Props) {
         refetechProduct()
       }, [])
 
-    
       if (isLoading) return <></>
-    
-      const fetchProducts = products?.filter(product => product?.productType == 'SINGLE')?.map((product) => (
+      const fetchProducts = products?.filter(product => product?.productType == 'SINGLE')?.slice(8 * currentPage, 8 * currentPage + 8)?.map((product) => (
         <Product key={product.id} data={product} categories={categories!} />
       ))
+
+      const numberOfProducts = products?.filter(product => product?.productType == 'SINGLE').length
+
+
       
   return (
     <>
@@ -69,9 +75,6 @@ function InventoryProductContent({searchName, setSearchName}: Props) {
       <button onClick={() => setViewCategory(true)}>
         View category <i className="fa-solid fa-share-nodes"></i>
       </button>
-      {/* <button onClick={() => setOpenCreateProductModal(true)}>
-        Bundles <i className="fa-solid fa-boxes-stacked"></i>
-      </button> */}
       <button onClick={() => setOpenCreateProductModal(true)}>
         Add products <i className="fa-solid fa-plus plus"></i>
       </button>
@@ -86,13 +89,19 @@ function InventoryProductContent({searchName, setSearchName}: Props) {
         setterCategoryId={setterCategoryId}
         setterSubCategoryId={setterSubCategoryId}
         categories={categories}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        maxPage={maxPage}
+        setMaxPage={setMaxPage}
+        numberOfProducts={numberOfProducts!}
+        productType={"SINGLE"}
       />
     }
 
     <InventoryTableRow />
 
     <ProductListContainer>
-      {fetchProducts}
+      {fetchProducts!.length > 0 ? fetchProducts : <h3>No Products</h3>}
     </ProductListContainer>
     </>
   )

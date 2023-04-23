@@ -7,7 +7,7 @@ import { useGetAllCategoryQuery, useGetAllProductQuery } from '../../app/service
 import FilterItems from './FilterItems'
 import InventoryTableRow from '../table/InventoryTableRow'
 import Product from './Product'
-import ProductCreateModal from '../modals/admin/product/ProductCreateModal'
+// import ProductCreateModal from '../modals/admin/product/ProductCreateModal'
 import AddonsCreateModal from '../modals/admin/product/AddonsCreateModal'
 
 interface Props {
@@ -19,7 +19,8 @@ function InventoryAddonsContent({searchName, setSearchName}: Props) {
     const [categoryId, setterCategoryId] = useState<number>(0)
     const [subcategoryId, setterSubCategoryId] = useState<number>(0)
     const [viewCategory, setViewCategory] = useState<boolean>(false)
-
+    const [currentPage, setCurrentPage] = useState(0);
+    const [maxPage, setMaxPage] = useState(0)
 
     const { data: products, isLoading, error, refetch: refetechProduct } = useGetAllProductQuery({
         searchName,
@@ -52,6 +53,8 @@ function InventoryAddonsContent({searchName, setSearchName}: Props) {
         <Product key={product.id} data={product} categories={categories!} />
       ))
 
+    const numberOfProducts = products?.filter(product => product?.productType == 'ADDONS').length
+
   return (
     <>   
 
@@ -72,13 +75,20 @@ function InventoryAddonsContent({searchName, setSearchName}: Props) {
         setterCategoryId={setterCategoryId}
         setterSubCategoryId={setterSubCategoryId}
         categories={categories}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        maxPage={maxPage}
+        setMaxPage={setMaxPage}
+        numberOfProducts={numberOfProducts!}
+        productType={"ADDON"}
       />
     }
 
     <InventoryTableRow />
 
     <ProductListContainer>
-      {fetchProducts}
+      {fetchProducts!.length > 0 ? fetchProducts : <h3>No Products</h3>}
+
     </ProductListContainer>
 
     </>

@@ -1,18 +1,34 @@
-import React from 'react'
-import findCategory from '../../helpers/findCategory'
-import findSubcategory from '../../helpers/findSubcategory'
-import { Category } from '../../model'
-import { ButtonContainer, FilterContainer, FilterItemsContainer } from '../../pages/admin/inventory/components'
-import Logic from './Logic'
+import React, { useEffect } from "react";
+import findCategory from "../../helpers/findCategory";
+import findSubcategory from "../../helpers/findSubcategory";
+import { Category, Product } from "../../model";
+import {
+  ButtonContainer,
+  FilterContainer,
+  FilterItemsContainer,
+} from "../../pages/admin/inventory/components";
+import Logic from "./Logic";
+import { current } from "@reduxjs/toolkit";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
-  setOpenCreateProductModal: React.Dispatch<React.SetStateAction<boolean>>
-  setViewCategory?: React.Dispatch<React.SetStateAction<boolean>>
+  setOpenCreateProductModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setViewCategory?: React.Dispatch<React.SetStateAction<boolean>>;
   categoryId: number;
   subcategoryId: number;
-  setterCategoryId: React.Dispatch<React.SetStateAction<number>>
-  setterSubCategoryId: React.Dispatch<React.SetStateAction<number>>
-  categories: Category[]
+  setterCategoryId: React.Dispatch<React.SetStateAction<number>>;
+  setterSubCategoryId: React.Dispatch<React.SetStateAction<number>>;
+  categories: Category[];
+  currentPage: number;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+  maxPage: number;
+  setMaxPage: React.Dispatch<React.SetStateAction<number>>;
+  numberOfProducts: number;
+  productType: string
 }
 
 function FilterItems({
@@ -20,84 +36,93 @@ function FilterItems({
   setterCategoryId,
   subcategoryId,
   setterSubCategoryId,
-  categories
+  categories,
+  setCurrentPage,
+  currentPage,
+  maxPage,
+  setMaxPage,
+  numberOfProducts,
+  productType
 }: Props) {
   const { handleChange } = Logic({});
 
-  // const fetchCategories = categories?.map((category) => (
-  //   <option value={category.id} key={category.id}>{category.name}</option>
-  // ))
-
-  // const category = findCategory(categories, categoryId);
-  
-  // const fetchSubCategories = category?.sub_category?.map((subcategory) => (
-  //   <option value={subcategory?.id} key={subcategory?.id}>{subcategory?.name}</option>
-  // ))
-
-  // const subcategory = findSubcategory(category?.sub_category, subcategoryId)
-
-  // const fetchSetCategories = subcategory?.set_category?.map((setcategory) => (
-  //   <option value={setcategory?.id} key={setcategory?.id}>{setcategory?.name}</option>
-  // ))
-//////////////////////////////////////////////////
   const category = () => {
-    return categories?.find(value => value.id === categoryId)
-  }
+    return categories?.find((value) => value.id === categoryId);
+  };
 
   const subcategory = () => {
-    return category()?.sub_category?.find(value => value.id === subcategoryId)
-  }
+    return category()?.sub_category?.find(
+      (value) => value.id === subcategoryId
+    );
+  };
 
   const fetchCategories = categories?.map((category) => (
-    <option value={category.id} key={category.id}>{category.name}</option>
-  ))
+    <option value={category.id} key={category.id}>
+      {category.name}
+    </option>
+  ));
 
-  const fetchSubCategories = category()?.sub_category.map((subcategory) => (
-    <option value={subcategory.id} key={subcategory.id}>{subcategory.name}</option>
-  ))
+  const fetchSubCategories = category()?.sub_category?.filter(subcategory => subcategory.name.toLowerCase().includes(productType.toLowerCase())).map((subcategory) => (
+    <option value={subcategory.id} key={subcategory.id}>
+      {subcategory.name}
+    </option>
+  ));
 
-  // const fetchSetCategories = subcategory()?.set_category.map((setcategory) => (
-  //   <option value={setcategory.id} key={setcategory.id}>{setcategory.name}</option>
-  // ))
+  useEffect(() => {
+    setMaxPage(Math.ceil(numberOfProducts / 8));
+  }, [numberOfProducts]);
 
   return (
     <FilterItemsContainer>
       <FilterContainer>
         <span>Select Category</span>
-        <select onChange={(e: React.ChangeEvent<HTMLSelectElement>) => 
-          handleChange(setterCategoryId, e.target.value)}>
+        <select
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+            handleChange(setterCategoryId, e.target.value)
+          }
+        >
           <option value={0}>All</option>
           {fetchCategories}
         </select>
       </FilterContainer>
 
-      <FilterContainer>
-        <span>Select Subcategory</span>
-        <select onChange={(e: React.ChangeEvent<HTMLSelectElement>) => 
-          handleChange(setterSubCategoryId, e.target.value)}>
-          <option value={0}>All</option>
-          {fetchSubCategories}
-        </select>
-      </FilterContainer>
-
-      {/* <FilterContainer>
-        <span>Select</span>
-        <select onChange={(e: React.ChangeEvent<HTMLSelectElement>) => 
-          handleChange(setterSetCategoryId, e.target.value)}>
-          <option value={0}>Set-Category</option>
-          {fetchSetCategories}
-        </select>
-      </FilterContainer> */}
-
+          {
+            productType === 'DOZEN' && <FilterContainer>
+            <span>Select Subcategory</span>
+            <select
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                handleChange(setterSubCategoryId, e.target.value)
+              }
+            >
+              <option value={0}>All</option>
+              {fetchSubCategories}
+            </select>
+          </FilterContainer>
+          }
       
 
-      <div className="pagination">
-        <i className="fa-solid fa-chevron-left left" onClick={() => alert("")}></i>
-        <span>{`${1} / ${1}`} </span>
-        <i className="fa-solid fa-chevron-right right"></i>
-      </div>
+          {
+            maxPage > 0 && <div className="pagination">
+            <FontAwesomeIcon
+              className="left"
+              icon={faChevronLeft}
+              onClick={() =>
+                setCurrentPage((prev) => (prev !== 0 ? prev - 1 : prev))
+              }
+            ></FontAwesomeIcon>
+            <span>{`${currentPage + 1} / ${maxPage}`} </span>
+            <FontAwesomeIcon
+              className="right"
+              icon={faChevronRight}
+              onClick={() =>
+                setCurrentPage((prev) => (prev + 1 < maxPage ? prev + 1 : prev))
+              }
+            ></FontAwesomeIcon>
+          </div>
+          }
+      
     </FilterItemsContainer>
-  )
+  );
 }
 
-export default FilterItems
+export default FilterItems;
