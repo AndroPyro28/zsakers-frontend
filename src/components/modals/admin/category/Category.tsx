@@ -7,6 +7,8 @@ import SubCategoryLogic from './SubCategoryLogic';
 import SubCategory from './SubCategory';
 import CategoryLogic from './CategoryLogic'
 import { FieldInputContainer } from '../components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 function Category({data}: {data: CategoryInterface}) {
 
   const [showSubCategories, setShowSubCategories] = useState(false);
@@ -54,7 +56,7 @@ function Category({data}: {data: CategoryInterface}) {
             <i className="fa-solid fa-eraser"></i>
             </span>
           </td>
-          <td><span className="subcategories__button" onClick={() => setShowSubCategories(prev => !prev)}><i className={ showSubCategories ? "fa-solid fa-chevron-down" : "fa-sharp fa-solid fa-chevron-up"}></i></span></td>
+          <td><span className="subcategories__button" onClick={() => setShowSubCategories(prev => !prev)}><FontAwesomeIcon icon={ showSubCategories ? faChevronDown : faChevronUp}></FontAwesomeIcon></span></td>
       </CategoryContainer>
       </Formik>
       {

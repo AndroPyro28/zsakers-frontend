@@ -135,7 +135,7 @@ function SalesData({ summaryYear,
         monthlyTotalSalesStats[totalSales.month] = totalSales.total
     })
 
-
+    
     const data: any = {
         labels,
         datasets: [

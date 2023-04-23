@@ -16,6 +16,7 @@ flex-direction: column;
     overflow-x: hidden;
     & > button {
         width: fit-content;
+        margin: -20px 50px 50px 50px; 
     }
 
    
@@ -28,9 +29,15 @@ width: 100vw;
 background-repeat: no-repeat;
 background-position: center;
 overflow-x: hidden;
+
+& > h1 {
+    text-align: center;
+    margin: 50px;
+    font-size: 2em;
+}
 `
 
-export const BusinessName = styled.h1`
+export const BusinessName = styled.h2`
     text-align: center;
     margin: 20px 20px 5px 20px;
     font-size: 2em;
@@ -51,6 +58,11 @@ export const Table = styled.div`
     flex-direction: column;
     width: 50vw;
     margin: 50px auto;
+
+    & > h1 {
+        text-align: center;
+        margin: 30px;
+    }
     
 `
 

@@ -59,26 +59,6 @@ function Sales() {
 
   const { monthlyCancelledTransactions, monthlySales, monthlySuccessTransactions, monthlyTotalTransactions, totalSalesToday } = summary!
 
-  // const monthlyTotalSalesStats = new Array(12);
-  // monthlySales?.forEach((totalSales) => {
-  //   monthlyTotalSalesStats[totalSales.month] = totalSales.total
-  // })
-
-  // const monthlyCancelledStats = new Array(12);
-  //   monthlyCancelledTransactions?.forEach((cancelled) => {
-  //       monthlyCancelledStats[cancelled.month] = cancelled.total
-  //   })
-
-  //   const monthlyTotalTransactionStats = new Array(12);
-  //   monthlyTotalTransactions?.forEach((total) => {
-  //       monthlyTotalTransactionStats[total.month] = total.total
-  //   })
-
-  //   const monthlySuccessTransactionStats = new Array(12);
-  //   monthlySuccessTransactions?.forEach((successful) => {
-  //       monthlySuccessTransactionStats[successful.month] = successful.total
-  //   })
-
 
   let total = Orders?.reduce((total, order) => {
     if (order?.order_status !== 'cancelled') return total + order.totalAmount;
@@ -165,11 +145,13 @@ function Sales() {
           <select name="" id="" onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSummaryYear(Number(e.target.value))}>
             {arrYear?.slice(0)?.reverse()?.map((value) => <option value={value} key={value} >{value}</option>)}
           </select>
-          <Button onClick={handleExportYearPdf}>generate report by year</Button>
+          {/* <Button onClick={handleExportYearPdf}>generate report by year</Button> */}
           <Button onClick={handleExportMonthPdf}>generate report by month and year</Button>
           <Link
+            to="/admin/sales/report/yearly"
+            >Generate report by year</Link>
+          <Link
             to="/admin/sales/report/weekly"
-            // state={{ some: "value" }}
             >Generate report by week</Link>
         </PrintExport>
 

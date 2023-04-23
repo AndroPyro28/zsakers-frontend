@@ -122,6 +122,8 @@ function Weekly() {
       <BusinessName>Zsakers-Cafe Hagonoy</BusinessName>
       <Address>Hagonoy Bulacan</Address>
 
+
+      <h1>Weekly report</h1>
       <Summary>
         {
           weeklySales.map((jsx) => jsx)
@@ -129,6 +131,7 @@ function Weekly() {
       </Summary>
 
       <Table>
+        <h1>Summary for this week!</h1>
         <SummaryTableContent>
           <SummaryTitle>Cancelled Transactions</SummaryTitle> <SummaryValue>{summary.totalCancelled}</SummaryValue>
         </SummaryTableContent>

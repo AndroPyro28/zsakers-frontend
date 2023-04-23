@@ -61,3 +61,11 @@ export interface Summary {
 }[];
 totalSalesToday: number
 }
+
+export interface ModelForYearly {
+   totalTransaction: number
+   totalCancelled: number
+   totalSuccess: number
+   totalSales: number
+   month: number
+}

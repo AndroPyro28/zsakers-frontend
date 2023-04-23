@@ -35,7 +35,7 @@ import UpdatePasswordRoutes from './routes/UpdatePasswordRoutes';
 import ResetPassword from './pages/public/reset-password/ResetPassword';
 import ChangePassword from './pages/shared/password/ChangePassword';
 import Weekly from './pages/admin/report/Weekly';
-import path from 'path';
+import Yearly from './pages/admin/report/Yearly';
 
 function App() {
 
@@ -103,6 +103,10 @@ function App() {
             {
               element: <Weekly />,
               path: 'report/weekly'
+            },
+            {
+              element: <Yearly />,
+              path: 'report/yearly'
             }
           ]
         },

@@ -15,7 +15,7 @@ function CategoryModal({setViewCategory}: Props) {
           
             <TitleAndContent>
                 <h1>Category & Subcategory</h1>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magnam vel porro quidem ipsa ab laboriosam temporibus vitae laudantium iure libero possimus facilis officia labore obcaecati ea, veniam culpa. Maiores sit minus impedit voluptatibus esse commodi quisquam in suscipit magnam velit at rerum dolorem modi sapiente provident, corporis, nesciunt molestiae consectetur?</p>
+                <p>Categories and subcategories help in organizing and classifying products, improving user experience, and enabling targeted marketing in product management.</p>
             </TitleAndContent>
             <CategoryContent>
                 <LeftCategoryContent />

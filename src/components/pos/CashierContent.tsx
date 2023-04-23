@@ -2,13 +2,15 @@ import productPriceFormatter from '../../helpers/ProductPriceFormatter'
 import { useGetCartProducts, useGetCartProductsQuery } from '../../app/services/cart-products'
 import { Address, BranchName, ReceiptProduct, CashierContent as CashierContentContainer, Contact, Discount, DiscountAmount, Date as DateContent, OrderId, Orders, OrderSummary, PrintReceiptButton, ReceiptBody, ReceiptContainer, ReceiptContent, ReceiptFooter, ReceiptHeader, Subtotal, SubtotalAmount, Summary, Tax, TaxAmount, Total, TotalAmount, SummaryContent, CashierInfo, } from './components'
 import Order from './Order'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { v4 as uuid } from 'uuid'
-
+import Printer from 'node-thermal-printer'
+import nodeHtmlToImage  from 'node-html-to-image'
 import ReactToPrint from 'react-to-print'
 import PopupCashier from '../modals/staff/PopupCashier'
 import { useCreateOrderWalkinMutation, useGetCurrentUser } from '../../app/services'
 import { CartProduct } from '../../model'
+
 function CashierContent() {
 
   const { data: cartProducts, isLoading, isError } = useGetCartProductsQuery()
@@ -77,6 +79,11 @@ function CashierContent() {
     setToggleCashier(true)
   }
 
+  // useEffect(() => {
+  //   if (componentRef.current) {
+  //     console.log(componentRef.current)
+  //   }
+  // }, [])
   return (
     <CashierContentContainer>
       {

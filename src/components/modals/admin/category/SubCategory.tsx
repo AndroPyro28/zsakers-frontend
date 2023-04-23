@@ -7,6 +7,8 @@ import { CategoryInputField, CreateSubCategoryContainer, SetCategoryListContaine
 import SetCategory from './SetCategory'
 import SetCategoryLogic from './SetCategoryLogic'
 import SubCategoryLogic from './SubCategoryLogic'
+import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 interface Props {
   data: Subcategory
 }
@@ -65,8 +67,7 @@ function SubCategory({ data }: Props) {
           </td>
           <td><span className="subcategories__button" 
           onClick={() => setShowSetCategory(prev => !prev)}>
-            <i className={showSetCategory ? "fa-solid fa-chevron-down" : 
-            "fa-sharp fa-solid fa-chevron-up"}></i>
+            <FontAwesomeIcon icon={ showSetCategory ? faChevronDown : faChevronUp}></FontAwesomeIcon>
             </span></td>
             
         </SubCategoryData>
