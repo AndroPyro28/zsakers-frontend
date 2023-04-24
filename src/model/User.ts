@@ -35,6 +35,7 @@ export interface User {
     role:     ROLE    
     status: STATUSES
     profile: profile
+    super_admin: boolean;
 }
 
 export interface UpdateUser {

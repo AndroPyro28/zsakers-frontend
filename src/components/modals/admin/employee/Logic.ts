@@ -2,15 +2,20 @@ import * as yup from 'yup'
 import { createStaff } from '../../../../model/Staff';
 import { useCreateStaffMutation } from '../../../../app/services';
 import {toast} from 'react-toastify'
+import { useLocation } from 'react-router-dom';
 function Logic() {
 
+  const {pathname} = useLocation()
+  console.log()
+
+  const roleToCreate =  pathname.split('/')[pathname.split('/').length - 1].toUpperCase()
     const initialValues = {
         firstname: '',
         lastname: '',
         email: '',
         address: '',
         contact: '',
-        role: 'STAFF',
+        role: roleToCreate,
     } as createStaff
 
     const validationSchema = yup.object().shape({

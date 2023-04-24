@@ -103,18 +103,23 @@ export const PdfContent = styled.div`
 export const Summary = styled.div`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: 200px;
+    grid-auto-rows: 250px;
     place-items:center; 
 `
 
 export const MonthSummary = styled.div`
     display: flex;
     flex-direction: column;
-    margin: 10px;
-
+    /* margin: 0px; */
+    width: 60%;
+    
     & > .content {
         font-size:1em;
         color: gray;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        
     }
 
     & > h4 {

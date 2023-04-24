@@ -67,5 +67,7 @@ export interface ModelForYearly {
    totalCancelled: number
    totalSuccess: number
    totalSales: number
-   month: number
+   month: number,
+   onlineTransaction: number,
+   walkinTransaction: number,
 }

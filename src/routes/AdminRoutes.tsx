@@ -4,6 +4,7 @@ import Loader from '../components/loader/Loader'
 import { useGetCurrentUser } from '../app/services'
 
 import { AdminGlobalStyles, AdminRoutesContainer } from './components'
+import SuperAdminRoutes from './SuperAdminRoutes'
 
 function AdminRoutes() {
   const {data:user, isLoading, isError} = useGetCurrentUser()
@@ -26,8 +27,6 @@ function AdminRoutes() {
       {
         !excluded.some(path => pathname.includes(path)) && <AdminNavbar />
       }
-
-        
         <AdminGlobalStyles />
         <Outlet />
     </AdminRoutesContainer>

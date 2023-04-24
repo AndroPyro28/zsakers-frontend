@@ -14,7 +14,7 @@ import StaffRoutes from './routes/StaffRoutes';
 import Pos from './pages/staff/pos/Pos';
 import Checkout from './pages/customer/checkout/Checkout';
 import Payment from './pages/customer/payment/Payment';
-import Employees from './pages/admin/employees/Employees';
+import Employees from './pages/admin/employees/Staffs';
 import {ToastContainer} from 'react-toastify';
 import Orders from './pages/admin/orders/Orders';
 import OrderDetails from './pages/admin/order_details/OrderDetails';
@@ -36,6 +36,10 @@ import ResetPassword from './pages/public/reset-password/ResetPassword';
 import ChangePassword from './pages/shared/password/ChangePassword';
 import Weekly from './pages/admin/report/Weekly';
 import Yearly from './pages/admin/report/Yearly';
+import Monthly from './pages/admin/report/Monthly';
+import Staffs from './pages/admin/employees/Staffs';
+import Admins from './pages/admin/employees/Admins';
+import SuperAdminRoutes from './routes/SuperAdminRoutes';
 
 function App() {
 
@@ -107,17 +111,20 @@ function App() {
             {
               element: <Yearly />,
               path: 'report/yearly'
+            },
+            {
+              element: <Monthly />,
+              path: 'report/monthly'
             }
           ]
         },
         {
-          path: 'employees',
-          children: [
-            {
-              element: <Employees />,
-              index: true
-            }
-          ]
+          path: 'employees/staff',
+          element: <Staffs />,
+        },
+        {
+          path: 'employees/admin',
+          element:  <SuperAdminRoutes Component={Admins} /> ,
         },
         {
           path: 'orders',

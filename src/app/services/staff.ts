@@ -20,7 +20,7 @@ const staffApi = privateApi.injectEndpoints({
                 method:"POST",
                 body
             }),
-            invalidatesTags: (result, error, arg) => [{type: 'Staff'}],
+            invalidatesTags: (result, error, arg) => [{type: 'Staff'}, {type: 'Admin'}],
         }),
         updateStaff: builder.mutation<void, updateStaff>({
             query: ({id, status}) => ({
@@ -44,7 +44,5 @@ const staffApi = privateApi.injectEndpoints({
     overrideExisting: false
 })
 export default staffApi;
-
-
 
 export const { useGetStaffsQuery, useUpdateStaffMutation, useDeleteStaffMutation, useCreateStaffMutation} = staffApi

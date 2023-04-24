@@ -35,7 +35,9 @@ const Yearly = () => {
     totalSales: 0,
     totalSuccess: 0,
     totalCancelled: 0,
-    totalTransaction: 0
+    totalTransaction: 0,
+    onlineTransaction: 0,
+walkinTransaction: 0
   }
 
 //   for(const r of report) {
@@ -51,29 +53,42 @@ const Yearly = () => {
     summary.totalCancelled += Number(d?.totalCancelled);
     summary.totalTransaction += Number(d?.totalTransaction);
     summary.totalSales += Number(d?.totalSales);
+    summary.onlineTransaction += Number(d?.onlineTransaction);
+    summary.walkinTransaction += Number(d?.walkinTransaction);
 
     return <SummaryContent>
           <h4>{labels[d.month]}</h4>
           <div className="content"
-          ><strong >Total Success Transaction</strong> :
+          ><strong >Success Transaction:</strong> 
             <strong>
               {d.totalSuccess}
             </strong>
-
           </div>
           <div className="content"
-          ><strong >Total Cancelled Transaction</strong> :
+          ><strong >Online Transaction:</strong> 
+            <strong>
+              {d.onlineTransaction}
+            </strong>
+          </div>
+          <div className="content"
+          ><strong >Walkin Transaction:</strong> 
+            <strong>
+              {d.walkinTransaction}
+            </strong>
+          </div>
+          <div className="content"
+          ><strong >Cancelled Transaction:</strong> 
             <strong>
             {d.totalCancelled}
             </strong></div>
           <div className="content"
-          ><strong >Total Transaction</strong>:
+          ><strong >Total Transaction:</strong>
             <strong>
             {d.totalTransaction}
             </strong>
           </div>
           <div className="content"
-          ><strong  style={{color:'black'}}>Total Sales</strong>:
+          ><strong  style={{color:'black'}}>Total Sales:</strong>
             <strong style={{color:'black'}}>{d.totalSales}</strong>
           </div>
         </SummaryContent>
@@ -94,7 +109,7 @@ const Yearly = () => {
             <BusinessName>Zsakers-Cafe Hagonoy</BusinessName>
             <Address>Hagonoy Bulacan</Address>
 
-            <h1>Yearly report</h1>
+            <h1>Sales report for {new Date().getFullYear()}</h1>
             <Summary>
                 {data}
             </Summary>
@@ -107,6 +122,12 @@ const Yearly = () => {
                 </SummaryTableContent>
                 <SummaryTableContent>
                     <SummaryTitle>Success Transactions</SummaryTitle> <SummaryValue>{summary.totalSuccess}</SummaryValue>
+                </SummaryTableContent>
+                <SummaryTableContent>
+                    <SummaryTitle>Online Transactions</SummaryTitle> <SummaryValue>{summary.onlineTransaction}</SummaryValue>
+                </SummaryTableContent>
+                <SummaryTableContent>
+                    <SummaryTitle>Walkin Transactions</SummaryTitle> <SummaryValue>{summary.walkinTransaction}</SummaryValue>
                 </SummaryTableContent>
                 <SummaryTableContent>
                     <SummaryTitle>Total Transactions</SummaryTitle> <SummaryValue>{summary.totalTransaction}</SummaryValue>

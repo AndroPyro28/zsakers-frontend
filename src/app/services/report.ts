@@ -19,10 +19,18 @@ const reportApi = privateApi.injectEndpoints({
             }),
             providesTags: ['REPORT']
         }),
+        getMonthlyReport: builder.query<ModelForYearly, void >({
+            query: body => ({
+                url: `report/monthly`,
+                method:"GET",
+                body
+            }),
+            providesTags: ['REPORT']
+        }),
         
     }),
     overrideExisting: false
 })
 export default reportApi;
 
-export const {useGetWeeklyReportQuery, useGetYearlyReportQuery} = reportApi
+export const { useGetWeeklyReportQuery, useGetYearlyReportQuery, useGetMonthlyReportQuery } = reportApi

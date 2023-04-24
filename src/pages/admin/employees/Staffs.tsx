@@ -4,7 +4,7 @@ import EmployeeListHeader from '../../../components/employees/EmployeeListHeader
 import EmployeeData from '../../../components/employees/EmployeeData'
 import { useGetStaffsQuery } from '../../../app/services'
 import CreateEmployee from '../../../components/modals/admin/employee/CreateEmployee'
-function Employees() {
+function Staffs() {
 
   const [search, setSearch] = useState<string>('')
   const [toggleCreate, setToggleCreate] = useState(false);
@@ -38,7 +38,7 @@ function Employees() {
       }
 
       <Header>
-        <h2>Employee</h2>
+        <h2>Staffs</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi consectetur mollitia nihil delectus incidunt non quis veritatis voluptatum repellat doloribus?</p>
       </Header>
       <Filters>
@@ -59,4 +59,4 @@ function Employees() {
   )
 }
 
-export default Employees
+export default Staffs

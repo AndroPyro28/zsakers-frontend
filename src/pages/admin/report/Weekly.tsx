@@ -33,39 +33,51 @@ function Weekly() {
 
   const weeklySales = []
 
-
   const summary = {
     totalSales: 0,
     totalSuccess: 0,
     totalCancelled: 0,
-    totalTransaction: 0
+    totalTransaction: 0,
+    walkinTransaction: 0,
+    onlineTransaction: 0
   }
 
   for (const day of weekdays) {
     if (!Boolean(report[day])) {
       weeklySales.push(
         <SummaryContent>
-          <h4>{daysOfWeek[new Date(day).getDay()]} ({day})</h4>
+          <h4>{daysOfWeek[new Date(day).getDay()]}</h4>
           <div className="content"
-          ><strong >Total Success Transaction</strong> :
+          ><strong >Success Transaction:</strong> 
             <strong>
               {0}
             </strong>
-
           </div>
           <div className="content"
-          ><strong >Total Cancelled Transaction</strong> :
+          ><strong >Online Transaction:</strong> 
+            <strong>
+              {0}
+            </strong>
+          </div>
+          <div className="content"
+          ><strong >Walkin Transaction:</strong> 
+            <strong>
+              {0}
+            </strong>
+          </div>
+          <div className="content"
+          ><strong >Cancelled Transaction:</strong> 
             <strong>
               {0}
             </strong></div>
           <div className="content"
-          ><strong >Total Transaction</strong>:
+          ><strong >Total Transaction:</strong>
             <strong>
               {0}
             </strong>
           </div>
           <div className="content"
-          ><strong  style={{color:'black'}}>Total Sales</strong>:
+          ><strong  style={{color:'black'}}>Total Sales:</strong>
             <strong style={{color:'black'}}>{0}</strong>
           </div>
         </SummaryContent>
@@ -75,27 +87,39 @@ function Weekly() {
 
       weeklySales.push(
         <SummaryContent>
-          <h4>{daysOfWeek[new Date(day).getDay()]} ({day})</h4>
+          <h4>{daysOfWeek[new Date(day).getDay()]}</h4>
           <div className="content"
-          ><strong >Total Success Transaction</strong> :
+          ><strong >Success Transaction:</strong> 
             <strong>
               {report[day]!.totalSuccess}
             </strong>
 
           </div>
           <div className="content"
-          ><strong >Total Cancelled Transaction</strong> :
+          ><strong >Walkin Transaction:</strong> 
+            <strong>
+              {report[day]!.onlineTransaction}
+            </strong>
+          </div>
+          <div className="content"
+          ><strong >Online Transaction:</strong> 
+            <strong>
+              {report[day]!.walkinTransaction}
+            </strong>
+          </div>
+          <div className="content"
+          ><strong >Cancelled Transaction:</strong> 
             <strong>
               {report[day]!.totalCancelled}
             </strong></div>
           <div className="content"
-          ><strong >Total Transaction</strong>:
+          ><strong >Total Transaction:</strong>
             <strong>
               {report[day]!.totalTransaction}
             </strong>
           </div>
           <div className="content"
-          ><strong  style={{color:'black'}}>Total Sales</strong>:
+          ><strong  style={{color:'black'}}>Total Sales:</strong>
             <strong style={{color:'black'}}>{report[day].totalSales}</strong>
           </div>
         </SummaryContent>
@@ -108,6 +132,9 @@ function Weekly() {
     summary.totalCancelled += Number(report[r]?.totalCancelled);
     summary.totalTransaction += Number(report[r]?.totalTransaction);
     summary.totalSales += Number(report[r]?.totalSales);
+
+    summary.onlineTransaction += Number(report[r]?.onlineTransaction);
+    summary.walkinTransaction += Number(report[r]?.walkinTransaction);
   }
   const handleExportWeeklyPdf = (e: any) => {
     if (pdfExportWeeklyComponent.current) {
@@ -122,8 +149,7 @@ function Weekly() {
       <BusinessName>Zsakers-Cafe Hagonoy</BusinessName>
       <Address>Hagonoy Bulacan</Address>
 
-
-      <h1>Weekly report</h1>
+      <h1>Sales report for this week</h1>
       <Summary>
         {
           weeklySales.map((jsx) => jsx)
@@ -138,9 +164,17 @@ function Weekly() {
         <SummaryTableContent>
           <SummaryTitle>Success Transactions</SummaryTitle> <SummaryValue>{summary.totalSuccess}</SummaryValue>
         </SummaryTableContent>
+        
+        <SummaryTableContent>
+          <SummaryTitle>Total Online Transaction</SummaryTitle> <SummaryValue>{summary.onlineTransaction}</SummaryValue>
+        </SummaryTableContent>
+        <SummaryTableContent>
+          <SummaryTitle>Total Walkin Transaction</SummaryTitle> <SummaryValue>{summary.walkinTransaction}</SummaryValue>
+        </SummaryTableContent>
         <SummaryTableContent>
           <SummaryTitle>Total Transactions</SummaryTitle> <SummaryValue>{summary.totalTransaction}</SummaryValue>
         </SummaryTableContent>
+        
         <SummaryTableContent>
          <SummaryTitle> <strong>Total Sales </strong></SummaryTitle> <SummaryValue><strong>{summary.totalSales}</strong></SummaryValue>
         </SummaryTableContent>

@@ -38,13 +38,20 @@ function AdminNavbar() {
     },
 
     {
-      url:`/admin/employees`,
-      name:"Employees",
+      url:`/admin/employees/staff`,
+      name:"Staffs",
     //   icon:'fa-solid fa-chart-pie'
     },
-
-    
 ]
+
+if(Boolean(user?.super_admin)) {
+  routes.push(
+    {
+      url:`/admin/employees/admin`,
+      name:"Admins",
+    }
+  )
+}
 
 const [showDropDown, setShowDropDown] = useState(false);
 
@@ -73,9 +80,14 @@ const [showDropDown, setShowDropDown] = useState(false);
             <NavLink to={'orders'}>
             <i className="fa-solid fa-truck-fast"></i> Orders
             </NavLink>
-            <NavLink to={'employees'}>
-            <i className="fa-solid fa-users"></i> Employees
+            <NavLink to={'employees/staff'}>
+            <i className="fa-solid fa-users"></i> Staffs
             </NavLink>
+            {
+              Boolean(user?.super_admin) && <NavLink to={'employees/admin'}>
+              <i className="fa-solid fa-users"></i> Admins
+              </NavLink>
+            }
         </AdminLinks>
         <UserProfile>
           <PhotoBorder>

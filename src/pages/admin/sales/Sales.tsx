@@ -88,7 +88,7 @@ function Sales() {
   return (
     <SaleContainerPage>
 
-      <div style={{ position: 'fixed', top: -10000 }}>
+      {/* <div style={{ position: 'fixed', top: -10000 }}>
         <PDFExport ref={pdfExportYearComponent} paperSize="A4">
           <PdfContent>
             <h1>Report for {summaryYear} </h1>
@@ -127,26 +127,20 @@ function Sales() {
             </Summary>
           </PdfContent>
         </PDFExport>
-      </div>
+      </div> */}
 
 
       <GlobalStyles />
       <FilterDataContainer2>
 
         <Title>
-          Select month & year and print your reports
+        Sales Report
         </Title>
 
         <PrintExport>
-          {/* <label htmlFor="">Select month & year</label> */}
-          <select name="" id="" onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSummaryMonth(Number(e.target.value))}>
-            {labels?.slice(0)?.map((value, index) => <option value={index} key={value} >{value}</option>)}
-          </select>
-          <select name="" id="" onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setSummaryYear(Number(e.target.value))}>
-            {arrYear?.slice(0)?.reverse()?.map((value) => <option value={value} key={value} >{value}</option>)}
-          </select>
-          {/* <Button onClick={handleExportYearPdf}>generate report by year</Button> */}
-          <Button onClick={handleExportMonthPdf}>generate report by month and year</Button>
+          <Link
+            to="/admin/sales/report/monthly"
+            >Generate report by month</Link>
           <Link
             to="/admin/sales/report/yearly"
             >Generate report by year</Link>
