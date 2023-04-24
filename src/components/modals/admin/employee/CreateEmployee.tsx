@@ -27,8 +27,7 @@ function CreateEmployee({setToggleCreate}: Props) {
                             <i className="fa-solid fa-xmark exit"></i>
                         </div>
                         
-                        <h1><i className="fa-solid fa-user-tie"></i> Add Employee</h1>
-
+                        <h1><i className="fa-solid fa-user-tie"></i> Information</h1>
 
                         <FieldContainer>
                             <label htmlFor=""> <i className="fa-solid fa-signature"></i> Firstname  </label>

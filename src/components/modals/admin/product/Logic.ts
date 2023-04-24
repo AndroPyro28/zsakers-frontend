@@ -25,7 +25,7 @@ function Logic() {
             }
           } else {
             resetForm(initialValues);
-            alert("Product Created");
+            toast('Product Created!', {type: 'success'})
           }
         };
       } else {

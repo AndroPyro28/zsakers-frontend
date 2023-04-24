@@ -40,14 +40,6 @@ const Yearly = () => {
 walkinTransaction: 0
   }
 
-//   for(const r of report) {
-//     summary.totalSuccess += Number(report[r]?.totalSuccess);
-//     summary.totalCancelled += Number(report[r]?.totalCancelled);
-//     summary.totalTransaction += Number(report[r]?.totalTransaction);
-//     summary.totalSales += Number(report[r]?.totalSales);
-//   }  
-
-
   const data = report?.map((d) => {
     summary.totalSuccess += Number(d?.totalSuccess);
     summary.totalCancelled += Number(d?.totalCancelled);
@@ -101,7 +93,7 @@ walkinTransaction: 0
   }
 
  return <WeeklyWrapper>
-    <FontAwesomeIcon icon={faChevronLeft} className="backBtn" onClick={() => navigate('/admin/sales')} />
+    <FontAwesomeIcon icon={faChevronLeft} className="backBtn" onClick={() => navigate(-1)} />
     <PDFExport 
     ref={pdfExportYearComponent}
     >

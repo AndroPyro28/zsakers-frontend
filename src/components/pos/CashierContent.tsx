@@ -4,16 +4,50 @@ import { Address, BranchName, ReceiptProduct, CashierContent as CashierContentCo
 import Order from './Order'
 import { useEffect, useRef, useState } from 'react'
 import { v4 as uuid } from 'uuid'
-import {ThermalPrinter, PrinterTypes, CharacterSet, BreakLine} from 'node-thermal-printer'
 import ReactToPrint from 'react-to-print'
 import PopupCashier from '../modals/staff/PopupCashier'
 import { useCreateOrderWalkinMutation, useGetCurrentUser } from '../../app/services'
 import { CartProduct } from '../../model'
-import html2canvas from 'html2canvas';
-import {JSDOM} from 'jsdom'
+import {SerialPort} from 'serialport';
+// import { Printer } from '@react-thermal-printer/printer';
+// import html2canvas from 'html2canvas';
+// import {ThermalPrinter, PrinterTypes, CharacterSet, BreakLine} from 'node-thermal-printer'
+// import {JSDOM} from 'jsdom'
+// import printer from 'printer';
+import {Cut, Line, Printer, Text, Row, render} from "react-thermal-printer";
+
+import printer from 'printer';
+
 function CashierContent() {
 
   const { data: cartProducts, isLoading, isError } = useGetCartProductsQuery()
+  const [port, setPort] = useState(null);
+
+  // useEffect(() => {
+  //   const connectPrinter = async () => {
+  //     const ports = await SerialPort.list();
+  //     const printerPort = ports.find(port => port.manufacturer?.includes('printer manufacturer'));
+  //     if (printerPort) {
+  //       const serialPort = new SerialPort({
+  //         // baudRate: 9600,
+  //         // dataBits: 8,
+  //         // parity: 'none',
+  //         // stopBits: 1,
+  //         baudRate: 9600,
+  //         dataBits: 8,
+  //         parity: 'none',
+  //         path: printerPort.path
+  //       });
+
+  //       console.log(serialPort)
+  //       // setPort(serialPort?.);
+  //     }
+  //   };
+
+  //   connectPrinter();
+  // }, []);
+  
+
   // const { data: cartProducts, isLoading, isError} = useGetCartProducts();
 
   let content;
@@ -21,44 +55,53 @@ function CashierContent() {
   if (isLoading) content = <h3>Loading...</h3>
 
   if (isError) content = <h3>Something went wrong...</h3>
-
+  
   if (cartProducts?.length === 0) content = <h3>No Orders yet</h3>
   else content = cartProducts?.map((cartProduct) => <Order data={cartProduct} />)
 
+  
+  
   const componentRef = useRef<any>();
   const printBtnRef = useRef<any>()
   const [inputMoney, setInputMoney] = useState(0)
   const [toggleCashier, setToggleCashier] = useState(false);
-
+  const printerRef = useRef<any>(null);
   const handlePrint = async () => {
     if (printBtnRef.current) {
       printBtnRef.current.handlePrint()
-      // const virtualDom = new JSDOM('<!DOCTYPE html>');
+    } 
 
-      // thermal printer to be continue here
-      
-     
+    // window.print()
+    // const port = await window.navigator.requestPort();
+    // await port.open({ baudRate: 9600 });
+    
+    // const writer = port.writable?.getWriter();
+    // if (writer != null) {
+    //   await writer.write(data);
+    //   writer.releaseLock();
+    // }
+
+    
     }
-  }
-
-  const calculateAmount = (totalValue: any, cartProduct: CartProduct) => {
+    
+  const calculateAmount = (totalValue: number, cartProduct: CartProduct) => {
     // calculate add ons
     if (cartProduct.Cart_Product_Variant && cartProduct.Cart_Product_Variant?.length > 0) {
+
       const addonPrice = cartProduct.Cart_Product_Variant.reduce((total, cartVariant) => {
         const addonPrice = cartVariant.product.productType === 'ADDONS' ?
           total + cartVariant.product.price : total;
         return (addonPrice)
       }, 0)
 
-      return (addonPrice + totalValue + cartProduct.product.price) * cartProduct.quantity;
+      return totalValue + ((addonPrice + cartProduct.product.price ) * cartProduct.quantity);
     }
 
-    return (totalValue + cartProduct.product.price) * cartProduct.quantity
+    return totalValue + (cartProduct.product.price * cartProduct.quantity)
   }
 
   const totalAmount = cartProducts?.reduce(calculateAmount, 0)!;
 
-  // const totalAmount = cartProducts?.reduce((total, cartProduct) => total + (cartProduct.product.price * cartProduct.quantity), 0) ?? 0
   const tax = (totalAmount! / 1.12) * .12;
   const subtotal = totalAmount! - tax;
   const hashId = `${uuid()}`.replace(/\-/g,"").replace(/\D+/g, '');
@@ -84,13 +127,12 @@ function CashierContent() {
     setToggleCashier(true)
   }
 
-  // useEffect(() => {
-  //   if (componentRef.current) {
-  //     console.log(componentRef.current)
-  //   }
-  // }, [])
+  
+
   return (
     <CashierContentContainer>
+      {/* <ThermalPrinter ref={printerRef} /> */}
+
       {
         toggleCashier && <PopupCashier
           handlePrint={handlePrint}
@@ -133,7 +175,7 @@ function CashierContent() {
       />
 
       <div style={{ display: 'none' }}>
-        <ReceiptContainer ref={componentRef}>
+        <ReceiptContainer ref={componentRef} >
 
           <ReceiptContent>
 
@@ -174,7 +216,6 @@ function CashierContent() {
           </ReceiptContent>
         </ReceiptContainer>
       </div>
-
 
     </CashierContentContainer>
   )

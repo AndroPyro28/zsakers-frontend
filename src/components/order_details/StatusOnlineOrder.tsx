@@ -10,6 +10,7 @@ function StatusOnlineOrder({data}: {data: OrderDetails} ) {
   const [statusSummaryShipping, setStatusSummaryShipping] = useState("");
   const [statusSummaryDelivering, setStatusSummaryDelivering] = useState("");
 
+  const [disable, setDisable] = useState(false);
   useEffect(() => {
     setDeliveryStatus(data?.delivery_status);
   }, [data]);
@@ -26,6 +27,7 @@ function StatusOnlineOrder({data}: {data: OrderDetails} ) {
   } = Logic({
     deliveryStatus,
     setDeliveryStatus,
+    setDisable
   });
 
   return (
@@ -39,7 +41,7 @@ function StatusOnlineOrder({data}: {data: OrderDetails} ) {
           Order Packed{" "}
           <i className={`fa-solid fa-circle-check i ${statusSummaryPackaging}`}></i>
         </span>
-        <small>{statusSummaryPackaging === 'active' || statusSummaryPackaging === 'notActive'  ? 'Order is being prepared' : 'Order has been packed'}</small>
+        <small>{statusSummaryPackaging === 'active' || statusSummaryPackaging === 'notActive'  ? 'Order is being prepared' : 'Order has been packed, ready to dispatch.'}</small>
       </OrderStatusInfo>
     </OrderStatus>
 
@@ -48,9 +50,10 @@ function StatusOnlineOrder({data}: {data: OrderDetails} ) {
       <OrderStatusInfo  status={statusSummaryShipping}>
         <span>
           Order Dispatched{" "}
+          
           <i className={`fa-solid fa-circle-check i ${statusSummaryShipping}`}></i>
         </span>
-        <small>{statusSummaryShipping === 'active' || statusSummaryShipping === 'notActive'  ? 'Preparing to dispatch' : 'Order has been dispatched'}</small>
+        <small>{statusSummaryShipping === 'active' || statusSummaryShipping === 'notActive'  ? 'Preparing to dispatch' : 'Order has been dispatched.'}</small>
 
       </OrderStatusInfo>
     </OrderStatus>
@@ -64,7 +67,7 @@ function StatusOnlineOrder({data}: {data: OrderDetails} ) {
             className={`fa-solid fa-circle-check i ${statusSummaryDelivering}`}
           ></i>
         </span>
-        <small> {statusSummaryDelivering === 'active' || statusSummaryDelivering === 'notActive'  ? 'Order is in shipping process' : 'Order Has been delivered'} </small>
+        <small> {statusSummaryDelivering === 'active' || statusSummaryDelivering === 'notActive'  ? 'Order is in shipping process' : 'Order Has been delivered, order has been delivered.'} </small>
       </OrderStatusInfo>
     </OrderStatus>
       
@@ -73,8 +76,8 @@ function StatusOnlineOrder({data}: {data: OrderDetails} ) {
           {data?.order_status !== "cancelled" && deliveryStatus !== -1 ? (
             <ButtonStatusContainer>
             <button 
-            
-             onClick={() => orderNextStage(data?.id)} disabled={deliveryStatus >= 4}
+             onClick={() => orderNextStage(data?.id)} 
+             disabled={deliveryStatus >= 4 || disable}
              >
               {deliveryStatus >= 4 ? "Order completed" : "Next Stage"}
             </button>

@@ -42,7 +42,7 @@ const Monthly = () => {
       }
 
     return <WeeklyWrapper>
-    <FontAwesomeIcon icon={faChevronLeft} className="backBtn" onClick={() => navigate('/admin/sales')} />
+    <FontAwesomeIcon icon={faChevronLeft} className="backBtn" onClick={() => navigate(-1)} />
     <PDFExport 
      ref={pdfExportMonthlyComponent}
     >

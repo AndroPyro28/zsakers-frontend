@@ -1,6 +1,7 @@
 import { useArchiveProductMutation, useUpdateProductMutation } from "../../app/services";
 import * as yup from 'yup';
 import { UpdateProduct } from "../../model";
+import { toast } from "react-toastify";
 interface Props {
     imageUrl?: string;
     setDisableUpdate?:React.Dispatch<React.SetStateAction<boolean>>;
@@ -22,7 +23,7 @@ function Logic({imageUrl, setDisableUpdate, imageFile, bundleChildrenProductIds}
                 throw new Error(error.data.message)
             }
             else {
-                alert('product deleted!');
+                toast('product deleted!', {type :'success'});
               }
         } catch (error) {
             console.error(error)
@@ -92,7 +93,7 @@ function Logic({imageUrl, setDisableUpdate, imageFile, bundleChildrenProductIds}
             }
             else {
                 setDisableUpdate!(true)
-                alert('product updated!');
+                toast('product updated!', {type :'success'});
             }
 
     } catch (error) {

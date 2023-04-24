@@ -8,7 +8,8 @@ import {StaffRoutesContainer} from './components'
 function StaffRoutes() {
 
     const {data:user, isLoading, isError} = useGetCurrentUser()
-    const excluded = ['/staff/password']
+    const excluded = ['/staff/password', '/staff/sales/report/']
+
     const {pathname} = useLocation()
 
     if(isLoading) return <Loader></Loader>

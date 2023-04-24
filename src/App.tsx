@@ -258,6 +258,18 @@ function App() {
               element: <Sales />,
               index: true,
             }, 
+            {
+              element: <Weekly />,
+              path: 'report/weekly'
+            },
+            {
+              element: <Yearly />,
+              path: 'report/yearly'
+            },
+            {
+              element: <Monthly />,
+              path: 'report/monthly'
+            }
           ]
         },
         {

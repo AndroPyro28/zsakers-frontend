@@ -14,7 +14,6 @@ import {
 
 type orderStatus = 'pending' | 'onGoing' | 'completed' | 'cancelled' | 'all'
 
-
 function Orders() {
 
   const { pathname } = useLocation()

@@ -6,7 +6,6 @@ import { useLocation } from 'react-router-dom';
 function Logic() {
 
   const {pathname} = useLocation()
-  console.log()
 
   const roleToCreate =  pathname.split('/')[pathname.split('/').length - 1].toUpperCase()
     const initialValues = {

@@ -21,7 +21,7 @@ import { useEffect } from "react";
 import { useGetCompletedCancelledOrdersQuery, useGetSummaryQuery } from "../../../app/services";
 import { Button } from "@progress/kendo-react-buttons";
 import { PDFExport, savePDF } from '@progress/kendo-react-pdf'
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function Sales() {
   const [filterDateFrom, setFilterDateFrom] = useState("");
@@ -33,6 +33,8 @@ function Sales() {
     }
   )
 
+  const {pathname} = useLocation();
+  const role = pathname.split('/')[1]
   const labels = [
     "January",
     "February",
@@ -88,48 +90,6 @@ function Sales() {
   return (
     <SaleContainerPage>
 
-      {/* <div style={{ position: 'fixed', top: -10000 }}>
-        <PDFExport ref={pdfExportYearComponent} paperSize="A4">
-          <PdfContent>
-            <h1>Report for {summaryYear} </h1>
-
-            <Summary>
-              {
-                monthlySales?.map((value, index) => {
-                  return <MonthSummary key={index}>
-                    <h4>{labels[value.month]}</h4>
-                    <div className="content" style={{ color: 'rgb(166,183,241)' }} ><strong >Total Success Transaction</strong>: <label>{monthlySuccessTransactions[value.month].total}</label></div>
-                    <div className="content" style={{ color: 'rgb(229,111,139)' }} ><strong >Total Cancelled Transaction</strong>: <label>{monthlyCancelledTransactions[value.month].total}</label></div>
-                    <div className="content" style={{ color: 'rgb(136,246,156)' }} ><strong >Total Transaction</strong>: <label>{monthlyTotalTransactions[value.month].total}</label></div>
-                    <div className="content" style={{ color: 'rgb(6,224,46)' }} ><strong >Total Sales</strong>: <label>{value.total}</label></div>
-                  </MonthSummary>
-                })
-              }
-
-            </Summary>
-          </PdfContent>
-        </PDFExport>
-      </div>
-
-      <div style={{ position: 'fixed', top: -10000 }}>
-        <PDFExport ref={pdfExportMonthComponent} paperSize="A4">
-          <PdfContent>
-            <h1>Report for month of {labels[summaryMonth]} {summaryYear} </h1>
-
-            <Summary>
-              <MonthSummary >
-                <h4>{labels[summaryMonth]}</h4>
-                <div className="content" style={{ color: 'rgb(166,183,241)' }} ><strong >Total Success Transaction</strong>: <label>{monthlySuccessTransactions[summaryMonth]?.total}</label></div>
-                <div className="content" style={{ color: 'rgb(229,111,139)' }} ><strong >Total Cancelled Transaction</strong>: <label>{monthlyCancelledTransactions[summaryMonth]?.total}</label></div>
-                <div className="content" style={{ color: 'rgb(136,246,156)' }} ><strong >Total Transaction</strong>: <label>{monthlyTotalTransactions[summaryMonth]?.total}</label></div>
-                <div className="content" style={{ color: 'rgb(6,224,46)' }} ><strong >Total Sales</strong>: <label>{monthlySales[summaryMonth]?.total}</label></div>
-              </MonthSummary>
-            </Summary>
-          </PdfContent>
-        </PDFExport>
-      </div> */}
-
-
       <GlobalStyles />
       <FilterDataContainer2>
 
@@ -139,13 +99,13 @@ function Sales() {
 
         <PrintExport>
           <Link
-            to="/admin/sales/report/monthly"
+            to={`/${role}/sales/report/monthly`}
             >Generate report by month</Link>
           <Link
-            to="/admin/sales/report/yearly"
+            to={`/${role}/sales/report/yearly`}
             >Generate report by year</Link>
           <Link
-            to="/admin/sales/report/weekly"
+            to={`/${role}/sales/report/weekly`}
             >Generate report by week</Link>
         </PrintExport>
 

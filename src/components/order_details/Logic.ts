@@ -4,8 +4,9 @@ import { useOrderDetailsNextStageMutation } from "../../app/services";
 interface Props {
     deliveryStatus: number
     setDeliveryStatus: React.Dispatch<React.SetStateAction<number>>
+    setDisable: React.Dispatch<React.SetStateAction<boolean>>
 }
-function Logic({deliveryStatus, setDeliveryStatus}: Props) {
+function Logic({deliveryStatus, setDeliveryStatus, setDisable}: Props) {
   const statusSummary = (stage: number) => {
     let summary = "notActive";
 
@@ -20,13 +21,14 @@ function Logic({deliveryStatus, setDeliveryStatus}: Props) {
     return summary;
   };
   const [orderNextStageMutation] = useOrderDetailsNextStageMutation()
-  const orderNextStage = (id: number) => {
+  const orderNextStage = async (id: number) => {
     try {
-      const res: any = orderNextStageMutation({
+      setDisable(true)
+      const res: any = await orderNextStageMutation({
         id,
         deliveryStatus
       });
-      console.log(res)
+      setDisable(false)
     } catch (error) {
       console.error(error)
     }

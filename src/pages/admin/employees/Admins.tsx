@@ -48,7 +48,7 @@ function Admins() {
       </Header>
       <Filters>
 
-        <button onClick={handleToggle}> <i className="fa-solid fa-user"></i> Add employee </button>
+        <button onClick={handleToggle}> <i className="fa-solid fa-user"></i> Add new admin </button>
 
         <SearchBarContainer>
           <i className="fa-solid fa-magnifying-glass i"></i>

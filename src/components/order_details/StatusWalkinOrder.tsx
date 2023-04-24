@@ -12,7 +12,7 @@ function Status({ data }: { data: OrderDetails }) {
   const [statusSummaryDelivering, setStatusSummaryDelivering] = useState("");
   const [disableButton, setDisableButton ] = useState(false)
   const [cancelOrderMutation] = useCancelOrderMutation()
-
+  const [disable, setDisable] = useState(false)
   useEffect(() => {
     setDeliveryStatus(data?.delivery_status);
   }, [data]);
@@ -29,6 +29,7 @@ function Status({ data }: { data: OrderDetails }) {
   } = Logic({
     deliveryStatus,
     setDeliveryStatus,
+    setDisable
   });
 
   const cancelOrder = async () => {
@@ -64,14 +65,17 @@ function Status({ data }: { data: OrderDetails }) {
             <ButtonStatusContainer>
               <button
 
-                onClick={() => orderNextStage(data?.id)} disabled={deliveryStatus >= 4}
+                onClick={() => orderNextStage(data?.id)} 
+                disabled={deliveryStatus >= 4 || disable}
+
               >
                 {deliveryStatus >= 4 ? "Order completed" : "Next Stage"}
               </button>
               {
                 data?.order_status !== 'completed' && 
                 deliveryStatus < 4 && 
-                <button className='cancel__order__btn' onClick={cancelOrder} disabled={disableButton}>
+                <button className='cancel__order__btn' onClick={cancelOrder} 
+                disabled={disableButton}>
                   Cancel order
                 </button>
               }
